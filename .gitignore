@@ -350,4 +350,4 @@ MigrationBackup/
 .ionide/
 
 # Dont ignore Box2D
-!Box2D/
+*!Box2D/
