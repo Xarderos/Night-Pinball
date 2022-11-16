@@ -21,6 +21,7 @@ public:
 public:
 
 	SDL_Texture* Bola;
+	SDL_Rect BolaPin;
 	PhysBody* Ball;
 	PhysBody* Rectangle;
 
