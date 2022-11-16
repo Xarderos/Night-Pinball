@@ -48,9 +48,12 @@ public:
 	
 	// Create basic physics objects
 	PhysBody* CreateCircle(int x, int y, int radius);
+	PhysBody* CreateCircleStatic(int x, int y, int radius);
 	PhysBody* CreateRectangle(int x, int y, int width, int height);
+	PhysBody* CreateRectangleStatic(int x, int y, int width, int height);
 	PhysBody* CreateRectangleSensor(int x, int y, int width, int height);
 	PhysBody* CreateChain(int x, int y, int* points, int size);
+	b2World* world;
 
 	// b2ContactListener ---
 	void BeginContact(b2Contact* contact);
@@ -61,7 +64,6 @@ private:
 	bool debug;
 
 	// Box2D World
-	b2World* world;
 
 	// Main ground
 	b2Body* ground;

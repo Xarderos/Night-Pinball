@@ -46,11 +46,11 @@ update_status ModulePlayer::Update()
 	App->renderer->Blit(Bola, METERS_TO_PIXELS (position.x) -14, METERS_TO_PIXELS (position.y) -14, &BolaPin,1,50*(Ball->body->GetAngle()));
 
 	SDL_Rect PedraPin = { 354,165,56,55 };
-	App->renderer->Blit(Pedra, 94 * 2, 165 * 2, &PedraPin);
+	App->renderer->Blit(Pedra, 94 * SCREEN_SIZE, 165 * SCREEN_SIZE, &PedraPin);
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
-		b2Vec2 vel = b2Vec2(0, 10 * GRAVITY_Y);
+		b2Vec2 vel = b2Vec2(0, 3 * GRAVITY_Y);
 		Ball->body->SetLinearVelocity(vel);
 	}
 

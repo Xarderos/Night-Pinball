@@ -29,16 +29,37 @@ bool ModuleSceneIntro::Start()
 	// Set camera position
 	App->renderer->camera.x = App->renderer->camera.y = 0;
 	Mapa = App->textures->Load("pinball/SpriteSheet.png");
-	
-
-	// Create a big red sensor on the bottom of the screen.
-	// This sensor will not make other objects collide with it, but it can tell if it is "colliding" with something else
-
 	map();
 
 	// Add this module (ModuleSceneIntro) as a listener for collisions with the sensor.
+	rightflipcircle = App->physics->CreateCircleStatic(155, 386, 5);
+	leftflipcircle = App->physics->CreateCircleStatic(87, 386, 5);
+	rightflipper = App->physics->CreateRectangle(140, 385, 20, 6);
+	leftflipper = App->physics->CreateRectangle(101, 385, 20, 6);
 
-	
+	b2RevoluteJointDef rightFlip;
+	rightFlip.bodyA = rightflipper->body;
+	rightFlip.bodyB = rightflipcircle->body;
+	rightFlip.localAnchorA.Set(PIXEL_TO_METERS(16), 0);
+	rightFlip.localAnchorB.Set(0, 0);
+	rightFlip.referenceAngle = 0 * DEGTORAD;
+	rightFlip.enableLimit = true;
+	rightFlip.lowerAngle = -30 * DEGTORAD;
+	rightFlip.upperAngle = 23 * DEGTORAD;
+
+	b2RevoluteJoint* rightflipjoint = (b2RevoluteJoint*)App->physics->world->CreateJoint(&rightFlip);
+
+	b2RevoluteJointDef leftFlip;
+	leftFlip.bodyA = leftflipper->body;
+	leftFlip.bodyB = leftflipcircle->body;
+	leftFlip.localAnchorA.Set(PIXEL_TO_METERS(-16), 0);
+	leftFlip.localAnchorB.Set(0, 0);
+	leftFlip.referenceAngle = 0 * DEGTORAD;
+	leftFlip.enableLimit = true;
+	leftFlip.lowerAngle = -23 * DEGTORAD;
+	leftFlip.upperAngle = 30 * DEGTORAD;
+
+	b2RevoluteJoint* leftflipjoint = (b2RevoluteJoint*)App->physics->world->CreateJoint(&leftFlip);
 	return ret;
 }
 
@@ -51,38 +72,17 @@ bool ModuleSceneIntro::CleanUp()
 
 update_status ModuleSceneIntro::Update()
 {
-	// If user presses SPACE, enable RayCast
-	if(App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
-	{
-		// Enable raycast mode
-		ray_on = !ray_on;
-
-		// Origin point of the raycast is be the mouse current position now (will not change)
-		ray.x = App->input->GetMouseX();
-		ray.y = App->input->GetMouseY();
-	}
-
-	// If user presses 1, create a new circle object
-	if(App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
-	{
-		circles.add(App->physics->CreateCircle(App->input->GetMouseX(), App->input->GetMouseY(), 25));
-
-		// Add this module (ModuleSceneIntro) as a "listener" interested in collisions with circles.
-		// If Box2D detects a collision with this last generated circle, it will automatically callback the function ModulePhysics::BeginContact()
-		circles.getLast()->data->listener = this;
-	}
-
-	// If user presses 2, create a new box object
-	if(App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
-	{
-		boxes.add(App->physics->CreateRectangle(App->input->GetMouseX(), App->input->GetMouseY(), 100, 50));
-	}
-
-	// Pivot 0, 0
 	
 
+	if ((App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT))
+	{
+		rightflipper->body->ApplyForceToCenter(b2Vec2(0, -200), 1);
+	}
 
-	// Prepare for raycast ------------------------------------------------------
+	if ((App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT))
+	{
+		leftflipper->body->ApplyForceToCenter(b2Vec2(0, -200), 1);
+	}
 	
 	// The target point of the raycast is the mouse current position (will change over game time)
 	iPoint mouse;
