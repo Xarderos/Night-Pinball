@@ -2,6 +2,7 @@
 #include "Module.h"
 #include "Globals.h"
 #include "p2Point.h"
+#include "Animation.h"
 
 struct SDL_Texture;
 
@@ -23,6 +24,6 @@ public:
 	PhysBody* Ball;
 	PhysBody* Rectangle;
 
-	
+	Animation bolapin;
 
 };
