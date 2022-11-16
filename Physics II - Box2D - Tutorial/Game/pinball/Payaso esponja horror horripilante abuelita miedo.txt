@@ -1,3 +1,6 @@
+//¡¡CUIDAO!! Aquestes coordenades son dels sprites a dins de la spritesheet, no les posicions dels objectes a dins del joc
+
+
 //Coords + dim dels flippers
 x = 235
 y = 651
