@@ -94,8 +94,8 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, f
 {
 	bool ret = true;
 	SDL_Rect rect;
-	rect.x = (int) (camera.x * speed) + x * SCREEN_SIZE;
-	rect.y = (int) (camera.y * speed) + y * SCREEN_SIZE;
+	rect.x = (int) (camera.x * speed) + x ;
+	rect.y = (int) (camera.y * speed) + y ;
 
 	if(section != NULL)
 	{
@@ -139,8 +139,8 @@ bool ModuleRender::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uin
 	SDL_Rect rec(rect);
 	if(use_camera)
 	{
-		rec.x = (int)(camera.x + rect.x * SCREEN_SIZE);
-		rec.y = (int)(camera.y + rect.y * SCREEN_SIZE);
+		rec.x = (int)(camera.x + rect.x );
+		rec.y = (int)(camera.y + rect.y );
 		rec.w *= SCREEN_SIZE;
 		rec.h *= SCREEN_SIZE;
 	}
@@ -164,11 +164,11 @@ bool ModuleRender::DrawLine(int x1, int y1, int x2, int y2, Uint8 r, Uint8 g, Ui
 	SDL_SetRenderDrawColor(renderer, r, g, b, a);
 
 	int result = -1;
-
+	
 	if(use_camera)
-		result = SDL_RenderDrawLine(renderer, camera.x + x1 * SCREEN_SIZE, camera.y + y1 * SCREEN_SIZE, camera.x + x2 * SCREEN_SIZE, camera.y + y2 * SCREEN_SIZE);
+		result = SDL_RenderDrawLine(renderer, camera.x + x1 , camera.y + y1 , camera.x + x2 , camera.y + y2 );
 	else
-		result = SDL_RenderDrawLine(renderer, x1 * SCREEN_SIZE, y1 * SCREEN_SIZE, x2 * SCREEN_SIZE, y2 * SCREEN_SIZE);
+		result = SDL_RenderDrawLine(renderer, x1 , y1 , x2 , y2 );
 
 	if(result != 0)
 	{

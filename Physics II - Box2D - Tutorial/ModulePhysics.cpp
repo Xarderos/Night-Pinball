@@ -40,8 +40,6 @@ bool ModulePhysics::Start()
 	world->SetContactListener(this);
 
 	// Create the main static ground of the scenario: a big circle in the middle of the screen
-	CreateScenarioGround();
-
 	// Create a static, shapeless ground body
 	// This will be used to create joints like a mouse joint
 	b2BodyDef bd;
@@ -246,46 +244,20 @@ bool ModulePhysics::CleanUp()
 	return true;
 }
 
-void ModulePhysics::CreateScenarioGround()
-{
-	// Get coordinates of the screen center and radius
-	int x = SCREEN_WIDTH / 2;
-	int y = SCREEN_HEIGHT / 1.5f;
-	int diameter = SCREEN_WIDTH / 2;
-
-	// Create a static body in the middle of the screen
-	b2BodyDef body;
-	body.type = b2_staticBody;
-	body.position.Set(PIXEL_TO_METERS(x), PIXEL_TO_METERS(y));
-
-	// Add this static body to the World
-	b2Body* big_ball = world->CreateBody(&body);
-
-	// Create a big circle shape
-	b2CircleShape shape;
-	shape.m_radius = PIXEL_TO_METERS(diameter) * 0.5f;
-
-	// Create a fixture and associate the circle to it
-	b2FixtureDef fixture;
-	fixture.shape = &shape;
-
-	// Add the ficture (plus shape) to the static body
-	big_ball->CreateFixture(&fixture);
-}
 
 PhysBody* ModulePhysics::CreateCircle(int x, int y, int radius)
 {
 	// Create BODY at position x,y
 	b2BodyDef body;
 	body.type = b2_dynamicBody;
-	body.position.Set(PIXEL_TO_METERS(x), PIXEL_TO_METERS(y));
+	body.position.Set(PIXEL_TO_METERS(x) , PIXEL_TO_METERS(y) );
 
 	// Add BODY to the world
 	b2Body* b = world->CreateBody(&body);
 
 	// Create SHAPE
 	b2CircleShape shape;
-	shape.m_radius = PIXEL_TO_METERS(radius);
+	shape.m_radius = PIXEL_TO_METERS(radius) ;
 
 	// Create FIXTURE
 	b2FixtureDef fixture;
@@ -310,14 +282,14 @@ PhysBody* ModulePhysics::CreateRectangle(int x, int y, int width, int height)
 	// Create BODY at position x,y
 	b2BodyDef body;
 	body.type = b2_dynamicBody;
-	body.position.Set(PIXEL_TO_METERS(x), PIXEL_TO_METERS(y));
+	body.position.Set(PIXEL_TO_METERS(x) , PIXEL_TO_METERS(y) );
 
 	// Add BODY to the world
 	b2Body* b = world->CreateBody(&body);
 
 	// Create SHAPE
 	b2PolygonShape box;
-	box.SetAsBox(PIXEL_TO_METERS(width) * 0.5f, PIXEL_TO_METERS(height) * 0.5f);
+	box.SetAsBox(PIXEL_TO_METERS(width) * 0.5f , PIXEL_TO_METERS(height) * 0.5f );
 
 	// Create FIXTURE
 	b2FixtureDef fixture;
@@ -377,7 +349,7 @@ PhysBody* ModulePhysics::CreateChain(int x, int y, int* points, int size)
 	// Create BODY at position x,y
 	b2BodyDef body;
 	body.type = b2_staticBody;
-	body.position.Set(PIXEL_TO_METERS(x), PIXEL_TO_METERS(y));
+	body.position.Set(PIXEL_TO_METERS(x) , PIXEL_TO_METERS(y) );
 
 	// Add BODY to the world
 	b2Body* b = world->CreateBody(&body);
@@ -387,8 +359,8 @@ PhysBody* ModulePhysics::CreateChain(int x, int y, int* points, int size)
 	b2Vec2* p = new b2Vec2[size / 2];
 	for(uint i = 0; i < size / 2; ++i)
 	{
-		p[i].x = PIXEL_TO_METERS(points[i * 2 + 0]);
-		p[i].y = PIXEL_TO_METERS(points[i * 2 + 1]);
+		p[i].x = PIXEL_TO_METERS(points[i * 2 + 0]) ;
+		p[i].y = PIXEL_TO_METERS(points[i * 2 + 1]) ;
 	}
 	shape.CreateLoop(p, size / 2);
 

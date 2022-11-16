@@ -10,7 +10,7 @@
 #define METER_PER_PIXEL 0.02f // this is 1 / PIXELS_PER_METER !
 
 #define METERS_TO_PIXELS(m) ((int) floor(PIXELS_PER_METER * m))
-#define PIXEL_TO_METERS(p)  ((float) METER_PER_PIXEL * p)
+#define PIXEL_TO_METERS(p)  ((float) METER_PER_PIXEL * p * SCREEN_SIZE)
 
 // Small class to return to other modules to track position and rotation of physics bodies
 class PhysBody
@@ -45,9 +45,7 @@ public:
 	update_status PostUpdate();
 	bool CleanUp();
 
-	// Create main ground
-	void CreateScenarioGround();
-
+	
 	// Create basic physics objects
 	PhysBody* CreateCircle(int x, int y, int radius);
 	PhysBody* CreateRectangle(int x, int y, int width, int height);

@@ -118,7 +118,7 @@ update_status ModuleSceneIntro::Update()
 
 	SDL_Rect MapaPin = { 1, 1, 256, 432 };
 
-	App->renderer->Blit(Mapa, 1, 1, &MapaPin);
+	App->renderer->Blit(Mapa, 2, 2, &MapaPin);
 
 	// Keep playing
 	return UPDATE_CONTINUE;

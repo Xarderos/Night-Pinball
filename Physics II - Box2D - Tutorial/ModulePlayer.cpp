@@ -39,7 +39,7 @@ update_status ModulePlayer::Update()
 	
 	SDL_Rect BolaPin = { 1,703,14,14 };
 	position = Ball->body->GetPosition();
-	App->renderer->Blit(Bola, METERS_TO_PIXELS (position.x) - 7, METERS_TO_PIXELS (position.y) - 7, &BolaPin);
+	App->renderer->Blit(Bola, METERS_TO_PIXELS (position.x) -14, METERS_TO_PIXELS (position.y) -14, &BolaPin);
 
 	return UPDATE_CONTINUE;
 }
