@@ -18,11 +18,7 @@ bool ModulePlayer::Start()
 
 	Bola = App->textures->Load("pinball/SpriteSheet.png");
 	Ball = App->physics->CreateCircle(240, 400, 7);
-
-	
-
-	/*App->physics->CreateRectangle(10, 400, 600, 30);*/
-	
+		
 
 	LOG("Loading player");
 	return true;
