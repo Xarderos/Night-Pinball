@@ -17,9 +17,11 @@ bool ModulePlayer::Start()
 {
 
 	Bola = App->textures->Load("pinball/SpriteSheet.png");
-	App->physics->CreateCircle(100, 100, 7);
+	Ball = App->physics->CreateCircle(240, 400, 7);
 
-	App->physics->CreateRectangle(10, 400, 600, 30);
+	
+
+	/*App->physics->CreateRectangle(10, 400, 600, 30);*/
 	
 
 	LOG("Loading player");
@@ -37,9 +39,11 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update()
 {
+	b2Vec2 position;
+	
 	SDL_Rect BolaPin = { 1,703,14,14 };
-	App->renderer->Blit(Bola, 1, 703, &BolaPin);
-
+	position = Ball->body->GetPosition();
+	App->renderer->Blit(Bola, METERS_TO_PIXELS (position.x) - 7, METERS_TO_PIXELS (position.y) - 7, &BolaPin);
 
 	return UPDATE_CONTINUE;
 }
