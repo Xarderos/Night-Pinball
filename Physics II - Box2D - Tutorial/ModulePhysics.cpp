@@ -308,8 +308,8 @@ PhysBody* ModulePhysics::CreateRectangle(int x, int y, int width, int height)
 {
 	// Create BODY at position x,y
 	b2BodyDef body;
-	body.type = b2_dynamicBody;
-	body.position.Set(PIXEL_TO_METERS(x), PIXEL_TO_METERS(y));
+	body.type = b2_staticBody;
+	body.position.Set(PIXEL_TO_METERS(x) * SCREEN_SIZE, PIXEL_TO_METERS(y) * SCREEN_SIZE);
 
 	// Add BODY to the world
 	b2Body* b = world->CreateBody(&body);
