@@ -2,6 +2,13 @@
 
 
 //Coords + dim dels flippers
+//Esquerra
+x = 235
+y = 662
+w = 30
+h = 10
+
+//Dreta
 x = 235
 y = 651
 w = 30
