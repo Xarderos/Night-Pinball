@@ -28,7 +28,7 @@ bool ModuleSceneIntro::Start()
 
 	// Set camera position
 	App->renderer->camera.x = App->renderer->camera.y = 0;
-
+	Mapa = App->textures->Load("pinball/SpriteSheet.png");
 
 	// Create a big red sensor on the bottom of the screen.
 	// This sensor will not make other objects collide with it, but it can tell if it is "colliding" with something else
@@ -156,7 +156,65 @@ update_status ModuleSceneIntro::Update()
 	// Keep playing
 	return UPDATE_CONTINUE;
 }
+void ModuleSceneIntro::map()
+{
 
+	int mapchain[106] = {
+			401, 753,
+			401, 227,
+			368, 149,
+			322, 89,
+			262, 51,
+			210, 43,
+			176, 45,
+			132, 63,
+			96, 97,
+			80, 123,
+			86, 150,
+			118, 157,
+			130, 152,
+			133, 158,
+			117, 197,
+			130, 215,
+			105, 279,
+			97, 328,
+			87, 344,
+			97, 383,
+			92, 386,
+			69, 289,
+			39, 289,
+			68, 405,
+			64, 406,
+			60, 393,
+			30, 452,
+			30, 659,
+			168, 779,
+			168, 790,
+			11, 789,
+			16, 27,
+			409, 27,
+			409, 782,
+			209, 789,
+			213, 774,
+			351, 663,
+			351, 438,
+			335, 380,
+			339, 327,
+			332, 298,
+			352, 249,
+			356, 218,
+			338, 181,
+			317, 215,
+			305, 209,
+			325, 173,
+			313, 164,
+			314, 141,
+			347, 178,
+			363, 213,
+			369, 284,
+			369, 753
+	};
+}
 void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {
 	// Play Audio FX on every collision, regardless of who is colliding
