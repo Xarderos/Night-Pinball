@@ -29,6 +29,7 @@ bool ModuleSceneIntro::Start()
 	// Set camera position
 	App->renderer->camera.x = App->renderer->camera.y = 0;
 	Mapa = App->textures->Load("pinball/SpriteSheet.png");
+	
 
 	// Create a big red sensor on the bottom of the screen.
 	// This sensor will not make other objects collide with it, but it can tell if it is "colliding" with something else
@@ -116,8 +117,9 @@ update_status ModuleSceneIntro::Update()
 	}
 
 	SDL_Rect MapaPin = { 1, 1, 256, 432 };
-
+	
 	App->renderer->Blit(Mapa, 2, 2, &MapaPin);
+	
 
 	// Keep playing
 	return UPDATE_CONTINUE;

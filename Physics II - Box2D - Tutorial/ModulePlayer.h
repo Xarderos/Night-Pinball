@@ -24,6 +24,7 @@ public:
 	SDL_Rect BolaPin;
 	PhysBody* Ball;
 	PhysBody* Rectangle;
+	SDL_Texture* Pedra;
 
 	Animation bolapin;
 
