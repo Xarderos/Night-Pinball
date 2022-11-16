@@ -1,9 +1,0 @@
-idle.anim(0, 0, 37, 56);
-idle.anim(38, 0, 44, 56);
-idle.anim(82, 0, 62, 56);
-idle.anim(144, 0, 52, 56);
-idle.anim(196, 0, 44, 56);
-idle.anim(240, 0, 43, 56);
-idle.loop = true;
-
-
