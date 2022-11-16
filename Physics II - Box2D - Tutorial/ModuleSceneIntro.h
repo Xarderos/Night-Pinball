@@ -32,16 +32,13 @@ public:
 	bool sensed;
 
 	// Textures
-<<<<<<< Updated upstream
+
 	SDL_Texture* circle;
 	SDL_Texture* box;
 	SDL_Texture* rick;
 	SDL_Texture* Mapa;
 
 	SDL_Rect MapaPin = { 1, 1, 256, 432 };
-=======
-
->>>>>>> Stashed changes
 
 	// FX
 	uint bonus_fx;

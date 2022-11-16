@@ -29,15 +29,6 @@ bool ModuleSceneIntro::Start()
 	// Set camera position
 	App->renderer->camera.x = App->renderer->camera.y = 0;
 
-	// Load textures
-<<<<<<< Updated upstream
-	Mapa = App->textures->Load("pinball/SpriteSheet.png");
-	circle = App->textures->Load("pinball/wheel.png"); 
-	box = App->textures->Load("pinball/crate.png");
-	rick = App->textures->Load("pinball/rick_head.png");
-=======
->>>>>>> Stashed changes
-	bonus_fx = App->audio->LoadFx("pinball/bonus.wav");
 
 	// Create a big red sensor on the bottom of the screen.
 	// This sensor will not make other objects collide with it, but it can tell if it is "colliding" with something else
@@ -169,7 +160,6 @@ update_status ModuleSceneIntro::Update()
 void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {
 	// Play Audio FX on every collision, regardless of who is colliding
-	App->audio->PlayFx(bonus_fx);
 
 	// Do something else. You can also check which bodies are colliding (sensor? ball? player?)
 }
