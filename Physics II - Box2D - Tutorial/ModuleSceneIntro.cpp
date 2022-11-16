@@ -30,6 +30,7 @@ bool ModuleSceneIntro::Start()
 	App->renderer->camera.x = App->renderer->camera.y = 0;
 
 	// Load textures
+	Mapa = App->textures->Load("pinball/SpriteSheet.png");
 	circle = App->textures->Load("pinball/wheel.png"); 
 	box = App->textures->Load("pinball/crate.png");
 	rick = App->textures->Load("pinball/rick_head.png");
@@ -199,6 +200,10 @@ update_status ModuleSceneIntro::Update()
 		if(normal.x != 0.0f)
 			App->renderer->DrawLine(ray.x + destination.x, ray.y + destination.y, ray.x + destination.x + normal.x * 25.0f, ray.y + destination.y + normal.y * 25.0f, 100, 255, 100);
 	}
+
+	SDL_Rect MapaPin = { 1, 1, 256, 432 };
+
+	App->renderer->Blit(Mapa, 1, 1, &MapaPin);
 
 	// Keep playing
 	return UPDATE_CONTINUE;

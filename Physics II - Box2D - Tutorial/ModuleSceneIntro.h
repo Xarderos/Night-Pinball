@@ -35,6 +35,9 @@ public:
 	SDL_Texture* circle;
 	SDL_Texture* box;
 	SDL_Texture* rick;
+	SDL_Texture* Mapa;
+
+	SDL_Rect MapaPin = { 1, 1, 256, 432 };
 
 	// FX
 	uint bonus_fx;
