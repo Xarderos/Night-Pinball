@@ -4,6 +4,7 @@
 #include "ModulePhysics.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
+#include "ModuleInput.h"
 
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -17,7 +18,7 @@ bool ModulePlayer::Start()
 {
 	Pedra = App->textures->Load("pinball/SpriteSheet.png");
 	Bola = App->textures->Load("pinball/SpriteSheet.png");
-	Ball = App->physics->CreateCircle(120, 50, 7);
+	Ball = App->physics->CreateCircle(250, 400, 7);
 	
 
 	
@@ -46,6 +47,14 @@ update_status ModulePlayer::Update()
 
 	SDL_Rect PedraPin = { 354,165,56,55 };
 	App->renderer->Blit(Pedra, 94 * 2, 165 * 2, &PedraPin);
+
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	{
+		b2Vec2 vel = b2Vec2(0, 10 * GRAVITY_Y);
+		Ball->body->SetLinearVelocity(vel);
+	}
+
+
 
 	return UPDATE_CONTINUE;
 }

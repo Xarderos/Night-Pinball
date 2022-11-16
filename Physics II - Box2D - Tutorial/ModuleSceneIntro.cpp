@@ -52,7 +52,7 @@ bool ModuleSceneIntro::CleanUp()
 update_status ModuleSceneIntro::Update()
 {
 	// If user presses SPACE, enable RayCast
-	if(App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	if(App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
 	{
 		// Enable raycast mode
 		ray_on = !ray_on;
