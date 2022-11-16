@@ -25,19 +25,23 @@ public:
 	// Lists of physics objects
 	p2List<PhysBody*> circles;
 	p2List<PhysBody*> boxes;
-	p2List<PhysBody*> ricks;
+	p2List<PhysBody*> bottomLeftMapHitbox;
 
 	// Lower ground sensor (will kill all objects passig through it)
 	PhysBody* lower_ground_sensor;
 	bool sensed;
 
 	// Textures
+<<<<<<< Updated upstream
 	SDL_Texture* circle;
 	SDL_Texture* box;
 	SDL_Texture* rick;
 	SDL_Texture* Mapa;
 
 	SDL_Rect MapaPin = { 1, 1, 256, 432 };
+=======
+
+>>>>>>> Stashed changes
 
 	// FX
 	uint bonus_fx;
