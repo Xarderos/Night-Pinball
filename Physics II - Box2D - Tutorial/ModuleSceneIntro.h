@@ -3,7 +3,7 @@
 #include "p2List.h"
 #include "p2Point.h"
 #include "Globals.h"
-
+#include <vector>
 class PhysBody;
 
 class ModuleSceneIntro : public Module
@@ -23,14 +23,8 @@ public:
 
 public:
 
-	// Lists of physics objects
-	p2List<PhysBody*> circles;
-	p2List<PhysBody*> boxes;
-	p2List<PhysBody*> bottomLeftMapHitbox;
-	p2List<PhysBody*> bottomRightMapHitbox;
-	p2List<PhysBody*> bottomLeftWallHitbox;
-	p2List<PhysBody*> bottomRightWallHitbox;
-	p2List<PhysBody*> topMapHitbox;
+	//Vector is good, vector is good, Pol Rius 
+	std::vector<PhysBody*> Map;
 
 
 
@@ -44,12 +38,12 @@ public:
 
 	// Textures
 
-	SDL_Texture* circle;
-	SDL_Texture* box;
-	SDL_Texture* rick;
 	SDL_Texture* Mapa;
 
-	
+	SDL_Rect MapaPin;
+	SDL_Rect RightFlipperRect;
+	SDL_Rect LeftFlipperRect;
+
 
 	// FX
 	uint bonus_fx;
@@ -57,4 +51,7 @@ public:
 	// Raycast
 	p2Point<int> ray;
 	bool ray_on;
+
+	bool mapselector;
+	int floornum;
 };

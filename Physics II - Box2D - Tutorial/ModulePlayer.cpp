@@ -19,10 +19,6 @@ bool ModulePlayer::Start()
 	Pedra = App->textures->Load("pinball/SpriteSheet.png");
 	Bola = App->textures->Load("pinball/SpriteSheet.png");
 	Ball = App->physics->CreateCircle(250, 400, 7);
-	
-
-	
-	
 
 	LOG("Loading player");
 	return true;
@@ -32,7 +28,8 @@ bool ModulePlayer::Start()
 bool ModulePlayer::CleanUp()
 {
 	LOG("Unloading player");
-
+	delete Ball;
+	Ball = nullptr;
 	return true;
 }
 
@@ -43,7 +40,7 @@ update_status ModulePlayer::Update()
 	
 	SDL_Rect BolaPin = { 20,703,14,14 };
 	position = Ball->body->GetPosition();
-	App->renderer->Blit(Bola, METERS_TO_PIXELS (position.x) -14, METERS_TO_PIXELS (position.y) -14, &BolaPin,1,50*(Ball->body->GetAngle()));
+	App->renderer->Blit(Bola, METERS_TO_PIXELS (position.x) -14, METERS_TO_PIXELS (position.y) -14, &BolaPin,1, 50*(Ball->body->GetAngle()));
 
 	SDL_Rect PedraPin = { 354,165,56,55 };
 	App->renderer->Blit(Pedra, 94 * SCREEN_SIZE, 165 * SCREEN_SIZE, &PedraPin);

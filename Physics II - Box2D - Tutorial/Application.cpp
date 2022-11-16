@@ -13,14 +13,15 @@
 
 Application::Application()
 {
+
 	renderer = new ModuleRender(this);
 	window = new ModuleWindow(this);
 	textures = new ModuleTextures(this);
 	input = new ModuleInput(this);
 	audio = new ModuleAudio(this, true);
+	physics = new ModulePhysics(this);
 	player = new ModulePlayer(this);
 	scene_intro = new ModuleSceneIntro(this);
-	physics = new ModulePhysics(this);
 
 	// The order of calls is very important!
 	// Modules will Init() Start() and Update in this order
