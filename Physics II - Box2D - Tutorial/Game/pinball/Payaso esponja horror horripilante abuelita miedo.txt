@@ -218,12 +218,39 @@ y = 823
 w = 15
 h = 14
 
+//Coors + dim de la cosa que hi ha a sota de la fletxa rosa de la dreta
+x = 192
+y = 849
+w = 31
+h = 31
+
 
 //Coords + dim de les 3 fletxes blaves del forat de l'esquerra
 x = 82
 y = 731
 w = 23
 h = 19
+
+//Coords + dim de les 4 boles grogues que hi ha a la part inferior (d'esquerra a dreta)
+x = 58
+y = 889
+w = 10
+h = 11
+
+x = 82
+y = 892
+w = 10
+h = 11
+
+x = 226
+y = 892
+w = 10
+h = 11
+
+x = 250
+y = 889
+w = 10
+h = 11
 
 
 //Coords + dim del símbol del pallasso (a baix de les 5 estrelles)
