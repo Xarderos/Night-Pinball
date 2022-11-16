@@ -33,45 +33,12 @@ bool ModuleSceneIntro::Start()
 	// Create a big red sensor on the bottom of the screen.
 	// This sensor will not make other objects collide with it, but it can tell if it is "colliding" with something else
 	lower_ground_sensor = App->physics->CreateRectangleSensor(SCREEN_WIDTH / 2, SCREEN_HEIGHT, SCREEN_WIDTH, 50);
+	map();
 
 	// Add this module (ModuleSceneIntro) as a listener for collisions with the sensor.
 	// In ModulePhysics::PreUpdate(), we iterate over all sensors and (if colliding) we call the function ModuleSceneIntro::OnCollision()
 	lower_ground_sensor->listener = this;
-	int rick_head[64] = {
-		14, 36,
-		42, 40,
-		40, 0,
-		75, 30,
-		88, 4,
-		94, 39,
-		111, 36,
-		104, 58,
-		107, 62,
-		117, 67,
-		109, 73,
-		110, 85,
-		106, 91,
-		109, 99,
-		103, 104,
-		100, 115,
-		106, 121,
-		103, 125,
-		98, 126,
-		95, 137,
-		83, 147,
-		67, 147,
-		53, 140,
-		46, 132,
-		34, 136,
-		38, 126,
-		23, 123,
-		30, 114,
-		10, 102,
-		29, 90,
-		0, 75,
-		30, 62
-	};
-	bottomLeftMapHitbox.add(App->physics->CreateChain(0, 0, rick_head, 64));
+	
 	return ret;
 }
 
@@ -159,61 +126,144 @@ update_status ModuleSceneIntro::Update()
 void ModuleSceneIntro::map()
 {
 
-	int mapchain[106] = {
-			401, 753,
-			401, 227,
-			368, 149,
-			322, 89,
-			262, 51,
-			210, 43,
-			176, 45,
-			132, 63,
-			96, 97,
-			80, 123,
-			86, 150,
-			118, 157,
-			130, 152,
-			133, 158,
-			117, 197,
-			130, 215,
-			105, 279,
-			97, 328,
-			87, 344,
-			97, 383,
-			92, 386,
-			69, 289,
-			39, 289,
-			68, 405,
-			64, 406,
-			60, 393,
-			30, 452,
-			30, 659,
-			168, 779,
-			168, 790,
-			11, 789,
-			16, 27,
-			409, 27,
-			409, 782,
-			209, 789,
-			213, 774,
-			351, 663,
-			351, 438,
-			335, 380,
-			339, 327,
-			332, 298,
-			352, 249,
-			356, 218,
-			338, 181,
-			317, 215,
-			305, 209,
-			325, 173,
-			313, 164,
-			314, 141,
-			347, 178,
-			363, 213,
-			369, 284,
-			369, 753
+	int bottomLeftMap[40] = {
+			93, 433,
+			93, 417,
+			36, 388,
+			33, 388,
+			33, 418,
+			27, 421,
+			19, 421,
+			13, 418,
+			13, 334,
+			16, 300,
+			25, 291,
+			25, 287,
+			19, 281,
+			19, 242,
+			22, 237,
+			26, 237,
+			28, 233,
+			1, 174,
+			1, 433,
+			86, 433
 	};
+	bottomLeftMapHitbox.add(App->physics->CreateChain(0, 0, bottomLeftMap, 40));
+
+	int bottomRightMap[50] = {
+			149, 433,
+			149, 418,
+			206, 388,
+			209, 388,
+			209, 418,
+			212, 421,
+			225, 421,
+			229, 418,
+			229, 330,
+			227, 307,
+			224, 296,
+			217, 289,
+			230, 258,
+			226, 253,
+			236, 243,
+			237, 415,
+			239, 417,
+			251, 417,
+			253, 415,
+			253, 218,
+			250, 211,
+			242, 211,
+			257, 187,
+			257, 433,
+			152, 433
+	};
+	bottomRightMapHitbox.add(App->physics->CreateChain(0, 0, bottomRightMap, 50));
+
+	int bottomLeftWall[20] = {
+			36, 319,
+			33, 323,
+			33, 362,
+			81, 388,
+			86, 388,
+			86, 381,
+			45, 360,
+			41, 356,
+			37, 348,
+			37, 324
+	};
+	bottomLeftWallHitbox.add(App->physics->CreateChain(0, 0, bottomLeftWall, 20));
+
+
+	int bottomRightWall[18] = {
+			156, 388,
+			161, 388,
+			204, 366,
+			209, 362,
+			209, 322,
+			205, 319,
+			205, 348,
+			201, 357,
+			156, 381
+	
+	};
+	bottomRightWallHitbox.add(App->physics->CreateChain(0, 0, bottomRightWall, 18));
+
+	int topMap[106] = {
+			213, 193,
+			209, 203,
+			209, 207,
+			216, 207,
+			220, 202,
+			230, 170,
+			257, 172,
+			257, 2,
+			2, 1,
+			1, 158,
+			30, 188,
+			33, 178,
+			15, 136,
+			12, 119,
+			12, 99,
+			16, 75,
+			26, 61,
+			36, 51,
+			55, 43,
+			79, 39,
+			91, 39,
+			106, 42,
+			120, 49,
+			133, 62,
+			141, 79,
+			144, 94,
+			144, 111,
+			141, 120,
+			145, 124,
+			149, 119,
+			159, 118,
+			165, 123,
+			166, 129,
+			167, 131,
+			172, 131,
+			171, 125,
+			163, 116,
+			155, 92,
+			155, 72,
+			158, 58,
+			163, 48,
+			173, 38,
+			193, 30,
+			211, 30,
+			231, 38,
+			242, 49,
+			247, 58,
+			250, 68,
+			250, 83,
+			243, 114,
+			234, 133,
+			233, 147,
+			221, 193
+	};
+	topMapHitbox.add(App->physics->CreateChain(0, 0, topMap, 106));
 }
 void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {

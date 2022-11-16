@@ -27,6 +27,12 @@ public:
 	p2List<PhysBody*> circles;
 	p2List<PhysBody*> boxes;
 	p2List<PhysBody*> bottomLeftMapHitbox;
+	p2List<PhysBody*> bottomRightMapHitbox;
+	p2List<PhysBody*> bottomLeftWallHitbox;
+	p2List<PhysBody*> bottomRightWallHitbox;
+	p2List<PhysBody*> topMapHitbox;
+
+
 
 	// Lower ground sensor (will kill all objects passig through it)
 	PhysBody* lower_ground_sensor;
