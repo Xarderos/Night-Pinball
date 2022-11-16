@@ -17,16 +17,10 @@ bool ModulePlayer::Start()
 {
 
 	Bola = App->textures->Load("pinball/SpriteSheet.png");
-	Ball = App->physics->CreateCircle(260, 150, 7);
+	Ball = App->physics->CreateCircle(50, 200, 7);
 		
-	bolapin.PushBack({ 1,703,14,14 });
-	bolapin.PushBack({ 20,703,14,14 });
-	bolapin.PushBack({ 39,703,14,14 });
-	bolapin.PushBack({ 58,703,14,14 });
-	bolapin.loop = true;
-	bolapin.speed = 0.11f;
 
-
+	
 	
 
 	LOG("Loading player");
@@ -46,10 +40,10 @@ update_status ModulePlayer::Update()
 {
 	b2Vec2 position;
 	
-	SDL_Rect BolaPin = { 1,703,14,14 };
+	BolaPin = { 20,703,14,14 };
 	position = Ball->body->GetPosition();
-	App->renderer->Blit(Bola, METERS_TO_PIXELS (position.x) -14, METERS_TO_PIXELS (position.y) -14, &BolaPin);
-	bolapin.Update();
+	App->renderer->Blit(Bola, METERS_TO_PIXELS (position.x) -14, METERS_TO_PIXELS (position.y) -14, &BolaPin,1,50*(Ball->body->GetAngle()));
+
 
 
 	return UPDATE_CONTINUE;
