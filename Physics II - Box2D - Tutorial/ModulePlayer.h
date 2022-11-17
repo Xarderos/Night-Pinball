@@ -58,8 +58,8 @@ public:
 	int pedrasound;
 	int lifes;
 	int llumverda;
-	int llumvermella;
-	int llumblava;
+	bool llumvermella;
+	bool llumblava;
 	bool llumgroga;
 	bool llumgroga2;
 	bool llumgroga3;

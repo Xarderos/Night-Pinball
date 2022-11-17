@@ -52,6 +52,8 @@ bool ModulePlayer::Start()
 	llumgroga = false;
 	llumgroga2 = false;
 	llumgroga3 = false;
+	llumblava = false;
+	llumvermella = false;
 
 	Ball->listener = this;
 	MapaPin1f = { 262, 1, 256, 432 };
@@ -133,7 +135,7 @@ update_status ModulePlayer::Update()
 		App->renderer->Blit(llumGroga, 122 * SCREEN_SIZE, 322 * SCREEN_SIZE, &GrocSen);
 		
 	}
-	if (llumblava > 0)
+	if (llumblava == true)
 	{
 		SDL_Rect BlauSen = { 82,731,23,19 };
 		App->renderer->Blit(Bola, 96 * SCREEN_SIZE, 114 * SCREEN_SIZE, &BlauSen);
@@ -174,6 +176,12 @@ update_status ModulePlayer::Update()
 	SDL_Rect PedraPin = { 354,165,56,55 };
 	App->renderer->Blit(Pedra, 92 * SCREEN_SIZE, 165 * SCREEN_SIZE, &PedraPin);
 	
+	if (llumblava == true && llumvermella == true)
+	{
+		SDL_Rect Boss = { 216, 438, 44, 56 };
+		App->renderer->Blit(Bola, 180 * SCREEN_SIZE, 45 * SCREEN_SIZE, &Boss);
+	}
+
 	if (llumverda > 0)
 	{
 		SDL_Rect PedraSen = { 82,844,16,15 };
@@ -194,7 +202,7 @@ update_status ModulePlayer::Update()
 		SDL_Rect VerdSen = { 131,548,14,14 };
 		App->renderer->Blit(llumVerda, 106 * SCREEN_SIZE, 322 * SCREEN_SIZE, &VerdSen);
 	}
-	if (llumvermella > 0)
+	if (llumvermella == true)
 	{
 		SDL_Rect VermeSen = { 122,758,9,9 };
 		App->renderer->Blit(Bola, 136 * SCREEN_SIZE, 141 * SCREEN_SIZE, &VermeSen);
@@ -298,11 +306,11 @@ void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 		SaltCano = true;
 		DrawBola = false;
 	}
-	if (bodyB == VermeSen) {
-		llumvermella++;
+	if (bodyB == VermeSen && llumvermella == false) {
+		llumvermella = true;
 	}
-	if (bodyB == BlauSen) {
-		llumblava++;
+	if (bodyB == BlauSen && llumblava == false) {
+		llumblava = true;
 	}
 	if (bodyB == App->scene_intro->Floor3_2) {
 		App->scene_intro->floornum = 1;
