@@ -77,6 +77,8 @@ bool ModulePlayer::CleanUp()
 	MapSen3 = nullptr;
 	delete CanoSen;
 	CanoSen = nullptr;
+	delete VermeSen;
+	VermeSen = nullptr;
 	return true;
 }
 
