@@ -52,5 +52,7 @@ public:
 
 	int lifes;
 	int llumverda;
-	int llumgroga;
+	bool llumgroga;
+	bool llumgroga2;
+	bool llumgroga3;
 };

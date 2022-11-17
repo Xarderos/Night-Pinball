@@ -33,9 +33,13 @@ bool ModulePlayer::Start()
 	//Sensors
 
 	PedraSen = App->physics->CreateRectangleSensor(120, 193, 35, 34);
-	MapSen = App->physics->CreateRectangleSensor(24, 246, 3, 7);
-	MapSen2 = App->physics->CreateRectangleSensor(24, 264, 3, 7);
-	MapSen3 = App->physics->CreateRectangleSensor(24, 282, 3, 7);
+	MapSen = App->physics->CreateRectangleSensor(24, 246, 5, 7);
+	MapSen2 = App->physics->CreateRectangleSensor(24, 264, 5, 7);
+	MapSen3 = App->physics->CreateRectangleSensor(24, 282, 5, 7);
+
+	llumgroga = false;
+	llumgroga2 = false;
+	llumgroga3 = false;
 
 	Ball->listener = this;
 	MapaPin1f = { 262, 1, 256, 432 };
@@ -67,29 +71,50 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update()
 {
 	b2Vec2 position;
-	
-	SDL_Rect BotonsPin = { 396, 517, 8, 13 };
-	App->renderer->Blit(Botons, 22 * SCREEN_SIZE, 240 * SCREEN_SIZE, &BotonsPin);
-	SDL_Rect BotonsPin2 = { 396, 517, 8, 13 };
-	App->renderer->Blit(Botons, 22 * SCREEN_SIZE, 258 * SCREEN_SIZE, &BotonsPin2);
-	SDL_Rect BotonsPin3 = { 396, 517, 8, 13 };
-	App->renderer->Blit(Botons, 22 * SCREEN_SIZE, 276 * SCREEN_SIZE, &BotonsPin3);
-	if (llumgroga > 0)
+
+	if (llumgroga == false)
 	{
+		SDL_Rect BotonsPin = { 396, 517, 8, 13 };
+		App->renderer->Blit(Botons, 22 * SCREEN_SIZE, 240 * SCREEN_SIZE, &BotonsPin);
+	}
+	if (llumgroga2 == false)
+	{
+		SDL_Rect BotonsPin2 = { 396, 517, 8, 13 };
+		App->renderer->Blit(Botons, 22 * SCREEN_SIZE, 258 * SCREEN_SIZE, &BotonsPin2);
+	}
+	if (llumgroga3 == false)
+	{
+		SDL_Rect BotonsPin3 = { 396, 517, 8, 13 };
+		App->renderer->Blit(Botons, 22 * SCREEN_SIZE, 276 * SCREEN_SIZE, &BotonsPin3);
+	}
+	if (llumgroga == true)
+	{
+		SDL_Rect MapSen = { 21, 858, 19,15 };
+		App->renderer->Blit(llumPedra, 35 * SCREEN_SIZE, 241 * SCREEN_SIZE, &MapSen);
 		SDL_Rect BotonsPin = { 409, 519, 6, 11 };
 		App->renderer->Blit(Botons, 22 * SCREEN_SIZE, 240 * SCREEN_SIZE, &BotonsPin);
 	}
-	if (llumgroga > 1)
+	if (llumgroga2 == true)
 	{
+		SDL_Rect MapSen = { 21, 874, 19,15 };
+		App->renderer->Blit(llumPedra, 35 * SCREEN_SIZE, 257 * SCREEN_SIZE, &MapSen);
 		SDL_Rect BotonsPin = { 409, 519, 6, 11 };
 		App->renderer->Blit(Botons, 22 * SCREEN_SIZE, 258 * SCREEN_SIZE, &BotonsPin);
 	}
-	if (llumgroga > 2)
+	if (llumgroga3 == true)
 	{
+		SDL_Rect MapSen = { 21, 890, 19,15 };
+		App->renderer->Blit(llumPedra, 35 * SCREEN_SIZE, 273 * SCREEN_SIZE, &MapSen);
 		SDL_Rect BotonsPin = { 409, 519, 6, 11 };
 		App->renderer->Blit(Botons, 22 * SCREEN_SIZE, 276 * SCREEN_SIZE, &BotonsPin);
 	}
-
+	if (llumgroga == true && llumgroga2 == true && llumgroga3 == true)
+	{
+		SDL_Rect GrocSen = { 147, 548, 14, 14 };
+		App->renderer->Blit(llumGroga, 122 * SCREEN_SIZE, 322 * SCREEN_SIZE, &GrocSen);
+		
+	}
+	
 	SDL_Rect BolaPin = { 20,703,14,14 };
 	position = Ball->body->GetPosition();
 
@@ -139,26 +164,6 @@ update_status ModulePlayer::Update()
 		SDL_Rect VerdSen = { 131,548,14,14 };
 		App->renderer->Blit(llumVerda, 106 * SCREEN_SIZE, 322 * SCREEN_SIZE, &VerdSen);
 	}
-	if (llumgroga > 0)
-	{
-		SDL_Rect MapSen = { 21, 858, 19,15 };
-		App->renderer->Blit(llumPedra, 35 * SCREEN_SIZE, 241 * SCREEN_SIZE, &MapSen);
-	}
-	if (llumgroga > 1)
-	{
-		SDL_Rect MapSen = { 21, 874, 19,15 };
-		App->renderer->Blit(llumPedra, 35 * SCREEN_SIZE, 257 * SCREEN_SIZE, &MapSen);
-	}
-	if (llumgroga > 2)
-	{
-		SDL_Rect MapSen = { 21, 890, 19,15 };
-		App->renderer->Blit(llumPedra, 35 * SCREEN_SIZE, 273 * SCREEN_SIZE, &MapSen);
-	}
-	if (llumgroga > 2)
-	{
-		SDL_Rect GrocSen = { 147, 548, 14, 14 };
-		App->renderer->Blit(llumGroga, 122 * SCREEN_SIZE, 322 * SCREEN_SIZE, &GrocSen);
-	}
 	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
 	{
 		b2Vec2 vel = b2Vec2(0, 3 * GRAVITY_Y);
@@ -181,17 +186,17 @@ void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 		/*App->audio->PlayFx*/
 		llumverda++;
 	}
-	if (bodyB == MapSen) {
+	if (bodyB == MapSen && llumgroga == false) {
 		/*App->audio->PlayFx*/
-		llumgroga++;
+		llumgroga = true;
 	}
-	if (bodyB == MapSen2) {
+	if (bodyB == MapSen2 && llumgroga2 == false) {
 		/*App->audio->PlayFx*/
-		llumgroga++;
+		llumgroga2 = true;
 	}
-	if (bodyB == MapSen3) {
+	if (bodyB == MapSen3 && llumgroga3 == false) {
 		/*App->audio->PlayFx*/
-		llumgroga++;
+		llumgroga3 = true;
 	}
 }
 
