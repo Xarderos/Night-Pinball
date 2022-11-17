@@ -199,7 +199,21 @@ update_status ModulePlayer::Update()
 	SDL_Rect SuportCanoPin = { 494, 1009, 24, 192 };
 	App->renderer->Blit(suportCano, 233 * SCREEN_SIZE, 233 * SCREEN_SIZE, &SuportCanoPin);
 
-	SDL_Rect CanoPin = { 1, 498, 33, 34 };
+	SDL_Rect CanoPin;
+
+	if (canoframe3 == 0) {
+
+		if (dinsCano == false) {
+			CanoPin = { 1, 498, 33, 34 };
+		}
+		else {
+			CanoPin = { 33, 498, 33, 34 };
+		}
+	}
+	else if (canoframe3 > 0) {
+		CanoPin = { 69, 498, 33, 34 };
+		canoframe3--;
+	}
 	App->renderer->Blit(cano, 224 * SCREEN_SIZE, 280 * SCREEN_SIZE, &CanoPin);
 
 	//SALTA AL MAPA QUAN TOCA EL CANÓ
@@ -207,6 +221,8 @@ update_status ModulePlayer::Update()
 
 		b2Vec2 tp = b2Vec2(PIXEL_TO_METERS(245), PIXEL_TO_METERS(300));
 		Ball->body->SetTransform(tp, 0);
+
+		dinsCano = true;
 
 		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 		{
@@ -218,6 +234,8 @@ update_status ModulePlayer::Update()
 
 			DrawBola = true;
 			SaltCano = false;
+			dinsCano = false;
+			canoframe3 = 5;
 		}
 		
 	}

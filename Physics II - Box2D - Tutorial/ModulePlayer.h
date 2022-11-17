@@ -62,4 +62,6 @@ public:
 	bool llumgroga3;
 	bool DrawBola = true;
 	bool SaltCano = false;
+	bool dinsCano = false;
+	int canoframe3 = 0;
 };
