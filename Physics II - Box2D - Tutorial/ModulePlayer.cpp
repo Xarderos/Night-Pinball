@@ -183,16 +183,18 @@ update_status ModulePlayer::Update()
 		SDL_Rect VerdSen = { 131,548,14,14 };
 		App->renderer->Blit(llumVerda, 106 * SCREEN_SIZE, 322 * SCREEN_SIZE, &VerdSen);
 	}
-	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
-	{
-		b2Vec2 vel = b2Vec2(0, 3 * GRAVITY_Y);
-		Ball->body->SetLinearVelocity(vel);
+	if (canjump) {
+		if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
+		{
+			b2Vec2 vel = b2Vec2(0, 3 * GRAVITY_Y);
+			Ball->body->SetLinearVelocity(vel);
+		}
 	}
-
 	if ((METERS_TO_PIXELS(position.y)) > 1500 && lifes > 0)
 	{
 		Ball->body->SetTransform({ PIXEL_TO_METERS(250), PIXEL_TO_METERS(400) }, 0);
 		lifes--;
+		canjump = true;
 	}
 
 
@@ -236,6 +238,7 @@ update_status ModulePlayer::Update()
 			SaltCano = false;
 			dinsCano = false;
 			canoframe3 = 5;
+			canjump = false; //Quan estiguis a dins del mapa la bola no pujarà quan li donis a DOWN
 		}
 		
 	}

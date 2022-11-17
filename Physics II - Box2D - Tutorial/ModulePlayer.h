@@ -64,4 +64,5 @@ public:
 	bool SaltCano = false;
 	bool dinsCano = false;
 	int canoframe3 = 0;
+	bool canjump = true;
 };
