@@ -21,8 +21,6 @@ public:
 
 public:
 
-	
-
 	//Textures
 	SDL_Texture* Bola;
 	SDL_Texture* Pedra;
@@ -33,6 +31,8 @@ public:
 	SDL_Texture* llumGroga;
 	SDL_Texture* suportCano;
 	SDL_Texture* cano;
+	SDL_Texture* Tcanoverd1;
+	SDL_Texture* Tcanoverd2;
 
 	SDL_Rect BolaPin;
 	SDL_Rect MapaPin1f;
@@ -50,6 +50,8 @@ public:
 	PhysBody* VermeSen;
 	PhysBody* BlauSen;
 	PhysBody* BlancSen;
+	PhysBody* CanoVerdSen1;
+	PhysBody* CanoVerdSen2;
 	//Sensors bools
 
 	Animation bolapin;
@@ -70,4 +72,18 @@ public:
 	bool dinsCano = false;
 	int canoframe3 = 0;
 	bool canjump = true;
+	bool canoverdsen1 = false;
+	bool canoverdsen2 = false;
+	bool canoverd1 = true;
+	bool canoverd2 = true;
+	int canoverd1Anim = 0;
+	int canoverd2Anim = 0;
+
+	int numCVerds = 0;
+
+	bool estrellablanca = false;
+	bool estrellablava = false;
+	bool estrellagroga = false;
+	bool estrellaverda = false;
+	bool estrellavermella = false;
 };

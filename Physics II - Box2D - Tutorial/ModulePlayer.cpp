@@ -31,6 +31,8 @@ bool ModulePlayer::Start()
 	llumGroga = App->textures->Load("pinball/SpriteSheet.png");
 	suportCano = App->textures->Load("pinball/SpriteSheet.png");
 	cano = App->textures->Load("pinball/SpriteSheet.png");
+	Tcanoverd1 = App->textures->Load("pinball/SpriteSheet.png");
+	Tcanoverd2 = App->textures->Load("pinball/SpriteSheet.png");
 
 	//Sorolls
 
@@ -49,6 +51,8 @@ bool ModulePlayer::Start()
 	VermeSen = App->physics->CreateRectangleSensor(154, 132, 7, 7);
 	BlauSen = App->physics->CreateRectangleSensor(107, 104, 7, 7);
 	BlancSen = App->physics->CreateRectangleSensor(249, 112, 5, 4);
+	CanoVerdSen1 = App->physics->CreateRectangleSensor(23, 373, 10, 10);
+	CanoVerdSen2 = App->physics->CreateRectangleSensor(219, 373, 10, 10);
 
 	llumgroga = false;
 	llumgroga2 = false;
@@ -87,6 +91,10 @@ bool ModulePlayer::CleanUp()
 	BlauSen = nullptr;
 	delete BlancSen;
 	BlancSen = nullptr;
+	delete CanoVerdSen1;
+	CanoVerdSen1 = nullptr;
+	delete CanoVerdSen2;
+	CanoVerdSen2 = nullptr;
 	return true;
 }
 
@@ -136,6 +144,12 @@ update_status ModulePlayer::Update()
 	{
 		SDL_Rect GrocSen = { 147, 548, 14, 14 };
 		App->renderer->Blit(llumGroga, 122 * SCREEN_SIZE, 322 * SCREEN_SIZE, &GrocSen);
+
+		//RECUPERA UN CANÓ
+		if (estrellagroga == false) {
+			numCVerds++;
+			estrellagroga = true;
+		}
 		
 	}
 	if (llumblava == true)
@@ -144,6 +158,13 @@ update_status ModulePlayer::Update()
 		App->renderer->Blit(Bola, 96 * SCREEN_SIZE, 114 * SCREEN_SIZE, &BlauSen);
 		SDL_Rect BlauSen2 = { 153,563,14,14 };
 		App->renderer->Blit(Bola, 128 * SCREEN_SIZE, 337 * SCREEN_SIZE, &BlauSen2);
+
+		//RECUPERA UN CANÓ
+		if (estrellablava == false) {
+			numCVerds++;
+			estrellablava = true;
+		}
+
 	}
 
 	SDL_Rect BolaPin = { 20,703,14,14 };
@@ -186,6 +207,12 @@ update_status ModulePlayer::Update()
 	{
 		SDL_Rect Boss = { 125, 563, 14, 14 };
 		App->renderer->Blit(Bola, 100 * SCREEN_SIZE, 337 * SCREEN_SIZE, &Boss);
+		
+		//RECUPERA UN CANÓ
+		if (estrellablanca == false) {
+			numCVerds++;
+			estrellablanca = true;
+		}
 	}
 
 	if (llumblava == true && llumvermella == true)
@@ -213,6 +240,12 @@ update_status ModulePlayer::Update()
 	{
 		SDL_Rect VerdSen = { 131,548,14,14 };
 		App->renderer->Blit(llumVerda, 106 * SCREEN_SIZE, 322 * SCREEN_SIZE, &VerdSen);
+
+		//RECUPERA UN CANÓ
+		if (estrellaverda == false) {
+			numCVerds++;
+			estrellaverda = true;
+		}
 	}
 	if (llumvermella == true)
 	{
@@ -224,8 +257,16 @@ update_status ModulePlayer::Update()
 		App->renderer->Blit(Bola, 162 * SCREEN_SIZE, 141 * SCREEN_SIZE, &VermeSen3);
 		SDL_Rect VermeSen4 = { 139,569,14,14 };
 		App->renderer->Blit(Bola, 114 * SCREEN_SIZE, 343 * SCREEN_SIZE, &VermeSen4);
+
+		//RECUPERA UN CANÓ
+		if (estrellavermella == false) {
+			numCVerds++;
+			estrellavermella = true;
+		}
 	}
 
+
+	//NO POT SALTAR QUAN HA PASSAT PEL CANÓ
 	if (canjump) {
 		if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
 		{
@@ -239,6 +280,7 @@ update_status ModulePlayer::Update()
 		lifes--;
 		canjump = true;
 	}
+
 	//temporal
 	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
 	{
@@ -247,6 +289,8 @@ update_status ModulePlayer::Update()
 	}
 	//temporal
 
+
+	//TEXTURAS CAÑÓN
 	SDL_Rect SuportCanoPin = { 494, 1009, 24, 192 };
 	App->renderer->Blit(suportCano, 233 * SCREEN_SIZE, 233 * SCREEN_SIZE, &SuportCanoPin);
 
@@ -292,6 +336,90 @@ update_status ModulePlayer::Update()
 		
 	}
 	
+	if (canoverdsen1 == true) {
+		b2Vec2 vel = b2Vec2(0, 2 * GRAVITY_Y);
+		Ball->body->SetLinearVelocity(vel);
+		canoverdsen1 = false;
+	}
+
+	if (canoverdsen2 == true) {
+		b2Vec2 vel = b2Vec2(0, 2 * GRAVITY_Y);
+		Ball->body->SetLinearVelocity(vel);
+		canoverdsen2 = false;
+	}
+
+	//TEXTURA CANONS VERDS
+	SDL_Rect CanoVerd1Pin;
+	SDL_Rect CanoVerd2Pin;
+
+	if (canoverd1 == true) {
+		CanoVerd1Pin = { 52, 617, 16, 21 };
+		canoverd1Anim = 1;
+		
+	}
+	else {
+		if (canoverd1Anim > 0 && canoverd1Anim <= 3) {
+			CanoVerd1Pin = { 131, 617, 16, 21 };
+			canoverd1Anim++;
+		}
+		else if (canoverd1Anim > 3 && canoverd1Anim <= 6) {
+			CanoVerd1Pin = { 113, 617, 16, 21 };
+			canoverd1Anim++;
+		}
+	}
+
+	if (canoverd2 == true) {
+		CanoVerd2Pin = { 52, 617, 16, 21 };
+		canoverd2Anim = 1;
+
+	}
+	else {
+		if (canoverd2Anim > 0 && canoverd2Anim <= 3) {
+			CanoVerd2Pin = { 131, 617, 16, 21 };
+			canoverd2Anim++;
+		}
+		else if (canoverd2Anim > 3 && canoverd2Anim <= 6) {
+			CanoVerd2Pin = { 113, 617, 16, 21 };
+			canoverd2Anim++;
+		}
+	}
+	App->renderer->Blit(Tcanoverd1, 15 * SCREEN_SIZE, 364 * SCREEN_SIZE, &CanoVerd1Pin);
+	App->renderer->Blit(Tcanoverd2, 211 * SCREEN_SIZE, 364 * SCREEN_SIZE, &CanoVerd2Pin);
+
+
+	//RECUPERA CANONS VERDS QUAN GUANYA UNA ESTRELLA
+	if (canoverd1 == false) {
+		if (numCVerds > 0) {
+			canoverd1 = true;
+			numCVerds--;
+		}
+	}
+
+	if (canoverd2 == false) {
+		if (numCVerds > 0) {
+			canoverd2 = true;
+			numCVerds--;
+		}
+	}
+
+
+	//TEMPORAL (testeo de sensores)
+	if (App->input->GetKey(SDL_SCANCODE_T) == KEY_DOWN) {
+		b2Vec2 vel = b2Vec2(PIXEL_TO_METERS(23), PIXEL_TO_METERS(350));
+		Ball->body->SetTransform(vel, 0);
+	}
+	if (App->input->GetKey(SDL_SCANCODE_Y) == KEY_DOWN) {
+		b2Vec2 vel = b2Vec2(PIXEL_TO_METERS(211), PIXEL_TO_METERS(350));
+		Ball->body->SetTransform(vel, 0);
+	}
+
+	//TEMPORAL (resetear cañones verdes)
+	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN) {
+		canoverd1 = true;
+		canoverd2 = true;
+	}
+
+
 
 	return UPDATE_CONTINUE;
 }
@@ -331,6 +459,12 @@ void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 		App->scene_intro->floornum = 1;
 		App->scene_intro->mapselector = true;
 	}
+	if (bodyB == CanoVerdSen1 && canoverd1 == true) {
+		canoverdsen1 = true;
+		canoverd1 = false;
+	}
+	if (bodyB == CanoVerdSen2 && canoverd2 == true) {
+		canoverdsen2 = true;
+		canoverd2 = false;
+	}
 }
-
-
