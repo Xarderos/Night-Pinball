@@ -47,7 +47,7 @@ public:
 	PhysBody* MapSen2;
 	PhysBody* MapSen3;
 	PhysBody* CanoSen;
-
+	PhysBody* VermeSen;
 	//Sensors bools
 
 	Animation bolapin;
@@ -57,6 +57,7 @@ public:
 	int pedrasound;
 	int lifes;
 	int llumverda;
+	int llumvermella;
 	bool llumgroga;
 	bool llumgroga2;
 	bool llumgroga3;

@@ -46,6 +46,7 @@ bool ModulePlayer::Start()
 	MapSen2 = App->physics->CreateRectangleSensor(24, 264, 5, 7);
 	MapSen3 = App->physics->CreateRectangleSensor(24, 282, 5, 7);
 	CanoSen = App->physics->CreateRectangleSensor(245, 300, 20, 20);
+	VermeSen = App->physics->CreateRectangleSensor(154, 132, 7, 7);
 
 	llumgroga = false;
 	llumgroga2 = false;
@@ -183,6 +184,17 @@ update_status ModulePlayer::Update()
 		SDL_Rect VerdSen = { 131,548,14,14 };
 		App->renderer->Blit(llumVerda, 106 * SCREEN_SIZE, 322 * SCREEN_SIZE, &VerdSen);
 	}
+	if (llumvermella > 0)
+	{
+		SDL_Rect VermeSen = { 122,758,9,9 };
+		App->renderer->Blit(Bola, 136 * SCREEN_SIZE, 141 * SCREEN_SIZE, &VermeSen);
+		SDL_Rect VermeSen2 = { 135,761,9,9 };
+		App->renderer->Blit(Bola, 149 * SCREEN_SIZE, 144 * SCREEN_SIZE, &VermeSen2);
+		SDL_Rect VermeSen3 = { 148,758,9,9 };
+		App->renderer->Blit(Bola, 162 * SCREEN_SIZE, 141 * SCREEN_SIZE, &VermeSen3);
+		SDL_Rect VermeSen4 = { 139,569,14,14 };
+		App->renderer->Blit(Bola, 114 * SCREEN_SIZE, 343 * SCREEN_SIZE, &VermeSen4);
+	}
 	if (canjump) {
 		if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
 		{
@@ -268,6 +280,10 @@ void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 		/*App->audio->PlayFx*/
 		SaltCano = true;
 		DrawBola = false;
+	}
+	if (bodyB == VermeSen) {
+		/*App->audio->PlayFx(pedrasound);*/
+		llumvermella++;
 	}
 }
 
