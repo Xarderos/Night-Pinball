@@ -25,7 +25,7 @@ class ModuleFont : public Module
 {
 public:
 
-	ModuleFont(Application* app, bool start_enabled);
+	ModuleFont(Application* app, bool start_enabled=true);
 
 	~ModuleFont();
 

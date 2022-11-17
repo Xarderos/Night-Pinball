@@ -45,9 +45,9 @@ bool ModuleSceneIntro::Start()
 	NightsensorF2_3 = App->physics->CreateRectangleSensor(232, 195, 20, 5);
 
 	Floor3_1 = App->physics->CreateRectangleSensor(43, 327, 25, 5);
-	Floor3_2 = App->physics->CreateRectangleSensor(77, 146, 25, 5);
+	Floor3_2 = App->physics->CreateRectangleSensor(77, 145, 25, 5);
 	Floor3_2->listener = this;
-	Floor3_ac = App->physics->CreateRectangleSensor(70, 130, 10, 5);
+	Floor3_ac = App->physics->CreateRectangleSensor(70, 135, 10, 5);
 
 	b2RevoluteJointDef rightFlip;
 	rightFlip.bodyA = rightflipper->body;

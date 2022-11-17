@@ -210,7 +210,13 @@ update_status ModulePlayer::Update()
 		lifes--;
 		canjump = true;
 	}
-
+	//temporal
+	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
+	{
+		b2Vec2 vel = b2Vec2(0, 3 * GRAVITY_Y);
+		Ball->body->SetLinearVelocity(vel);
+	}
+	//temporal
 
 	SDL_Rect SuportCanoPin = { 494, 1009, 24, 192 };
 	App->renderer->Blit(suportCano, 233 * SCREEN_SIZE, 233 * SCREEN_SIZE, &SuportCanoPin);
@@ -245,7 +251,7 @@ update_status ModulePlayer::Update()
 			b2Vec2 tp = b2Vec2(PIXEL_TO_METERS(207), PIXEL_TO_METERS(273));
 			Ball->body->SetTransform(tp, 0);
 
-			b2Vec2 vel = b2Vec2(-2, -3);
+			b2Vec2 vel = b2Vec2(-14, -15);
 			Ball->body->SetLinearVelocity(vel);
 
 			DrawBola = true;
@@ -274,7 +280,7 @@ void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 		App->audio->PlayFx(botonsound);
 		llumgroga2 = true;
 	}
-	if (bodyB == MapSen3 && llumgroga3 == false) {
+	if (bodyB == MapSen3 && llumgroga3 == false && App->scene_intro->floornum != 3) {
 		App->audio->PlayFx(botonsound);
 		llumgroga3 = true;
 	}

@@ -403,7 +403,7 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 		}
 	}
 	if (physA == App->scene_intro->NightsensorF2_1 || physA == App->scene_intro->NightsensorF2_2) {
-		if (App->scene_intro->floornum != 2 && App->scene_intro->floornum!=3) {
+		if (App->scene_intro->floornum != 2 && App->scene_intro->floornum != 3) {
 			App->scene_intro->floornum = 2;
 			App->scene_intro->mapselector = true;
 		}
