@@ -30,6 +30,12 @@ idle.anim(33, 498, 33, 34);
 idle.anim(69, 498, 33, 34);
 idle.loop = false;
 
+//Coords + dim del suport del canó (on apareix la bola)
+x = 494
+y = 233
+w = 24
+h = 192
+
 //Animació Rebotador esquerra
 idle.anim(238, 544, 21, 40);
 idle.anim(264, 544, 21, 40);
