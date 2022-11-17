@@ -20,6 +20,8 @@ ModulePlayer::~ModulePlayer()
 // Load assets
 bool ModulePlayer::Start()
 {
+
+	//Textures
 	Botons = App->textures->Load("pinball/SpriteSheet.png");
 	Pedra = App->textures->Load("pinball/SpriteSheet.png");
 	Bola = App->textures->Load("pinball/SpriteSheet.png");
@@ -29,6 +31,11 @@ bool ModulePlayer::Start()
 	llumGroga = App->textures->Load("pinball/SpriteSheet.png");
 	suportCano = App->textures->Load("pinball/SpriteSheet.png");
 	cano = App->textures->Load("pinball/SpriteSheet.png");
+
+	//Sorolls
+
+	pedrasound = App->audio->LoadFx("pinball/Pedra.ogg");
+	botonsound = App->audio->LoadFx("pinball/Botons.ogg");
 
 	Ball = App->physics->CreateCircle(250, 400, 7);
 
@@ -221,19 +228,19 @@ update_status ModulePlayer::Update()
 void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {
 	if (bodyB == PedraSen) {
-		/*App->audio->PlayFx*/
+		App->audio->PlayFx(pedrasound);
 		llumverda++;
 	}
 	if (bodyB == MapSen && llumgroga == false) {
-		/*App->audio->PlayFx*/
+		App->audio->PlayFx(botonsound);
 		llumgroga = true;
 	}
 	if (bodyB == MapSen2 && llumgroga2 == false) {
-		/*App->audio->PlayFx*/
+		App->audio->PlayFx(botonsound);
 		llumgroga2 = true;
 	}
 	if (bodyB == MapSen3 && llumgroga3 == false) {
-		/*App->audio->PlayFx*/
+		App->audio->PlayFx(botonsound);
 		llumgroga3 = true;
 	}
 	if (bodyB == CanoSen) {

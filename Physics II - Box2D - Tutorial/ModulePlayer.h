@@ -53,7 +53,8 @@ public:
 	Animation bolapin;
 	Animation CanoAnim;
 
-
+	int botonsound;
+	int pedrasound;
 	int lifes;
 	int llumverda;
 	bool llumgroga;
