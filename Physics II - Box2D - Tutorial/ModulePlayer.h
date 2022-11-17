@@ -27,6 +27,7 @@ public:
 	SDL_Texture* Bola;
 	SDL_Texture* Pedra;
 	SDL_Texture* llumPedra;
+	SDL_Texture* llumVerda;
 
 	SDL_Rect BolaPin;
 
@@ -38,10 +39,9 @@ public:
 
 	//Sensors bools
 
-	bool sensor_Pedra = false;
-
 	Animation bolapin;
 
 
 	int lifes;
+	int llumverda;
 };

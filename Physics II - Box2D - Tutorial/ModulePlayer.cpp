@@ -5,6 +5,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleInput.h"
+#include "ModuleAudio.h"
 
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -22,14 +23,16 @@ bool ModulePlayer::Start()
 	Pedra = App->textures->Load("pinball/SpriteSheet.png");
 	Bola = App->textures->Load("pinball/SpriteSheet.png");
 	llumPedra = App->textures->Load("pinball/SpriteSheet.png");
+	llumVerda = App->textures->Load("pinball/SpriteSheet.png");
 
 	Ball = App->physics->CreateCircle(250, 380, 7);
 
 	//Sensors
 
-	PedraSen = App->physics->CreateRectangleSensor(122, 193, 40, 39);
+	PedraSen = App->physics->CreateRectangleSensor(120, 193, 35, 34);
 
 	Ball->listener = this;
+
 
 	lifes = 5;
 	LOG("Loading player");
@@ -57,14 +60,28 @@ update_status ModulePlayer::Update()
 	App->renderer->Blit(Bola, METERS_TO_PIXELS (position.x) -14, METERS_TO_PIXELS (position.y) -14, &BolaPin,1, 50*(Ball->body->GetAngle()));
 
 	SDL_Rect PedraPin = { 354,165,56,55 };
-	App->renderer->Blit(Pedra, 94 * SCREEN_SIZE, 165 * SCREEN_SIZE, &PedraPin);
-
-	if (sensor_Pedra)
+	App->renderer->Blit(Pedra, 92 * SCREEN_SIZE, 165 * SCREEN_SIZE, &PedraPin);
+	
+	if (llumverda > 0)
 	{
 		SDL_Rect PedraSen = { 82,844,16,15 };
 		App->renderer->Blit(llumPedra, 96 * SCREEN_SIZE, 227 * SCREEN_SIZE,&PedraSen);
 	}
-
+	if (llumverda > 1)
+	{
+		SDL_Rect PedraSen = { 82,844,16,15 };
+		App->renderer->Blit(llumPedra, 113 * SCREEN_SIZE, 231 * SCREEN_SIZE, &PedraSen);
+	}
+	if (llumverda > 2)
+	{
+		SDL_Rect PedraSen = { 82,844,16,15 };
+		App->renderer->Blit(llumPedra, 130 * SCREEN_SIZE, 227 * SCREEN_SIZE, &PedraSen);
+	}
+	if (llumverda > 2)
+	{
+		SDL_Rect VerdSen = { 131,548,14,14 };
+		App->renderer->Blit(llumVerda, 106 * SCREEN_SIZE, 322 * SCREEN_SIZE, &VerdSen);
+	}
 	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
 	{
 		b2Vec2 vel = b2Vec2(0, 3 * GRAVITY_Y);
@@ -84,10 +101,8 @@ update_status ModulePlayer::Update()
 void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {
 	if (bodyB == PedraSen) {
-
-		if (sensor_Pedra != true) {
-			sensor_Pedra = true;
-		}
+		/*App->audio->PlayFx*/
+		llumverda++;
 	}
 }
 
