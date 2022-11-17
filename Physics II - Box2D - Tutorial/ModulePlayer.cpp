@@ -47,6 +47,7 @@ bool ModulePlayer::Start()
 	MapSen3 = App->physics->CreateRectangleSensor(24, 282, 5, 7);
 	CanoSen = App->physics->CreateRectangleSensor(245, 300, 20, 20);
 	VermeSen = App->physics->CreateRectangleSensor(154, 132, 7, 7);
+	BlauSen = App->physics->CreateRectangleSensor(107, 104, 7, 7);
 
 	llumgroga = false;
 	llumgroga2 = false;
@@ -79,6 +80,8 @@ bool ModulePlayer::CleanUp()
 	CanoSen = nullptr;
 	delete VermeSen;
 	VermeSen = nullptr;
+	delete BlauSen;
+	BlauSen = nullptr;
 	return true;
 }
 
@@ -130,8 +133,13 @@ update_status ModulePlayer::Update()
 		App->renderer->Blit(llumGroga, 122 * SCREEN_SIZE, 322 * SCREEN_SIZE, &GrocSen);
 		
 	}
-	
-	
+	if (llumblava > 0)
+	{
+		SDL_Rect BlauSen = { 82,731,23,19 };
+		App->renderer->Blit(Bola, 96 * SCREEN_SIZE, 114 * SCREEN_SIZE, &BlauSen);
+		SDL_Rect BlauSen2 = { 153,563,14,14 };
+		App->renderer->Blit(Bola, 128 * SCREEN_SIZE, 337 * SCREEN_SIZE, &BlauSen2);
+	}
 
 	SDL_Rect BolaPin = { 20,703,14,14 };
 	position = Ball->body->GetPosition();
@@ -197,6 +205,7 @@ update_status ModulePlayer::Update()
 		SDL_Rect VermeSen4 = { 139,569,14,14 };
 		App->renderer->Blit(Bola, 114 * SCREEN_SIZE, 343 * SCREEN_SIZE, &VermeSen4);
 	}
+
 	if (canjump) {
 		if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
 		{
@@ -269,19 +278,19 @@ update_status ModulePlayer::Update()
 void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {
 	if (bodyB == PedraSen) {
-		App->audio->PlayFx(pedrasound);
+		/*App->audio->PlayFx(pedrasound);*/
 		llumverda++;
 	}
 	if (bodyB == MapSen && llumgroga == false) {
-		App->audio->PlayFx(botonsound);
+		/*App->audio->PlayFx(botonsound);*/
 		llumgroga = true;
 	}
 	if (bodyB == MapSen2 && llumgroga2 == false) {
-		App->audio->PlayFx(botonsound);
+		/*App->audio->PlayFx(botonsound);*/
 		llumgroga2 = true;
 	}
 	if (bodyB == MapSen3 && llumgroga3 == false && App->scene_intro->floornum != 3) {
-		App->audio->PlayFx(botonsound);
+		/*App->audio->PlayFx(botonsound);*/
 		llumgroga3 = true;
 	}
 	if (bodyB == CanoSen) {
@@ -290,8 +299,10 @@ void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 		DrawBola = false;
 	}
 	if (bodyB == VermeSen) {
-		/*App->audio->PlayFx(pedrasound);*/
 		llumvermella++;
+	}
+	if (bodyB == BlauSen) {
+		llumblava++;
 	}
 	if (bodyB == App->scene_intro->Floor3_2) {
 		App->scene_intro->floornum = 1;

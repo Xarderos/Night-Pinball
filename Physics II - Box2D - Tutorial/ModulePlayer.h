@@ -48,6 +48,7 @@ public:
 	PhysBody* MapSen3;
 	PhysBody* CanoSen;
 	PhysBody* VermeSen;
+	PhysBody* BlauSen;
 	//Sensors bools
 
 	Animation bolapin;
@@ -58,6 +59,7 @@ public:
 	int lifes;
 	int llumverda;
 	int llumvermella;
+	int llumblava;
 	bool llumgroga;
 	bool llumgroga2;
 	bool llumgroga3;
