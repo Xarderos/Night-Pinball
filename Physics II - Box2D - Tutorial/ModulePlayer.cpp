@@ -197,10 +197,15 @@ update_status ModulePlayer::Update()
 
 	//SALTA AL MAPA QUAN TOCA EL CANÓ
 	if (SaltCano == true) {
-		b2Vec2 tp = b2Vec2(PIXEL_TO_METERS(207), PIXEL_TO_METERS(273));
+
+		b2Vec2 tp = b2Vec2(PIXEL_TO_METERS(245), PIXEL_TO_METERS(300));
 		Ball->body->SetTransform(tp, 0);
+
 		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 		{
+			b2Vec2 tp = b2Vec2(PIXEL_TO_METERS(207), PIXEL_TO_METERS(273));
+			Ball->body->SetTransform(tp, 0);
+
 			b2Vec2 vel = b2Vec2(-2, -3);
 			Ball->body->SetLinearVelocity(vel);
 
