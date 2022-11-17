@@ -62,7 +62,7 @@ update_status ModulePlayer::Update()
 	if (sensor_Pedra)
 	{
 		SDL_Rect PedraSen = { 82,844,16,15 };
-		App->renderer->Blit(llumPedra, 95 * SCREEN_SIZE, 226 * SCREEN_SIZE,&PedraSen);
+		App->renderer->Blit(llumPedra, 96 * SCREEN_SIZE, 227 * SCREEN_SIZE,&PedraSen);
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
