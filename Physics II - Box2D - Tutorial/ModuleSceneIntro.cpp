@@ -36,11 +36,10 @@ bool ModuleSceneIntro::Start()
 	leftflipcircle = App->physics->CreateCircleStatic(87, 386, 5);
 	rightflipper = App->physics->CreateRectangle(140, 385, 20, 6);
 	leftflipper = App->physics->CreateRectangle(101, 385, 20, 6);
-	NightsensorF1_1 = App->physics->CreateRectangleSensor(25,205,30,5);
+	NightsensorF1_1 = App->physics->CreateRectangleSensor(25,210,30,5);
 	NightsensorF1_2 = App->physics->CreateRectangleSensor(205, 75, 23, 5);
-	NightsensorF1_3 = App->physics->CreateRectangleSensor(25, 205, 30, 5);
 
-	NightsensorF2_1 = App->physics->CreateRectangleSensor(15, 190, 25, 5);
+	NightsensorF2_1 = App->physics->CreateRectangleSensor(18, 200, 25, 5);
 
 	b2RevoluteJointDef rightFlip;
 	rightFlip.bodyA = rightflipper->body;

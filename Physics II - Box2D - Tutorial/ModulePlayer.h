@@ -32,6 +32,9 @@ public:
 	SDL_Texture* llumGroga;
 
 	SDL_Rect BolaPin;
+	SDL_Rect MapaPin1f;
+	SDL_Rect Reixa;
+	SDL_Rect NightRampPart;
 
 	//PhysBodies
 	PhysBody* Ball;

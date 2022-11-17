@@ -50,6 +50,8 @@ public:
 	SDL_Texture* Mapa;
 
 	SDL_Rect MapaPin;
+	SDL_Rect MapaPin1f;
+
 	SDL_Rect RightFlipperRect;
 	SDL_Rect LeftFlipperRect;
 

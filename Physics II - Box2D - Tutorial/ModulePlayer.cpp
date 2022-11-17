@@ -6,6 +6,7 @@
 #include "ModuleRender.h"
 #include "ModuleInput.h"
 #include "ModuleAudio.h"
+#include "ModuleSceneIntro.h"
 
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -37,8 +38,9 @@ bool ModulePlayer::Start()
 	MapSen3 = App->physics->CreateRectangleSensor(44, 280, 21, 17);
 
 	Ball->listener = this;
-
-
+	MapaPin1f = { 262, 1, 256, 432 };
+	Reixa = { 1,596,28,42 };
+	NightRampPart = { 1,547,104,36 };
 	lifes = 5;
 	LOG("Loading player");
 	return true;
@@ -64,8 +66,32 @@ update_status ModulePlayer::Update()
 	
 	SDL_Rect BolaPin = { 20,703,14,14 };
 	position = Ball->body->GetPosition();
+	if (App->scene_intro->floornum == 2) {
+		App->renderer->Blit(Bola, 2, 2, &MapaPin1f);
+		App->renderer->Blit(Bola, 33 * SCREEN_SIZE, 8 * SCREEN_SIZE, &NightRampPart);
+	}
+	if (App->scene_intro->floornum == 3) {
+		App->renderer->Blit(Bola, 2, 2, &MapaPin1f);
+		App->renderer->Blit(Bola, 5 * SCREEN_SIZE, 175 * SCREEN_SIZE, &Reixa);
+	}
 	App->renderer->Blit(Bola, METERS_TO_PIXELS (position.x) -14, METERS_TO_PIXELS (position.y) -14, &BolaPin,1, 50*(Ball->body->GetAngle()));
+	if (App->scene_intro->floornum == 1) {
+		App->renderer->Blit(Bola, 2, 2, &MapaPin1f);
+		App->renderer->Blit(Bola, 5*SCREEN_SIZE, 175* SCREEN_SIZE, &Reixa);
+		App->renderer->Blit(Bola, 33 * SCREEN_SIZE, 8 * SCREEN_SIZE, &NightRampPart);
+	}
+	if (App->scene_intro->floornum == 2) {
+		App->renderer->Blit(Bola, 5 * SCREEN_SIZE, 175 * SCREEN_SIZE, &Reixa);
 
+	}
+
+	if (App->scene_intro->floornum == 3) {
+		App->renderer->Blit(Bola, 33 * SCREEN_SIZE, 8 * SCREEN_SIZE, &NightRampPart);
+	}
+	/*if (App->scene_intro->floornum == 1) {
+		App->renderer->Blit(Bola, 2, 2, &MapaPin1f);
+		App->renderer->Blit(Bola, 2, 2, &Reixa);
+	}*/
 	SDL_Rect PedraPin = { 354,165,56,55 };
 	App->renderer->Blit(Pedra, 92 * SCREEN_SIZE, 165 * SCREEN_SIZE, &PedraPin);
 	
