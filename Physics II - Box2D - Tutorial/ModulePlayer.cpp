@@ -121,7 +121,7 @@ update_status ModulePlayer::Update()
 		
 	}
 	
-	if (DrawBola == true) {}
+	
 
 	SDL_Rect BolaPin = { 20,703,14,14 };
 	position = Ball->body->GetPosition();
@@ -135,7 +135,9 @@ update_status ModulePlayer::Update()
 		App->renderer->Blit(Bola, 5 * SCREEN_SIZE, 175 * SCREEN_SIZE, &Reixa);
 	}
 
-	App->renderer->Blit(Bola, METERS_TO_PIXELS(position.x) - 14, METERS_TO_PIXELS(position.y) - 14, &BolaPin, 1, 50 * (Ball->body->GetAngle()));
+	if (DrawBola == true) {
+		App->renderer->Blit(Bola, METERS_TO_PIXELS(position.x) - 14, METERS_TO_PIXELS(position.y) - 14, &BolaPin, 1, 50 * (Ball->body->GetAngle()));
+	}
 
 	if (App->scene_intro->floornum == 1) {
 		App->renderer->Blit(Bola, 2, 2, &MapaPin1f);
