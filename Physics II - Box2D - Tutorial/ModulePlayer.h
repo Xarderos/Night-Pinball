@@ -26,6 +26,7 @@ public:
 	//Textures
 	SDL_Texture* Bola;
 	SDL_Texture* Pedra;
+	SDL_Texture* Botons;
 	SDL_Texture* llumPedra;
 	SDL_Texture* llumVerda;
 	SDL_Texture* llumMap;

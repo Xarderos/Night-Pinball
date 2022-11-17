@@ -20,7 +20,7 @@ ModulePlayer::~ModulePlayer()
 // Load assets
 bool ModulePlayer::Start()
 {
-
+	Botons = App->textures->Load("pinball/SpriteSheet.png");
 	Pedra = App->textures->Load("pinball/SpriteSheet.png");
 	Bola = App->textures->Load("pinball/SpriteSheet.png");
 	llumPedra = App->textures->Load("pinball/SpriteSheet.png");
@@ -28,14 +28,14 @@ bool ModulePlayer::Start()
 	llumMap = App->textures->Load("pinball/SpriteSheet.png");
 	llumGroga = App->textures->Load("pinball/SpriteSheet.png");
 
-	Ball = App->physics->CreateCircle(250, 380, 7);
+	Ball = App->physics->CreateCircle(250, 400, 7);
 
 	//Sensors
 
 	PedraSen = App->physics->CreateRectangleSensor(120, 193, 35, 34);
-	MapSen = App->physics->CreateRectangleSensor(44, 248, 21, 17);
-	MapSen2 = App->physics->CreateRectangleSensor(44, 260, 21, 17);
-	MapSen3 = App->physics->CreateRectangleSensor(44, 280, 21, 17);
+	MapSen = App->physics->CreateRectangleSensor(24, 246, 3, 7);
+	MapSen2 = App->physics->CreateRectangleSensor(24, 264, 3, 7);
+	MapSen3 = App->physics->CreateRectangleSensor(24, 282, 3, 7);
 
 	Ball->listener = this;
 	MapaPin1f = { 262, 1, 256, 432 };
@@ -56,6 +56,10 @@ bool ModulePlayer::CleanUp()
 	PedraSen = nullptr;
 	delete MapSen;
 	MapSen = nullptr;
+	delete MapSen2;
+	MapSen2 = nullptr;
+	delete MapSen3;
+	MapSen3 = nullptr;
 	return true;
 }
 
@@ -64,8 +68,31 @@ update_status ModulePlayer::Update()
 {
 	b2Vec2 position;
 	
+	SDL_Rect BotonsPin = { 396, 517, 8, 13 };
+	App->renderer->Blit(Botons, 22 * SCREEN_SIZE, 240 * SCREEN_SIZE, &BotonsPin);
+	SDL_Rect BotonsPin2 = { 396, 517, 8, 13 };
+	App->renderer->Blit(Botons, 22 * SCREEN_SIZE, 258 * SCREEN_SIZE, &BotonsPin2);
+	SDL_Rect BotonsPin3 = { 396, 517, 8, 13 };
+	App->renderer->Blit(Botons, 22 * SCREEN_SIZE, 276 * SCREEN_SIZE, &BotonsPin3);
+	if (llumgroga > 0)
+	{
+		SDL_Rect BotonsPin = { 409, 519, 6, 11 };
+		App->renderer->Blit(Botons, 22 * SCREEN_SIZE, 240 * SCREEN_SIZE, &BotonsPin);
+	}
+	if (llumgroga > 1)
+	{
+		SDL_Rect BotonsPin = { 409, 519, 6, 11 };
+		App->renderer->Blit(Botons, 22 * SCREEN_SIZE, 258 * SCREEN_SIZE, &BotonsPin);
+	}
+	if (llumgroga > 2)
+	{
+		SDL_Rect BotonsPin = { 409, 519, 6, 11 };
+		App->renderer->Blit(Botons, 22 * SCREEN_SIZE, 276 * SCREEN_SIZE, &BotonsPin);
+	}
+
 	SDL_Rect BolaPin = { 20,703,14,14 };
 	position = Ball->body->GetPosition();
+
 	if (App->scene_intro->floornum == 2) {
 		App->renderer->Blit(Bola, 2, 2, &MapaPin1f);
 		App->renderer->Blit(Bola, 33 * SCREEN_SIZE, 8 * SCREEN_SIZE, &NightRampPart);
@@ -88,10 +115,7 @@ update_status ModulePlayer::Update()
 	if (App->scene_intro->floornum == 3) {
 		App->renderer->Blit(Bola, 33 * SCREEN_SIZE, 8 * SCREEN_SIZE, &NightRampPart);
 	}
-	/*if (App->scene_intro->floornum == 1) {
-		App->renderer->Blit(Bola, 2, 2, &MapaPin1f);
-		App->renderer->Blit(Bola, 2, 2, &Reixa);
-	}*/
+	
 	SDL_Rect PedraPin = { 354,165,56,55 };
 	App->renderer->Blit(Pedra, 92 * SCREEN_SIZE, 165 * SCREEN_SIZE, &PedraPin);
 	
@@ -125,10 +149,15 @@ update_status ModulePlayer::Update()
 		SDL_Rect MapSen = { 21, 874, 19,15 };
 		App->renderer->Blit(llumPedra, 35 * SCREEN_SIZE, 257 * SCREEN_SIZE, &MapSen);
 	}
-	if (llumgroga > 1)
+	if (llumgroga > 2)
 	{
 		SDL_Rect MapSen = { 21, 890, 19,15 };
 		App->renderer->Blit(llumPedra, 35 * SCREEN_SIZE, 273 * SCREEN_SIZE, &MapSen);
+	}
+	if (llumgroga > 2)
+	{
+		SDL_Rect GrocSen = { 147, 548, 14, 14 };
+		App->renderer->Blit(llumGroga, 122 * SCREEN_SIZE, 322 * SCREEN_SIZE, &GrocSen);
 	}
 	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
 	{
@@ -153,6 +182,14 @@ void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 		llumverda++;
 	}
 	if (bodyB == MapSen) {
+		/*App->audio->PlayFx*/
+		llumgroga++;
+	}
+	if (bodyB == MapSen2) {
+		/*App->audio->PlayFx*/
+		llumgroga++;
+	}
+	if (bodyB == MapSen3) {
 		/*App->audio->PlayFx*/
 		llumgroga++;
 	}
