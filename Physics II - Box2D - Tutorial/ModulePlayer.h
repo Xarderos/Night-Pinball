@@ -28,6 +28,8 @@ public:
 	SDL_Texture* Pedra;
 	SDL_Texture* llumPedra;
 	SDL_Texture* llumVerda;
+	SDL_Texture* llumMap;
+	SDL_Texture* llumGroga;
 
 	SDL_Rect BolaPin;
 
@@ -35,7 +37,9 @@ public:
 	PhysBody* Ball;
 	PhysBody* Rectangle;
 	PhysBody* PedraSen;
-
+	PhysBody* MapSen;
+	PhysBody* MapSen2;
+	PhysBody* MapSen3;
 
 	//Sensors bools
 
@@ -44,4 +48,5 @@ public:
 
 	int lifes;
 	int llumverda;
+	int llumgroga;
 };

@@ -24,12 +24,17 @@ bool ModulePlayer::Start()
 	Bola = App->textures->Load("pinball/SpriteSheet.png");
 	llumPedra = App->textures->Load("pinball/SpriteSheet.png");
 	llumVerda = App->textures->Load("pinball/SpriteSheet.png");
+	llumMap = App->textures->Load("pinball/SpriteSheet.png");
+	llumGroga = App->textures->Load("pinball/SpriteSheet.png");
 
 	Ball = App->physics->CreateCircle(250, 380, 7);
 
 	//Sensors
 
 	PedraSen = App->physics->CreateRectangleSensor(120, 193, 35, 34);
+	MapSen = App->physics->CreateRectangleSensor(44, 248, 21, 17);
+	MapSen2 = App->physics->CreateRectangleSensor(44, 260, 21, 17);
+	MapSen3 = App->physics->CreateRectangleSensor(44, 280, 21, 17);
 
 	Ball->listener = this;
 
@@ -47,6 +52,8 @@ bool ModulePlayer::CleanUp()
 	Ball = nullptr;
 	delete PedraSen;
 	PedraSen = nullptr;
+	delete MapSen;
+	MapSen = nullptr;
 	return true;
 }
 
@@ -82,6 +89,21 @@ update_status ModulePlayer::Update()
 		SDL_Rect VerdSen = { 131,548,14,14 };
 		App->renderer->Blit(llumVerda, 106 * SCREEN_SIZE, 322 * SCREEN_SIZE, &VerdSen);
 	}
+	if (llumgroga > 0)
+	{
+		SDL_Rect MapSen = { 21, 858, 19,15 };
+		App->renderer->Blit(llumPedra, 35 * SCREEN_SIZE, 241 * SCREEN_SIZE, &MapSen);
+	}
+	if (llumgroga > 1)
+	{
+		SDL_Rect MapSen = { 21, 874, 19,15 };
+		App->renderer->Blit(llumPedra, 35 * SCREEN_SIZE, 257 * SCREEN_SIZE, &MapSen);
+	}
+	if (llumgroga > 1)
+	{
+		SDL_Rect MapSen = { 21, 890, 19,15 };
+		App->renderer->Blit(llumPedra, 35 * SCREEN_SIZE, 273 * SCREEN_SIZE, &MapSen);
+	}
 	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
 	{
 		b2Vec2 vel = b2Vec2(0, 3 * GRAVITY_Y);
@@ -103,6 +125,10 @@ void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 	if (bodyB == PedraSen) {
 		/*App->audio->PlayFx*/
 		llumverda++;
+	}
+	if (bodyB == MapSen) {
+		/*App->audio->PlayFx*/
+		llumgroga++;
 	}
 }
 
