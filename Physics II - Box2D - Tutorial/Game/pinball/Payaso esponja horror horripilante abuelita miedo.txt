@@ -32,7 +32,7 @@ idle.loop = false;
 
 //Coords + dim del suport del canó (on apareix la bola)
 x = 494
-y = 233
+y = 1009
 w = 24
 h = 192
 

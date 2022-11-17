@@ -27,6 +27,8 @@ bool ModulePlayer::Start()
 	llumVerda = App->textures->Load("pinball/SpriteSheet.png");
 	llumMap = App->textures->Load("pinball/SpriteSheet.png");
 	llumGroga = App->textures->Load("pinball/SpriteSheet.png");
+	suportCano = App->textures->Load("pinball/SpriteSheet.png");
+	cano = App->textures->Load("pinball/SpriteSheet.png");
 
 	Ball = App->physics->CreateCircle(250, 400, 7);
 
@@ -36,6 +38,7 @@ bool ModulePlayer::Start()
 	MapSen = App->physics->CreateRectangleSensor(24, 246, 5, 7);
 	MapSen2 = App->physics->CreateRectangleSensor(24, 264, 5, 7);
 	MapSen3 = App->physics->CreateRectangleSensor(24, 282, 5, 7);
+	CanoSen = App->physics->CreateRectangleSensor(245, 300, 20, 20);
 
 	llumgroga = false;
 	llumgroga2 = false;
@@ -64,6 +67,8 @@ bool ModulePlayer::CleanUp()
 	MapSen2 = nullptr;
 	delete MapSen3;
 	MapSen3 = nullptr;
+	delete CanoSen;
+	CanoSen = nullptr;
 	return true;
 }
 
@@ -115,9 +120,11 @@ update_status ModulePlayer::Update()
 		
 	}
 	
+	if (DrawBola == true) {}
+
 	SDL_Rect BolaPin = { 20,703,14,14 };
 	position = Ball->body->GetPosition();
-
+	
 	if (App->scene_intro->floornum == 2) {
 		App->renderer->Blit(Bola, 2, 2, &MapaPin1f);
 		App->renderer->Blit(Bola, 33 * SCREEN_SIZE, 8 * SCREEN_SIZE, &NightRampPart);
@@ -126,10 +133,12 @@ update_status ModulePlayer::Update()
 		App->renderer->Blit(Bola, 2, 2, &MapaPin1f);
 		App->renderer->Blit(Bola, 5 * SCREEN_SIZE, 175 * SCREEN_SIZE, &Reixa);
 	}
-	App->renderer->Blit(Bola, METERS_TO_PIXELS (position.x) -14, METERS_TO_PIXELS (position.y) -14, &BolaPin,1, 50*(Ball->body->GetAngle()));
+
+	App->renderer->Blit(Bola, METERS_TO_PIXELS(position.x) - 14, METERS_TO_PIXELS(position.y) - 14, &BolaPin, 1, 50 * (Ball->body->GetAngle()));
+
 	if (App->scene_intro->floornum == 1) {
 		App->renderer->Blit(Bola, 2, 2, &MapaPin1f);
-		App->renderer->Blit(Bola, 5*SCREEN_SIZE, 175* SCREEN_SIZE, &Reixa);
+		App->renderer->Blit(Bola, 5 * SCREEN_SIZE, 175 * SCREEN_SIZE, &Reixa);
 		App->renderer->Blit(Bola, 33 * SCREEN_SIZE, 8 * SCREEN_SIZE, &NightRampPart);
 	}
 	if (App->scene_intro->floornum == 2) {
@@ -140,7 +149,7 @@ update_status ModulePlayer::Update()
 	if (App->scene_intro->floornum == 3) {
 		App->renderer->Blit(Bola, 33 * SCREEN_SIZE, 8 * SCREEN_SIZE, &NightRampPart);
 	}
-	
+
 	SDL_Rect PedraPin = { 354,165,56,55 };
 	App->renderer->Blit(Pedra, 92 * SCREEN_SIZE, 165 * SCREEN_SIZE, &PedraPin);
 	
@@ -176,6 +185,22 @@ update_status ModulePlayer::Update()
 		lifes--;
 	}
 
+	SDL_Rect SuportCanoPin = { 494, 1009, 33, 34 };
+	App->renderer->Blit(suportCano, 233 * SCREEN_SIZE, 233 * SCREEN_SIZE, &SuportCanoPin);
+
+	SDL_Rect CanoPin = { 1, 498, 33, 34 };
+	App->renderer->Blit(cano, 224 * SCREEN_SIZE, 280 * SCREEN_SIZE, &CanoPin);
+
+	if (SaltCano == true) {
+		b2Vec2 tp = b2Vec2(PIXEL_TO_METERS(207), PIXEL_TO_METERS(273));
+		Ball->body->SetTransform(tp, 0);
+
+		b2Vec2 vel = b2Vec2(-2, -3);
+		Ball->body->SetLinearVelocity(vel);
+
+		DrawBola = true;
+		SaltCano = false;
+	}
 	
 
 	return UPDATE_CONTINUE;
@@ -197,6 +222,11 @@ void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 	if (bodyB == MapSen3 && llumgroga3 == false) {
 		/*App->audio->PlayFx*/
 		llumgroga3 = true;
+	}
+	if (bodyB == CanoSen) {
+		/*App->audio->PlayFx*/
+		SaltCano = true;
+		DrawBola = false;
 	}
 }
 

@@ -31,6 +31,8 @@ public:
 	SDL_Texture* llumVerda;
 	SDL_Texture* llumMap;
 	SDL_Texture* llumGroga;
+	SDL_Texture* suportCano;
+	SDL_Texture* cano;
 
 	SDL_Rect BolaPin;
 	SDL_Rect MapaPin1f;
@@ -44,10 +46,12 @@ public:
 	PhysBody* MapSen;
 	PhysBody* MapSen2;
 	PhysBody* MapSen3;
+	PhysBody* CanoSen;
 
 	//Sensors bools
 
 	Animation bolapin;
+	Animation CanoAnim;
 
 
 	int lifes;
@@ -55,4 +59,6 @@ public:
 	bool llumgroga;
 	bool llumgroga2;
 	bool llumgroga3;
+	bool DrawBola = true;
+	bool SaltCano = false;
 };
