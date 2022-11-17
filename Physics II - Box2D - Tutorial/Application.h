@@ -11,6 +11,7 @@ class ModuleInput;
 class ModuleAudio;
 class ModulePlayer;
 class ModuleFadeToBlack;
+class ModuleFont;
 class ModuleSceneIntro;
 class ModulePhysics;
 class ModuleSceneTitle;
@@ -25,6 +26,7 @@ public:
 	ModuleAudio* audio;
 	ModulePlayer* player;
 	ModuleFadeToBlack* fade;
+	ModuleFont* font;
 	ModuleSceneIntro* scene_intro;
 	ModulePhysics* physics;
 	ModuleSceneTitle* scene_title;
