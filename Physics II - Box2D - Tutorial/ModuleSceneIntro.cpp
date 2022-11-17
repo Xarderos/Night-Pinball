@@ -35,7 +35,12 @@ bool ModuleSceneIntro::Start()
 	leftflipcircle = App->physics->CreateCircleStatic(87, 386, 5);
 	rightflipper = App->physics->CreateRectangle(140, 385, 20, 6);
 	leftflipper = App->physics->CreateRectangle(101, 385, 20, 6);
-	Nightsensor1 = App->physics->CreateRectangleSensor(25,205,30,5);
+	NightsensorF1_1 = App->physics->CreateRectangleSensor(25,205,30,5);
+	NightsensorF1_2 = App->physics->CreateRectangleSensor(205, 75, 23, 5);
+	NightsensorF1_3 = App->physics->CreateRectangleSensor(25, 205, 30, 5);
+
+	NightsensorF2_1 = App->physics->CreateRectangleSensor(15, 190, 25, 5);
+
 	b2RevoluteJointDef rightFlip;
 	rightFlip.bodyA = rightflipper->body;
 	rightFlip.bodyB = rightflipcircle->body;
@@ -76,13 +81,19 @@ bool ModuleSceneIntro::CleanUp()
 		Map[i] = nullptr;
 	}
 	Map.clear();
+	delete NightsensorF1_1;
+	delete NightsensorF1_2;
+	delete NightsensorF1_3;
+	delete NightsensorF2_1;
+	delete NightsensorF2_2;
+	delete NightsensorF2_3;
+
 
 	return true;
 }
 
 update_status ModuleSceneIntro::Update()
 {
-	OnCollision(App->player->Ball, Nightsensor1);
 	if ((App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)) {
 		mapselector = true;
 		floornum = 2;
@@ -232,62 +243,65 @@ void ModuleSceneIntro::map()
 		};
 		Map.push_back(App->physics->CreateChain(0, 0, bottomRightWall, 18));
 
-		int topMap[106] = {
-				213, 193,
-				209, 203,
-				209, 207,
-				216, 207,
-				220, 202,
-				230, 170,
-				257, 172,
-				257, 2,
-				2, 1,
-				1, 158,
-				30, 188,
-				33, 178,
-				15, 136,
-				12, 119,
-				12, 99,
-				16, 75,
-				26, 61,
-				36, 51,
-				55, 43,
-				79, 39,
-				91, 39,
-				106, 42,
-				120, 49,
-				133, 62,
-				141, 79,
-				144, 94,
-				144, 111,
-				141, 120,
-				145, 124,
-				149, 119,
-				159, 118,
-				165, 123,
-				166, 129,
-				167, 131,
-				172, 131,
-				171, 125,
-				163, 116,
-				155, 92,
-				155, 72,
-				158, 58,
-				163, 48,
-				173, 38,
-				193, 30,
-				211, 30,
-				231, 38,
-				242, 49,
-				247, 58,
-				250, 68,
-				250, 83,
-				243, 114,
-				234, 133,
-				233, 147,
-				221, 193
+		int topMap[112] = {
+			213, 193,
+			209, 203,
+			209, 207,
+			216, 207,
+			220, 202,
+			230, 170,
+			257, 172,
+			257, 2,
+			2, 1,
+			1, 168,
+			5, 156,
+			16, 151,
+			29, 193,
+			31, 184,
+			33, 180,
+			15, 136,
+			12, 119,
+			12, 99,
+			16, 75,
+			26, 61,
+			36, 51,
+			55, 43,
+			79, 39,
+			91, 39,
+			106, 42,
+			120, 49,
+			133, 62,
+			141, 79,
+			144, 94,
+			144, 111,
+			141, 120,
+			145, 124,
+			149, 119,
+			159, 118,
+			165, 123,
+			166, 129,
+			167, 131,
+			172, 131,
+			171, 125,
+			163, 116,
+			155, 92,
+			155, 72,
+			158, 58,
+			163, 48,
+			173, 38,
+			193, 30,
+			211, 30,
+			231, 38,
+			242, 49,
+			247, 58,
+			250, 68,
+			250, 83,
+			243, 114,
+			234, 133,
+			233, 147,
+			221, 193
 		};
-		Map.push_back(App->physics->CreateChain(0, 0, topMap, 106));
+		Map.push_back(App->physics->CreateChain(0, 0, topMap, 112));
 	}
 	if (floornum == 2) {
 		for (int i = 0; i < Map.size(); i++) {

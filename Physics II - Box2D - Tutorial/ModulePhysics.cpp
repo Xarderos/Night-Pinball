@@ -5,7 +5,8 @@
 #include "ModulePhysics.h"
 #include "p2Point.h"
 #include "math.h"
-
+#include "ModuleSceneIntro.h"
+#include "ModulePlayer.h"
 // Tell the compiler to reference the compiled Box2D libraries
 #ifdef _DEBUG
 	#pragma comment( lib, "Box2D/libx86/Debug/Box2D.lib" )
@@ -395,10 +396,20 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 	// Call the OnCollision listener function to bodies A and B, passing as inputs our custom PhysBody classes
 	PhysBody* physA = (PhysBody*)contact->GetFixtureA()->GetBody()->GetUserData();
 	PhysBody* physB = (PhysBody*)contact->GetFixtureB()->GetBody()->GetUserData();
+	if (physA == App->scene_intro->NightsensorF1_1) {
+		App->scene_intro->floornum = 1;
+		App->scene_intro->mapselector = true;
+	}
+	if (physA == App->scene_intro->NightsensorF2_1) {
+		App->scene_intro->floornum = 2;
+		App->scene_intro->mapselector = true;
+	}
+
 	if(physA && physA->listener != NULL)
 		physA->listener->OnCollision(physA, physB);
 	if(physB && physB->listener != NULL)
 		physB->listener->OnCollision(physB, physA);
+
 }
 
 

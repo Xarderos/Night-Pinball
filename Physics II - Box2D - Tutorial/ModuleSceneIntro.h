@@ -34,7 +34,13 @@ public:
 	PhysBody* leftflipcircle;
 	PhysBody* rightflipper;
 	PhysBody* leftflipper;
-	PhysBody* Nightsensor1;
+	PhysBody* NightsensorF1_1;
+	PhysBody* NightsensorF1_2;
+	PhysBody* NightsensorF1_3;
+
+	PhysBody* NightsensorF2_1;
+	PhysBody* NightsensorF2_2;
+	PhysBody* NightsensorF2_3;
 
 	bool sensed;
 
