@@ -287,6 +287,10 @@ void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 		/*App->audio->PlayFx(pedrasound);*/
 		llumvermella++;
 	}
+	if (bodyB == App->scene_intro->Floor3_2) {
+		App->scene_intro->floornum = 1;
+		App->scene_intro->mapselector = true;
+	}
 }
 
 

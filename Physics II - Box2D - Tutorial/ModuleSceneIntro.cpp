@@ -36,10 +36,18 @@ bool ModuleSceneIntro::Start()
 	leftflipcircle = App->physics->CreateCircleStatic(87, 386, 5);
 	rightflipper = App->physics->CreateRectangle(140, 385, 20, 6);
 	leftflipper = App->physics->CreateRectangle(101, 385, 20, 6);
-	NightsensorF1_1 = App->physics->CreateRectangleSensor(25,210,30,5);
-	NightsensorF1_2 = App->physics->CreateRectangleSensor(205, 75, 23, 5);
+	NightsensorF1_1 = App->physics->CreateRectangleSensor(23,210,30,10);
+	NightsensorF1_2 = App->physics->CreateRectangleSensor(201, 100, 35, 10);
+	NightsensorF1_3 = App->physics->CreateRectangleSensor(225, 210, 30, 10);
 
-	NightsensorF2_1 = App->physics->CreateRectangleSensor(18, 200, 25, 5);
+	NightsensorF2_1 = App->physics->CreateRectangleSensor(14, 186, 25, 5);
+	NightsensorF2_2 = App->physics->CreateRectangleSensor(198, 66, 15, 5);
+	NightsensorF2_3 = App->physics->CreateRectangleSensor(232, 195, 20, 5);
+
+	Floor3_1 = App->physics->CreateRectangleSensor(43, 327, 25, 5);
+	Floor3_2 = App->physics->CreateRectangleSensor(77, 146, 25, 5);
+	Floor3_2->listener = this;
+	Floor3_ac = App->physics->CreateRectangleSensor(70, 130, 10, 5);
 
 	b2RevoluteJointDef rightFlip;
 	rightFlip.bodyA = rightflipper->body;
@@ -101,6 +109,12 @@ bool ModuleSceneIntro::CleanUp()
 	rightflipper = nullptr;
 	delete leftflipper;
 	leftflipper = nullptr;
+	delete Floor3_1;
+	Floor3_1 = nullptr;
+	delete Floor3_2;
+	Floor3_2 = nullptr;
+	delete Floor3_ac;
+	Floor3_ac = nullptr;
 	return true;
 }
 
@@ -108,7 +122,7 @@ update_status ModuleSceneIntro::Update()
 {
 	if ((App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)) {
 		mapselector = true;
-		floornum = 2;
+		floornum = 3;
 	}
 	if (mapselector == true) {
 		map();
@@ -258,6 +272,94 @@ void ModuleSceneIntro::map()
 		};
 		Map.push_back(App->physics->CreateChain(0, 0, bottomRightWall, 18));
 
+		int paretAdalt[32] = {
+				66, 143,
+				55, 154,
+				52, 152,
+				52, 149,
+				54, 147,
+				55, 143,
+				57, 120,
+				65, 114,
+				74, 115,
+				93, 132,
+				88, 137,
+				83, 132,
+				79, 131,
+				73, 125,
+				61, 136,
+				66, 141
+
+		};
+		Map.push_back(App->physics->CreateChain(0, 0, paretAdalt, 32));
+
+		int topCurve1[32] = {
+				32, 97,
+				34, 98,
+				36, 97,
+				37, 90,
+				40, 83,
+				44, 78,
+				50, 72,
+				57, 67,
+				63, 64,
+				71, 64,
+				71, 60,
+				62, 60,
+				52, 65,
+				43, 73,
+				35, 84,
+				32, 94
+		};
+		Map.push_back(App->physics->CreateChain(0, 0, topCurve1, 32));
+
+		int topCurve2[30] = {
+				89, 62,
+				90, 64,
+				101, 65,
+				109, 68,
+				118, 77,
+				122, 89,
+				122, 96,
+				124, 97,
+				126, 95,
+				126, 88,
+				123, 78,
+				118, 70,
+				110, 64,
+				98, 61,
+				90, 60
+		};
+		Map.push_back(App->physics->CreateChain(0, 0, topCurve2, 30));
+
+		int topBossCircle[48] = {
+				191, 84,
+				188, 97,
+				183, 91,
+				180, 83,
+				180, 74,
+				184, 64,
+				193, 57,
+				202, 55,
+				211, 56,
+				218, 58,
+				225, 65,
+				228, 74,
+				228, 83,
+				226, 92,
+				219, 98,
+				212, 102,
+				211, 89,
+				219, 81,
+				218, 70,
+				213, 64,
+				203, 62,
+				194, 66,
+				189, 73,
+				190, 80
+		};
+		Map.push_back(App->physics->CreateChain(0, 0, topBossCircle, 48));
+
 		int topMap[112] = {
 			213, 193,
 			209, 203,
@@ -387,22 +489,22 @@ void ModuleSceneIntro::map()
 		Map.push_back(App->physics->CreateChain(-261, 0, NightRamp2, 48));
 
 		int NightRamp3[32] = {
-			468, 63,
-			467, 52,
-			464, 44,
-			458, 31,
-			466, 34,
-			479, 45,
-			488, 56,
-			495, 74,
-			498, 101,
-			496, 125,
-			495, 140,
-			486, 183,
-			476, 203,
-			493, 90,
-			477, 52,
-			472, 60
+				469, 71,
+				467, 52,
+				464, 44,
+				458, 31,
+				466, 34,
+				479, 45,
+				488, 56,
+				495, 74,
+				498, 101,
+				496, 125,
+				495, 140,
+				486, 183,
+				476, 203,
+				485, 89,
+				483, 80,
+				476, 74
 		};
 		Map.push_back(App->physics->CreateChain(-261, 0, NightRamp3, 32));
 
@@ -412,6 +514,85 @@ void ModuleSceneIntro::map()
 			delete Map[i];
 			Map[i] = nullptr;
 		}
+		int Floor3[152] = {
+			47, 1237,
+			52, 1235,
+			55, 1231,
+			55, 1225,
+			54, 1219,
+			54, 1213,
+			54, 1207,
+			52, 1201,
+			47, 1195,
+			40, 1191,
+			31, 1186,
+			24, 1183,
+			19, 1179,
+			18, 1117,
+			30, 1104,
+			51, 1094,
+			76, 1081,
+			116, 1061,
+			136, 1041,
+			151, 1004,
+			153, 974,
+			143, 942,
+			133, 934,
+			120, 928,
+			97, 925,
+			73, 927,
+			52, 937,
+			37, 953,
+			32, 973,
+			30, 1002,
+			39, 1022,
+			55, 1039,
+			66, 1052,
+			0, 1010,
+			43, 907,
+			182, 934,
+			103, 1183,
+			48, 1250,
+			-8, 1207,
+			-16, 1146,
+			3, 1094,
+			26, 1082,
+			48, 1071,
+			65, 1066,
+			102, 1046,
+			116, 1032,
+			126, 977,
+			107, 954,
+			80, 956,
+			60, 992,
+			71, 1022,
+			78, 1039,
+			59, 1021,
+			52, 1013,
+			48, 999,
+			49, 977,
+			52, 961,
+			62, 949,
+			77, 942,
+			100, 942,
+			122, 948,
+			134, 965,
+			136, 976,
+			135, 1001,
+			124, 1031,
+			105, 1049,
+			20, 1092,
+			1, 1109,
+			1, 1183,
+			7, 1192,
+			17, 1198,
+			36, 1207,
+			38, 1221,
+			35, 1227,
+			37, 1234,
+			42, 1236
+		};
+		Map.push_back(App->physics->CreateChain(0, -910, Floor3, 152));
 	}
 	mapselector = false;
 }

@@ -396,13 +396,29 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 	// Call the OnCollision listener function to bodies A and B, passing as inputs our custom PhysBody classes
 	PhysBody* physA = (PhysBody*)contact->GetFixtureA()->GetBody()->GetUserData();
 	PhysBody* physB = (PhysBody*)contact->GetFixtureB()->GetBody()->GetUserData();
-	if (physA == App->scene_intro->NightsensorF1_1) {
-		App->scene_intro->floornum = 1;
-		App->scene_intro->mapselector = true;
+	if (physA == App->scene_intro->NightsensorF1_1 || physA == App->scene_intro->NightsensorF1_2) {
+		if (App->scene_intro->floornum != 1 && App->scene_intro->floornum != 3) {
+			App->scene_intro->floornum = 1;
+			App->scene_intro->mapselector = true;
+		}
 	}
-	if (physA == App->scene_intro->NightsensorF2_1) {
-		App->scene_intro->floornum = 2;
-		App->scene_intro->mapselector = true;
+	if (physA == App->scene_intro->NightsensorF2_1 || physA == App->scene_intro->NightsensorF2_2) {
+		if (App->scene_intro->floornum != 2 && App->scene_intro->floornum!=3) {
+			App->scene_intro->floornum = 2;
+			App->scene_intro->mapselector = true;
+		}
+	}
+	if (physA == App->scene_intro->Floor3_1 || physA == App->scene_intro->Floor3_2) {
+		if (App->scene_intro->floornum != 1) {
+			App->scene_intro->floornum = 1;
+			App->scene_intro->mapselector = true;
+		}
+	}
+	if (physA == App->scene_intro->Floor3_ac) {
+		if (App->scene_intro->floornum != 3) {
+			App->scene_intro->floornum = 3;
+			App->scene_intro->mapselector = true;
+		}
 	}
 
 	if(physA && physA->listener != NULL)
