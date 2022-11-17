@@ -48,6 +48,7 @@ bool ModulePlayer::Start()
 	CanoSen = App->physics->CreateRectangleSensor(245, 300, 20, 20);
 	VermeSen = App->physics->CreateRectangleSensor(154, 132, 7, 7);
 	BlauSen = App->physics->CreateRectangleSensor(107, 104, 7, 7);
+	BlancSen = App->physics->CreateRectangleSensor(249, 112, 5, 4);
 
 	llumgroga = false;
 	llumgroga2 = false;
@@ -84,6 +85,8 @@ bool ModulePlayer::CleanUp()
 	VermeSen = nullptr;
 	delete BlauSen;
 	BlauSen = nullptr;
+	delete BlancSen;
+	BlancSen = nullptr;
 	return true;
 }
 
@@ -173,9 +176,18 @@ update_status ModulePlayer::Update()
 		App->renderer->Blit(Bola, 33 * SCREEN_SIZE, 8 * SCREEN_SIZE, &NightRampPart);
 	}
 
+	SDL_Rect Porteta = {202,523,19,7};
+	App->renderer->Blit(Bola, 237 * SCREEN_SIZE, 109 * SCREEN_SIZE, &Porteta);
+
 	SDL_Rect PedraPin = { 354,165,56,55 };
 	App->renderer->Blit(Pedra, 92 * SCREEN_SIZE, 165 * SCREEN_SIZE, &PedraPin);
-	
+
+	if (llumblanca == true)
+	{
+		SDL_Rect Boss = { 125, 563, 14, 14 };
+		App->renderer->Blit(Bola, 100 * SCREEN_SIZE, 337 * SCREEN_SIZE, &Boss);
+	}
+
 	if (llumblava == true && llumvermella == true)
 	{
 		SDL_Rect Boss = { 216, 438, 44, 56 };
@@ -311,6 +323,9 @@ void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 	}
 	if (bodyB == BlauSen && llumblava == false) {
 		llumblava = true;
+	}
+	if (bodyB == BlancSen && llumblanca == false) {
+		llumblanca = true;
 	}
 	if (bodyB == App->scene_intro->Floor3_2) {
 		App->scene_intro->floornum = 1;
