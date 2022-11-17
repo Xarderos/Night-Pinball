@@ -76,12 +76,6 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update()
 {
 
-	SDL_Rect SuportCanoPin = { 494, 1009, 24, 192 };
-	App->renderer->Blit(suportCano, 233 * SCREEN_SIZE, 233 * SCREEN_SIZE, &SuportCanoPin);
-
-	SDL_Rect CanoPin = { 1, 498, 33, 34 };
-	App->renderer->Blit(cano, 224 * SCREEN_SIZE, 280 * SCREEN_SIZE, &CanoPin);
-
 	b2Vec2 position;
 
 	if (llumgroga == false)
@@ -192,8 +186,14 @@ update_status ModulePlayer::Update()
 		lifes--;
 	}
 
-	
 
+	SDL_Rect SuportCanoPin = { 494, 1009, 24, 192 };
+	App->renderer->Blit(suportCano, 233 * SCREEN_SIZE, 233 * SCREEN_SIZE, &SuportCanoPin);
+
+	SDL_Rect CanoPin = { 1, 498, 33, 34 };
+	App->renderer->Blit(cano, 224 * SCREEN_SIZE, 280 * SCREEN_SIZE, &CanoPin);
+
+	//SALTA AL MAPA QUAN TOCA EL CANÓ
 	if (SaltCano == true) {
 		b2Vec2 tp = b2Vec2(PIXEL_TO_METERS(207), PIXEL_TO_METERS(273));
 		Ball->body->SetTransform(tp, 0);
