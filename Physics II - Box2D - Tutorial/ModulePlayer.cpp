@@ -19,7 +19,7 @@ bool ModulePlayer::Start()
 	Pedra = App->textures->Load("pinball/SpriteSheet.png");
 	Bola = App->textures->Load("pinball/SpriteSheet.png");
 	Ball = App->physics->CreateCircle(250, 400, 7);
-
+	lifes = 5;
 	LOG("Loading player");
 	return true;
 }
@@ -49,6 +49,12 @@ update_status ModulePlayer::Update()
 	{
 		b2Vec2 vel = b2Vec2(0, 3 * GRAVITY_Y);
 		Ball->body->SetLinearVelocity(vel);
+	}
+
+	if ((METERS_TO_PIXELS(position.y)) > 1500 && lifes > 0)
+	{
+		Ball->body->SetTransform({ PIXEL_TO_METERS(250), PIXEL_TO_METERS(400) }, 0);
+		lifes--;
 	}
 
 

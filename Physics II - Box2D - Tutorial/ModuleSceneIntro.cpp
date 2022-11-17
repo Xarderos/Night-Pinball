@@ -6,7 +6,7 @@
 #include "ModuleTextures.h"
 #include "ModuleAudio.h"
 #include "ModulePhysics.h"
-
+#include "ModulePlayer.h"
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 
@@ -35,7 +35,7 @@ bool ModuleSceneIntro::Start()
 	leftflipcircle = App->physics->CreateCircleStatic(87, 386, 5);
 	rightflipper = App->physics->CreateRectangle(140, 385, 20, 6);
 	leftflipper = App->physics->CreateRectangle(101, 385, 20, 6);
-
+	Nightsensor1 = App->physics->CreateRectangleSensor(25,205,30,5);
 	b2RevoluteJointDef rightFlip;
 	rightFlip.bodyA = rightflipper->body;
 	rightFlip.bodyB = rightflipcircle->body;
@@ -82,6 +82,7 @@ bool ModuleSceneIntro::CleanUp()
 
 update_status ModuleSceneIntro::Update()
 {
+	OnCollision(App->player->Ball, Nightsensor1);
 	if ((App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)) {
 		mapselector = true;
 		floornum = 2;
@@ -293,7 +294,88 @@ void ModuleSceneIntro::map()
 			delete Map[i];
 			Map[i] = nullptr;
 		}
-		
+		int NightRamp1[62] = {
+			273, 209,
+			262, 173,
+			258, 154,
+			255, 134,
+			253, 110,
+			253, 89,
+			255, 70,
+			263, 47,
+			287, 22,
+			315, 10,
+			347, 2,
+			382, 1,
+			414, 2,
+			436, 4,
+			459, 11,
+			483, 22,
+			499, 35,
+			512, 54,
+			515, 71,
+			517, 100,
+			516, 125,
+			514, 148,
+			510, 170,
+			504, 192,
+			498, 208,
+			513, 196,
+			524, 151,
+			527, -4,
+			244, -2,
+			236, 186,
+			264, 204
+		};
+		Map.push_back(App->physics->CreateChain(-261, 0, NightRamp1, 62));
+
+		int NightRamp2[48] = {
+			295, 203,
+			287, 184,
+			280, 159,
+			276, 127,
+			275, 106,
+			274, 85,
+			279, 66,
+			287, 51,
+			302, 38,
+			324, 30,
+			345, 25,
+			368, 22,
+			393, 21,
+			412, 22,
+			426, 27,
+			437, 38,
+			446, 52,
+			451, 67,
+			417, 31,
+			340, 33,
+			297, 61,
+			283, 92,
+			283, 126,
+			294, 185
+		};
+		Map.push_back(App->physics->CreateChain(-261, 0, NightRamp2, 48));
+
+		int NightRamp3[32] = {
+			468, 63,
+			467, 52,
+			464, 44,
+			458, 31,
+			466, 34,
+			479, 45,
+			488, 56,
+			495, 74,
+			498, 101,
+			496, 125,
+			495, 140,
+			486, 183,
+			476, 203,
+			493, 90,
+			477, 52,
+			472, 60
+		};
+		Map.push_back(App->physics->CreateChain(-261, 0, NightRamp3, 32));
 
 	}
 	if (floornum == 3) {
@@ -306,6 +388,7 @@ void ModuleSceneIntro::map()
 }
 void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {
+
 	// Play Audio FX on every collision, regardless of who is colliding
 
 	// Do something else. You can also check which bodies are colliding (sensor? ball? player?)

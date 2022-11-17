@@ -34,6 +34,8 @@ public:
 	PhysBody* leftflipcircle;
 	PhysBody* rightflipper;
 	PhysBody* leftflipper;
+	PhysBody* Nightsensor1;
+
 	bool sensed;
 
 	// Textures

@@ -27,5 +27,5 @@ public:
 	SDL_Texture* Pedra;
 
 	Animation bolapin;
-
+	int lifes;
 };
