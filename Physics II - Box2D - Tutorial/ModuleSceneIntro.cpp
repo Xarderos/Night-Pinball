@@ -29,6 +29,7 @@ bool ModuleSceneIntro::Start()
 	// Set camera position
 	App->renderer->camera.x = App->renderer->camera.y = 0;
 	Mapa = App->textures->Load("pinball/SpriteSheet.png");
+	
 
 	// Add this module (ModuleSceneIntro) as a listener for collisions with the sensor.
 	rightflipcircle = App->physics->CreateCircleStatic(155, 386, 5);
@@ -82,13 +83,25 @@ bool ModuleSceneIntro::CleanUp()
 	}
 	Map.clear();
 	delete NightsensorF1_1;
+	NightsensorF1_1 = nullptr;
 	delete NightsensorF1_2;
+	NightsensorF1_2 = nullptr;
 	delete NightsensorF1_3;
+	NightsensorF1_3 = nullptr;
 	delete NightsensorF2_1;
+	NightsensorF2_1 = nullptr;
 	delete NightsensorF2_2;
+	NightsensorF2_2 = nullptr;
 	delete NightsensorF2_3;
-
-
+	NightsensorF2_3 = nullptr;
+	delete rightflipcircle;
+	rightflipcircle = nullptr;
+	delete leftflipcircle;
+	leftflipcircle = nullptr;
+	delete rightflipper;
+	rightflipper = nullptr;
+	delete leftflipper;
+	leftflipper = nullptr;
 	return true;
 }
 
@@ -112,6 +125,8 @@ update_status ModuleSceneIntro::Update()
 		leftflipper->body->ApplyForceToCenter(b2Vec2(0, -200), 1);
 	}
 	
+
+
 	// The target point of the raycast is the mouse current position (will change over game time)
 	iPoint mouse;
 	mouse.x = App->input->GetMouseX();
@@ -127,6 +142,7 @@ update_status ModuleSceneIntro::Update()
 
 	// Circles
 
+	//Rectangles
 
 	// Raycasts -----------------
 	if(ray_on == true)

@@ -11,14 +11,26 @@ ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, s
 }
 
 ModulePlayer::~ModulePlayer()
-{}
+{
+
+}
 
 // Load assets
 bool ModulePlayer::Start()
 {
+
 	Pedra = App->textures->Load("pinball/SpriteSheet.png");
 	Bola = App->textures->Load("pinball/SpriteSheet.png");
-	Ball = App->physics->CreateCircle(250, 400, 7);
+	llumPedra = App->textures->Load("pinball/SpriteSheet.png");
+
+	Ball = App->physics->CreateCircle(250, 380, 7);
+
+	//Sensors
+
+	PedraSen = App->physics->CreateRectangleSensor(122, 193, 40, 39);
+
+	Ball->listener = this;
+
 	lifes = 5;
 	LOG("Loading player");
 	return true;
@@ -30,6 +42,8 @@ bool ModulePlayer::CleanUp()
 	LOG("Unloading player");
 	delete Ball;
 	Ball = nullptr;
+	delete PedraSen;
+	PedraSen = nullptr;
 	return true;
 }
 
@@ -45,7 +59,13 @@ update_status ModulePlayer::Update()
 	SDL_Rect PedraPin = { 354,165,56,55 };
 	App->renderer->Blit(Pedra, 94 * SCREEN_SIZE, 165 * SCREEN_SIZE, &PedraPin);
 
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	if (sensor_Pedra)
+	{
+		SDL_Rect PedraSen = { 82,844,16,15 };
+		App->renderer->Blit(llumPedra, 95 * SCREEN_SIZE, 226 * SCREEN_SIZE,&PedraSen);
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
 	{
 		b2Vec2 vel = b2Vec2(0, 3 * GRAVITY_Y);
 		Ball->body->SetLinearVelocity(vel);
@@ -57,10 +77,18 @@ update_status ModulePlayer::Update()
 		lifes--;
 	}
 
-
+	
 
 	return UPDATE_CONTINUE;
 }
+void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
+{
+	if (bodyB == PedraSen) {
 
+		if (sensor_Pedra != true) {
+			sensor_Pedra = true;
+		}
+	}
+}
 
 

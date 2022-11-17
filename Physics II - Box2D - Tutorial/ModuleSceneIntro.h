@@ -23,7 +23,7 @@ public:
 
 public:
 
-	//Vector is good, vector is good, Pol Rius 
+	//Vector is good, vector is good, POL RIUS!!
 	std::vector<PhysBody*> Map;
 
 
@@ -34,6 +34,7 @@ public:
 	PhysBody* leftflipcircle;
 	PhysBody* rightflipper;
 	PhysBody* leftflipper;
+	PhysBody* Nightsensor1;
 	PhysBody* NightsensorF1_1;
 	PhysBody* NightsensorF1_2;
 	PhysBody* NightsensorF1_3;

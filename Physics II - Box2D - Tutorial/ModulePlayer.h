@@ -6,6 +6,7 @@
 
 struct SDL_Texture;
 
+
 class ModulePlayer : public Module
 {
 public:
@@ -15,16 +16,29 @@ public:
 	bool Start();
 	update_status Update();
 	bool CleanUp();
-
+	void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 	
 
 public:
 
+	
+
+	//Textures
 	SDL_Texture* Bola;
+	SDL_Texture* Pedra;
+	SDL_Texture* llumPedra;
+
 	SDL_Rect BolaPin;
+
+	//PhysBodies
 	PhysBody* Ball;
 	PhysBody* Rectangle;
-	SDL_Texture* Pedra;
+	PhysBody* PedraSen;
+
+
+	//Sensors bools
+
+	bool sensor_Pedra = false;
 
 	Animation bolapin;
 
