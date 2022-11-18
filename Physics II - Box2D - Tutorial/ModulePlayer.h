@@ -39,7 +39,7 @@ public:
 	SDL_Rect Reixa;
 	SDL_Rect NightRampPart;
 	SDL_Rect BouncerBall;
-	SDL_Rect Boss;
+	SDL_Rect Boss2;
 	//PhysBodies
 	PhysBody* Ball;
 	PhysBody* Rectangle;

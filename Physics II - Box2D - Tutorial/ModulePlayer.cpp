@@ -50,14 +50,14 @@ bool ModulePlayer::Start()
 
 	//Boss Animations
 
-	BossAnim.PushBack({ 1,438,37,56 });
-	BossAnim.PushBack({ 43,438,44,56 });
-	BossAnim.PushBack({ 92,438,62,56 });
-	BossAnim.PushBack({ 159,438,52,56 });
-	BossAnim.PushBack({ 216,438,44,56 });
-	BossAnim.PushBack({ 265,438,43,56 });
+	BossAnim.PushBack({ 3,438,64,58 });
+	BossAnim.PushBack({ 67,438,64,58 });
+	BossAnim.PushBack({ 131,438,64,58 });
+	BossAnim.PushBack({ 195,438,64,58 });
+	BossAnim.PushBack({ 259,438,64,58 });
+	BossAnim.PushBack({ 323,438,64,58 });
 	BossAnim.loop = true;
-	BossAnim.speed = 0.20f;
+	BossAnim.speed = 0.05f;
 
 
 	//Sensors
@@ -240,11 +240,9 @@ update_status ModulePlayer::Update()
 	{
 		SDL_Rect Llumlila = { 173, 566, 30, 18 };
 		App->renderer->Blit(Bola, 106 * SCREEN_SIZE, 362 * SCREEN_SIZE, &Llumlila);
-		Boss = BossAnim.GetCurrentFrame();
+		Boss2 = BossAnim.GetCurrentFrame();
+		App->renderer->Blit(Bola, 173 * SCREEN_SIZE, 37 * SCREEN_SIZE, &Boss2);
 		BossAnim.Update();
-		SDL_Rect Boss = { 216, 438, 44, 56 };
-		App->renderer->Blit(Bola, 180 * SCREEN_SIZE, 45 * SCREEN_SIZE, &Boss);
-		
 	}
 
 	if (llumverda > 0)
