@@ -204,68 +204,21 @@ update_status ModulePlayer::Update()
 		SDL_Rect Llumlila = { 173, 566, 30, 18 };
 		App->renderer->Blit(Bola, 106 * SCREEN_SIZE, 362 * SCREEN_SIZE, &Llumlila);
 	}
-	SDL_Rect BolaPin = { 20,703,14,14 };
-	position = Ball->body->GetPosition();
-	App->renderer->Blit(Bola, 43 * SCREEN_SIZE, 83 * SCREEN_SIZE, &BouncerBall);
-	App->renderer->Blit(Bola, 55 * SCREEN_SIZE, 65 * SCREEN_SIZE, &BouncerBall);
-	if (App->scene_intro->floornum == 2) {
-		App->renderer->Blit(Bola, 2, 2, &MapaPin1f);
-		App->renderer->Blit(Bola, 33 * SCREEN_SIZE, 8 * SCREEN_SIZE, &NightRampPart);
-	}
-	if (App->scene_intro->floornum == 3) {
-		App->renderer->Blit(Bola, 2, 2, &MapaPin1f);
-		App->renderer->Blit(Bola, 5 * SCREEN_SIZE, 175 * SCREEN_SIZE, &Reixa);
-	}
-
-	if (DrawBola == true) {
-		App->renderer->Blit(Bola, METERS_TO_PIXELS(position.x) - 14, METERS_TO_PIXELS(position.y) - 14, &BolaPin, 1, 50 * (Ball->body->GetAngle()));
-	}
-
-	if (App->scene_intro->floornum == 1) {
-		App->renderer->Blit(Bola, 2, 2, &MapaPin1f);
-		App->renderer->Blit(Bola, 5 * SCREEN_SIZE, 175 * SCREEN_SIZE, &Reixa);
-		App->renderer->Blit(Bola, 33 * SCREEN_SIZE, 8 * SCREEN_SIZE, &NightRampPart);
-	}
-	if (App->scene_intro->floornum == 2) {
-		App->renderer->Blit(Bola, 5 * SCREEN_SIZE, 175 * SCREEN_SIZE, &Reixa);
-
-	}
-
-	if (App->scene_intro->floornum == 3) {
-		App->renderer->Blit(Bola, 33 * SCREEN_SIZE, 8 * SCREEN_SIZE, &NightRampPart);
-	}
-
-	SDL_Rect Porteta = {202,523,19,7};
-	App->renderer->Blit(Bola, 237 * SCREEN_SIZE, 109 * SCREEN_SIZE, &Porteta);
-
-	SDL_Rect PedraPin = { 354,165,56,55 };
-	App->renderer->Blit(Pedra, 92 * SCREEN_SIZE, 165 * SCREEN_SIZE, &PedraPin);
-
 	if (llumblanca == true)
 	{
 		SDL_Rect Boss = { 125, 563, 14, 14 };
 		App->renderer->Blit(Bola, 100 * SCREEN_SIZE, 337 * SCREEN_SIZE, &Boss);
-		
+
 		//RECUPERA UN CANÓ
 		if (estrellablanca == false) {
 			numCVerds++;
 			estrellablanca = true;
 		}
 	}
-
-	if (llumblava == true && llumvermella == true && llumverda > 2 && llumgroga == true && llumgroga2 == true && llumgroga3 == true && llumblanca == true)
-	{
-		SDL_Rect LlumBoss = { 176, 722, 9, 12 };
-		App->renderer->Blit(Bola, 190 * SCREEN_SIZE, 105 * SCREEN_SIZE, &LlumBoss);
-		Boss2 = BossAnim.GetCurrentFrame();
-		App->renderer->Blit(Bola, 173 * SCREEN_SIZE, 37 * SCREEN_SIZE, &Boss2);
-		BossAnim.Update();
-	}
-
 	if (llumverda > 0)
 	{
 		SDL_Rect PedraSen = { 82,844,16,15 };
-		App->renderer->Blit(llumPedra, 96 * SCREEN_SIZE, 227 * SCREEN_SIZE,&PedraSen);
+		App->renderer->Blit(llumPedra, 96 * SCREEN_SIZE, 227 * SCREEN_SIZE, &PedraSen);
 	}
 	if (llumverda > 1)
 	{
@@ -304,6 +257,51 @@ update_status ModulePlayer::Update()
 			numCVerds++;
 			estrellavermella = true;
 		}
+	}
+	SDL_Rect BolaPin = { 20,703,14,14 };
+	position = Ball->body->GetPosition();
+	App->renderer->Blit(Bola, 43 * SCREEN_SIZE, 83 * SCREEN_SIZE, &BouncerBall);
+	App->renderer->Blit(Bola, 55 * SCREEN_SIZE, 65 * SCREEN_SIZE, &BouncerBall);
+	if (App->scene_intro->floornum == 2) {
+		App->renderer->Blit(Bola, 2, 2, &MapaPin1f);
+		App->renderer->Blit(Bola, 33 * SCREEN_SIZE, 8 * SCREEN_SIZE, &NightRampPart);
+	}
+	if (App->scene_intro->floornum == 3) {
+		App->renderer->Blit(Bola, 2, 2, &MapaPin1f);
+		App->renderer->Blit(Bola, 5 * SCREEN_SIZE, 175 * SCREEN_SIZE, &Reixa);
+	}
+
+	if (DrawBola == true) {
+		App->renderer->Blit(Bola, METERS_TO_PIXELS(position.x) - 14, METERS_TO_PIXELS(position.y) - 14, &BolaPin, 1, 50 * (Ball->body->GetAngle()));
+	}
+
+	if (App->scene_intro->floornum == 1) {
+		App->renderer->Blit(Bola, 2, 2, &MapaPin1f);
+		App->renderer->Blit(Bola, 5 * SCREEN_SIZE, 175 * SCREEN_SIZE, &Reixa);
+		App->renderer->Blit(Bola, 33 * SCREEN_SIZE, 8 * SCREEN_SIZE, &NightRampPart);
+	}
+	if (App->scene_intro->floornum == 2) {
+		App->renderer->Blit(Bola, 5 * SCREEN_SIZE, 175 * SCREEN_SIZE, &Reixa);
+
+	}
+
+	if (App->scene_intro->floornum == 3) {
+		App->renderer->Blit(Bola, 33 * SCREEN_SIZE, 8 * SCREEN_SIZE, &NightRampPart);
+	}
+
+	SDL_Rect Porteta = {202,523,19,7};
+	App->renderer->Blit(Bola, 237 * SCREEN_SIZE, 109 * SCREEN_SIZE, &Porteta);
+
+	SDL_Rect PedraPin = { 354,165,56,55 };
+	App->renderer->Blit(Pedra, 92 * SCREEN_SIZE, 165 * SCREEN_SIZE, &PedraPin);
+
+	if (llumblava == true && llumvermella == true && llumverda > 2 && llumgroga == true && llumgroga2 == true && llumgroga3 == true && llumblanca == true)
+	{
+		SDL_Rect LlumBoss = { 176, 722, 9, 12 };
+		App->renderer->Blit(Bola, 190 * SCREEN_SIZE, 105 * SCREEN_SIZE, &LlumBoss);
+		Boss2 = BossAnim.GetCurrentFrame();
+		App->renderer->Blit(Bola, 173 * SCREEN_SIZE, 37 * SCREEN_SIZE, &Boss2);
+		BossAnim.Update();
 	}
 
 
