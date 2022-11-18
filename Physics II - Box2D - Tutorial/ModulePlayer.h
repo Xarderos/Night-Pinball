@@ -92,7 +92,7 @@ public:
 	bool estrellavermella = false;
 
 	// Font score index
-	int score = 000;
+	uint score = 000;
 	int scoreFont = -1;
 	char scoreText[10] = { "\0" };
 };

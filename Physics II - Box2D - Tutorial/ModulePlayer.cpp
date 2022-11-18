@@ -462,7 +462,8 @@ update_status ModulePlayer::Update()
 
 	App->font->BlitText(58, 248, scoreFont, scoreText);
 
-	App->font->BlitText(620,5, scoreFont, "p  u  n  t  u  a  c  i o  n");
+	App->font->BlitText(620,5, scoreFont, "s  t  a  g  e           0 1");
+	App->font->BlitText(620, 25, scoreFont, "p  u  n  t  u  a  c i o  n");
 
 	return UPDATE_CONTINUE;
 }
