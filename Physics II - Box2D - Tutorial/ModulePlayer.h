@@ -39,6 +39,7 @@ public:
 	SDL_Rect Reixa;
 	SDL_Rect NightRampPart;
 	SDL_Rect BouncerBall;
+	SDL_Rect Boss;
 	//PhysBodies
 	PhysBody* Ball;
 	PhysBody* Rectangle;
@@ -56,6 +57,7 @@ public:
 
 	Animation bolapin;
 	Animation CanoAnim;
+	Animation BossAnim;
 
 	int botonsound;
 	int pedrasound;

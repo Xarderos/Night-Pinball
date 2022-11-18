@@ -8,6 +8,7 @@
 #include "ModuleAudio.h"
 #include "ModuleSceneIntro.h"
 #include "ModuleFont.h"
+#include "Animation.h"
 
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -46,6 +47,18 @@ bool ModulePlayer::Start()
 	botonsound = App->audio->LoadFx("pinball/Botons.ogg");
 
 	Ball = App->physics->CreateCircle(250, 400, 7);
+
+	//Boss Animations
+
+	BossAnim.PushBack({ 1,438,37,56 });
+	BossAnim.PushBack({ 43,438,44,56 });
+	BossAnim.PushBack({ 92,438,62,56 });
+	BossAnim.PushBack({ 159,438,52,56 });
+	BossAnim.PushBack({ 216,438,44,56 });
+	BossAnim.PushBack({ 265,438,43,56 });
+	BossAnim.loop = true;
+	BossAnim.speed = 0.20f;
+
 
 	//Sensors
 
@@ -221,12 +234,15 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	if (llumblava == true && llumvermella == true && llumverda > 2 && llumgroga == true && llumgroga2 == true && llumgroga3 == true && llumblanca == true)
+	if (llumblava == true /*&& llumvermella == true && llumverda > 2 && llumgroga == true && llumgroga2 == true && llumgroga3 == true && llumblanca == true*/)
 	{
 		SDL_Rect Llumlila = { 173, 566, 30, 18 };
 		App->renderer->Blit(Bola, 106 * SCREEN_SIZE, 362 * SCREEN_SIZE, &Llumlila);
+		Boss = BossAnim.GetCurrentFrame();
+		BossAnim.Update();
 		SDL_Rect Boss = { 216, 438, 44, 56 };
 		App->renderer->Blit(Bola, 180 * SCREEN_SIZE, 45 * SCREEN_SIZE, &Boss);
+		
 	}
 
 	if (llumverda > 0)
