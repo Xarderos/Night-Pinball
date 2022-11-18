@@ -39,7 +39,7 @@ bool ModulePlayer::Start()
 	pedrasound = App->audio->LoadFx("pinball/Pedra.ogg");
 	botonsound = App->audio->LoadFx("pinball/Botons.ogg");
 
-	Ball = App->physics->CreateCircle(23, 243, 7);
+	Ball = App->physics->CreateCircle(250, 400, 7);
 
 	//Sensors
 
@@ -64,8 +64,6 @@ bool ModulePlayer::Start()
 	MapaPin1f = { 262, 1, 256, 432 };
 	Reixa = { 1,596,28,42 };
 	NightRampPart = { 1,547,104,36 };
-	BouncerBall = { 90,618,21,20 };
-
 	lifes = 5;
 	LOG("Loading player");
 	return true;
@@ -171,9 +169,7 @@ update_status ModulePlayer::Update()
 
 	SDL_Rect BolaPin = { 20,703,14,14 };
 	position = Ball->body->GetPosition();
-	App->renderer->Blit(Bola, 43 * SCREEN_SIZE, 83 * SCREEN_SIZE, &BouncerBall);
-	App->renderer->Blit(Bola, 55 * SCREEN_SIZE, 65 * SCREEN_SIZE, &BouncerBall);
-
+	
 	if (App->scene_intro->floornum == 2) {
 		App->renderer->Blit(Bola, 2, 2, &MapaPin1f);
 		App->renderer->Blit(Bola, 33 * SCREEN_SIZE, 8 * SCREEN_SIZE, &NightRampPart);
@@ -219,8 +215,10 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	if (llumblava == true && llumvermella == true && llumverda > 2 && llumgroga == true && llumgroga2 == true && llumgroga3 == true)
+	if (llumblava == true && llumvermella == true && llumverda > 2 && llumgroga == true && llumgroga2 == true && llumgroga3 == true && llumblanca == true)
 	{
+		SDL_Rect Llumlila = { 173, 566, 30, 18 };
+		App->renderer->Blit(Bola, 106 * SCREEN_SIZE, 362 * SCREEN_SIZE, &Llumlila);
 		SDL_Rect Boss = { 216, 438, 44, 56 };
 		App->renderer->Blit(Bola, 180 * SCREEN_SIZE, 45 * SCREEN_SIZE, &Boss);
 	}
