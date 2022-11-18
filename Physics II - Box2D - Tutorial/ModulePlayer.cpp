@@ -138,7 +138,7 @@ update_status ModulePlayer::Update()
 {
 
 	b2Vec2 position;
-
+	
 	if (llumgroga == false)
 	{
 		SDL_Rect BotonsPin = { 396, 517, 8, 13 };

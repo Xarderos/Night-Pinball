@@ -31,8 +31,12 @@ public:
 	// Lower ground sensor (will kill all objects passig through it)
 	PhysBody* lower_ground_sensor;
 	PhysBody* rightflipcircle;
+	PhysBody* rightflipcircle2;
+
 	PhysBody* leftflipcircle;
 	PhysBody* rightflipper;
+	PhysBody* rightflipper2;
+
 	PhysBody* leftflipper;
 	PhysBody* NightsensorF1_1;
 	PhysBody* NightsensorF1_2;
@@ -65,6 +69,7 @@ public:
 	SDL_Rect LeftBouncer;
 	SDL_Rect ShineRightBouncer;
 	SDL_Rect ShineLeftBouncer;
+	SDL_Rect TopBumper;
 
 
 

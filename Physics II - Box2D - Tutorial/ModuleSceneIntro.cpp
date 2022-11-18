@@ -33,8 +33,10 @@ bool ModuleSceneIntro::Start()
 
 	// Add this module (ModuleSceneIntro) as a listener for collisions with the sensor.
 	rightflipcircle = App->physics->CreateCircleStatic(155, 386, 5);
+	rightflipcircle2 = App->physics->CreateCircleStatic(227, 257, 5);
 	leftflipcircle = App->physics->CreateCircleStatic(87, 386, 5);
 	rightflipper = App->physics->CreateRectangle(140, 385, 20, 6);
+	rightflipper2 = App->physics->CreateRectangle(212, 256, 20, 6);
 	leftflipper = App->physics->CreateRectangle(101, 385, 20, 6);
 	NightsensorF1_1 = App->physics->CreateRectangleSensor(23,210,30,10);
 	NightsensorF1_2 = App->physics->CreateRectangleSensor(201, 100, 35, 10);
@@ -61,6 +63,18 @@ bool ModuleSceneIntro::Start()
 
 	b2RevoluteJoint* rightflipjoint = (b2RevoluteJoint*)App->physics->world->CreateJoint(&rightFlip);
 
+	b2RevoluteJointDef rightFlip2;
+	rightFlip2.bodyA = rightflipper2->body;
+	rightFlip2.bodyB = rightflipcircle2->body;
+	rightFlip2.localAnchorA.Set(PIXEL_TO_METERS(16), 0);
+	rightFlip2.localAnchorB.Set(0, 0);
+	rightFlip2.referenceAngle = 0 * DEGTORAD;
+	rightFlip2.enableLimit = true;
+	rightFlip2.lowerAngle = -30 * DEGTORAD;
+	rightFlip2.upperAngle = 60 * DEGTORAD;
+
+	b2RevoluteJoint* rightflipjoint2 = (b2RevoluteJoint*)App->physics->world->CreateJoint(&rightFlip2);
+
 	b2RevoluteJointDef leftFlip;
 	leftFlip.bodyA = leftflipper->body;
 	leftFlip.bodyB = leftflipcircle->body;
@@ -80,6 +94,7 @@ bool ModuleSceneIntro::Start()
 	LeftBouncer = { 238, 544, 21, 40 };
 	ShineRightBouncer = { 316, 544, 21, 40 };
 	ShineLeftBouncer = { 264, 544, 21, 40 };
+	TopBumper = {419,515,10,16};
 	mapselector = true;
 	floornum = 1;
 	int bouncerRightSens[8] = {
@@ -139,6 +154,14 @@ bool ModuleSceneIntro::CleanUp()
 	Floor3_2 = nullptr;
 	delete Floor3_ac;
 	Floor3_ac = nullptr;
+	delete rBumperRight;
+	rBumperRight = nullptr;
+	delete rBumperLeft;
+	rBumperLeft = nullptr;
+	delete rightflipcircle2;
+	rightflipcircle2 = nullptr;
+	delete rightflipper2;
+	rightflipper2 = nullptr;
 	return true;
 }
 
@@ -155,6 +178,7 @@ update_status ModuleSceneIntro::Update()
 	if ((App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT))
 	{
 		rightflipper->body->ApplyForceToCenter(b2Vec2(0, -150), 1);
+		rightflipper2->body->ApplyForceToCenter(b2Vec2(0, -150), 1);
 	}
 
 	if ((App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT))
@@ -200,6 +224,8 @@ update_status ModuleSceneIntro::Update()
 	
 	App->renderer->Blit(Mapa, 2, 2, &MapaPin);
 	App->renderer->Blit(Mapa, 127 * SCREEN_SIZE, 380 * SCREEN_SIZE, &RightFlipperRect, 0, App->scene_intro->rightflipper->GetRotation());
+	App->renderer->Blit(Mapa, 199 * SCREEN_SIZE, 250 * SCREEN_SIZE, &RightFlipperRect, 0, App->scene_intro->rightflipper2->GetRotation());
+
 	App->renderer->Blit(Mapa, 55 * SCREEN_SIZE, 380 * SCREEN_SIZE, &LeftFlipperRect, 0, App->scene_intro->leftflipper->GetRotation());
 	if (rightBtimer<=0) {
 		App->renderer->Blit(Mapa, 163 * SCREEN_SIZE, 313 * SCREEN_SIZE, &RightBouncer);
@@ -215,6 +241,9 @@ update_status ModuleSceneIntro::Update()
 	if (leftBtimer > 0) {
 		App->renderer->Blit(Mapa, 58 * SCREEN_SIZE, 313 * SCREEN_SIZE, &ShineLeftBouncer);
 	}
+	App->renderer->Blit(Mapa, 214 * SCREEN_SIZE, 176 * SCREEN_SIZE, &TopBumper);
+	App->renderer->Blit(Mapa, 218 * SCREEN_SIZE, 159 * SCREEN_SIZE, &TopBumper);
+	App->renderer->Blit(Mapa, 222 * SCREEN_SIZE, 144 * SCREEN_SIZE, &TopBumper);
 
 	rightBtimer--;
 	leftBtimer--;
@@ -509,6 +538,16 @@ void ModuleSceneIntro::map()
 			59, 976
 		};
 		Map.push_back(App->physics->CreateBouncyChain(0, -910, ballBouncer2, 24));
+	
+		int bouncerleft[12] = {
+			226, 1056,
+			214, 1101,
+			217, 1098,
+			223, 1079,
+			230, 1057,
+			230, 1052
+		};
+		Map.push_back(App->physics->CreateBouncyChain(0, -910, bouncerleft, 12));
 
 
 	}
