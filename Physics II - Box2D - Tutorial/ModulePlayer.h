@@ -41,6 +41,7 @@ public:
 	SDL_Rect BouncerBall;
 	SDL_Rect Boss2;
 	SDL_Rect Chip;
+	SDL_Rect FleGroc;
 	//PhysBodies
 	PhysBody* Ball;
 	PhysBody* Rectangle;
@@ -60,6 +61,7 @@ public:
 	Animation CanoAnim;
 	Animation BossAnim;
 	Animation ChipAnim;
+	Animation FleGrocAnim;
 
 	int botonsound;
 	int pedrasound;

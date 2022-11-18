@@ -68,6 +68,13 @@ bool ModulePlayer::Start()
 	ChipAnim.loop = true;
 	ChipAnim.speed = 0.03f;
 
+	FleGrocAnim.PushBack({ 279,933,37,72 });
+	FleGrocAnim.PushBack({ 316,933,37,72 });
+	FleGrocAnim.PushBack({ 353,933,37,72 });
+	FleGrocAnim.PushBack({ 390,933,36,72 });
+	FleGrocAnim.loop = true;
+	FleGrocAnim.speed = 0.03f;
+
 	//Sensors
 
 	PedraSen = App->physics->CreateRectangleSensor(120, 193, 35, 34);
@@ -198,6 +205,11 @@ update_status ModulePlayer::Update()
 	Chip = ChipAnim.GetCurrentFrame();
 	App->renderer->Blit(Bola, 15 * SCREEN_SIZE, 106 * SCREEN_SIZE, &Chip);
 	ChipAnim.Update();
+
+	FleGroc = FleGrocAnim.GetCurrentFrame();
+	App->renderer->Blit(Bola, 189 * SCREEN_SIZE, 118 * SCREEN_SIZE, &FleGroc);
+	FleGrocAnim.Update();
+
 
 	if (llumblava == true && llumvermella == true && llumverda > 2 && llumgroga == true && llumgroga2 == true && llumgroga3 == true && llumblanca == true)
 	{
