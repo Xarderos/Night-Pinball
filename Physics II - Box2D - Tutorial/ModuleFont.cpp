@@ -65,6 +65,8 @@ int ModuleFont::Load(const char* texture_path, const char* characters, uint rows
 	font.char_w = tex_w / font.columns;
 	font.char_h = tex_h / font.rows;
 
+	LOG("Successfully loaded BMP font from %s", texture_path);
+
 	return id;
 }
 

@@ -7,6 +7,7 @@
 #include "ModuleInput.h"
 #include "ModuleAudio.h"
 #include "ModuleSceneIntro.h"
+#include "ModuleFont.h"
 
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -34,6 +35,11 @@ bool ModulePlayer::Start()
 	Tcanoverd1 = App->textures->Load("pinball/SpriteSheet.png");
 	Tcanoverd2 = App->textures->Load("pinball/SpriteSheet.png");
 
+	//Fonts
+	
+	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
+	scoreFont = App->font->Load("pinball/rtype_font3.png", lookupTable, 2);
+	
 	//Sorolls
 
 	pedrasound = App->audio->LoadFx("pinball/Pedra.ogg");
@@ -421,7 +427,11 @@ update_status ModulePlayer::Update()
 		canoverd2 = true;
 	}
 
+	//FONTS
 
+	App->font->BlitText(58, 248, scoreFont, scoreText);
+
+	App->font->BlitText(620,5, scoreFont, "p  u  n  t  u  a  c  i o  n");
 
 	return UPDATE_CONTINUE;
 }
