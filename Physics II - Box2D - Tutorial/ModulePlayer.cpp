@@ -138,6 +138,12 @@ update_status ModulePlayer::Update()
 {
 
 	b2Vec2 position;
+
+	if (lifes <= 0) {
+		GameOver = true;
+		//demà: imprimir fons negre per pantalla
+		//imprimir text amb fonts que digui "Game Over"
+	}
 	
 	if (llumgroga == false)
 	{

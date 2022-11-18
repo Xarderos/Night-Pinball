@@ -93,6 +93,8 @@ public:
 	bool estrellaverda = false;
 	bool estrellavermella = false;
 
+	bool GameOver = false;
+
 	// Font score index
 	uint score = 000;
 	int scoreFont = -1;
