@@ -46,6 +46,8 @@ public:
 	PhysBody* Floor3_2;
 	PhysBody* Floor3_ac;
 
+	PhysBody* rBumperRight;
+	PhysBody* rBumperLeft;
 
 
 	bool sensed;
@@ -59,7 +61,10 @@ public:
 
 	SDL_Rect RightFlipperRect;
 	SDL_Rect LeftFlipperRect;
-	SDL_Rect BouncerBall;
+	SDL_Rect RightBouncer;
+	SDL_Rect LeftBouncer;
+
+
 
 
 	// FX

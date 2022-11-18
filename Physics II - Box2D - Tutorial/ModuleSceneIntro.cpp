@@ -76,9 +76,26 @@ bool ModuleSceneIntro::Start()
 	MapaPin = { 1, 1, 256, 432 };
 	RightFlipperRect = { 235,651,60,10 };
 	LeftFlipperRect = { 205,662,60,10 };
+	RightBouncer = { 290, 544, 21, 40 };
+	LeftBouncer = { 238, 544, 21, 40 };
 
 	mapselector = true;
 	floornum = 1;
+	int bouncerRightSens[8] = {
+	182, 1226,
+	168, 1256,
+	166, 1255,
+	180, 1226
+	};
+	rBumperRight= App->physics->CreateBouncyChain(0, -910, bouncerRightSens, 8);
+
+	int bouncerLeftSens[8] = {
+		62, 1238,
+		63, 1227,
+		76, 1256,
+		67, 1250
+	};
+	rBumperLeft = App->physics->CreateBouncyChain(0, -910, bouncerLeftSens, 8);
 	return ret;
 }
 
@@ -178,6 +195,8 @@ update_status ModuleSceneIntro::Update()
 	App->renderer->Blit(Mapa, 2, 2, &MapaPin);
 	App->renderer->Blit(Mapa, 127 * SCREEN_SIZE, 380 * SCREEN_SIZE, &RightFlipperRect, 0, App->scene_intro->rightflipper->GetRotation());
 	App->renderer->Blit(Mapa, 55 * SCREEN_SIZE, 380 * SCREEN_SIZE, &LeftFlipperRect, 0, App->scene_intro->leftflipper->GetRotation());
+	App->renderer->Blit(Mapa, 163 * SCREEN_SIZE, 313 * SCREEN_SIZE, &RightBouncer);
+	App->renderer->Blit(Mapa, 58 * SCREEN_SIZE, 313 * SCREEN_SIZE, &LeftBouncer);
 	
 	// Keep playing
 	return UPDATE_CONTINUE;
@@ -470,21 +489,7 @@ void ModuleSceneIntro::map()
 		};
 		Map.push_back(App->physics->CreateBouncyChain(0, -910, ballBouncer2, 24));
 
-		int bouncerRightSens[8] = {
-			182, 1226,
-			168, 1256,
-			166, 1255,
-			180, 1226
-		};
-		Map.push_back(App->physics->CreateBouncyChain(0, -910, bouncerRightSens, 8));
 
-		int bouncerLeftSens[8] = {
-			62, 1238,
-			63, 1227,
-			76, 1256,
-			67, 1250
-		};
-		Map.push_back(App->physics->CreateBouncyChain(0, -910, bouncerLeftSens, 8));
 	}
 	if (floornum == 2) {
 		for (int i = 0; i < Map.size(); i++) {
