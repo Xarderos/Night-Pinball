@@ -458,12 +458,19 @@ update_status ModulePlayer::Update()
 		canoverd2 = true;
 	}
 
+
 	//FONTS
+
 
 	App->font->BlitText(58, 248, scoreFont, scoreText);
 
-	App->font->BlitText(620,5, scoreFont, "s  t  a  g  e           0 1");
-	App->font->BlitText(620, 25, scoreFont, "p  u  n  t  u  a  c i o  n");
+
+	App->font->BlitText(620,15, scoreFont, "s  t  a  g  e           0 1");
+	App->font->BlitText(620, 200, scoreFont, "s  c  o  r  e");
+	App->font->BlitText(620, 450, scoreFont, "l i v  e  s");
+	App->font->BlitText(620, 700, scoreFont, "c  o  m  b  o");
+	App->font->BlitText(620, 900, scoreFont, "h i g  h  s  c  o  r  e");
+
 
 	return UPDATE_CONTINUE;
 }
