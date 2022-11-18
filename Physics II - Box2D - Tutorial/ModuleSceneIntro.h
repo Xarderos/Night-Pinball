@@ -59,6 +59,7 @@ public:
 
 	SDL_Rect RightFlipperRect;
 	SDL_Rect LeftFlipperRect;
+	SDL_Rect BouncerBall;
 
 
 	// FX

@@ -412,7 +412,7 @@ PhysBody* ModulePhysics::CreateBouncyChain(int x, int y, int* points, int size)
 	// Create FIXTURE
 	b2FixtureDef fixture;
 	fixture.shape = &shape;
-	fixture.restitution = 0.1f;
+	fixture.restitution = 0.75f;
 	// Add fixture to the BODY
 	b->CreateFixture(&fixture);
 

@@ -64,6 +64,8 @@ bool ModulePlayer::Start()
 	MapaPin1f = { 262, 1, 256, 432 };
 	Reixa = { 1,596,28,42 };
 	NightRampPart = { 1,547,104,36 };
+	BouncerBall = { 90,618,21,20 };
+
 	lifes = 5;
 	LOG("Loading player");
 	return true;
@@ -169,7 +171,9 @@ update_status ModulePlayer::Update()
 
 	SDL_Rect BolaPin = { 20,703,14,14 };
 	position = Ball->body->GetPosition();
-	
+	App->renderer->Blit(Bola, 43 * SCREEN_SIZE, 83 * SCREEN_SIZE, &BouncerBall);
+	App->renderer->Blit(Bola, 55 * SCREEN_SIZE, 65 * SCREEN_SIZE, &BouncerBall);
+
 	if (App->scene_intro->floornum == 2) {
 		App->renderer->Blit(Bola, 2, 2, &MapaPin1f);
 		App->renderer->Blit(Bola, 33 * SCREEN_SIZE, 8 * SCREEN_SIZE, &NightRampPart);

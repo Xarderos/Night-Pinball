@@ -47,7 +47,7 @@ bool ModuleSceneIntro::Start()
 	Floor3_1 = App->physics->CreateRectangleSensor(43, 327, 25, 5);
 	Floor3_2 = App->physics->CreateRectangleSensor(77, 145, 25, 5);
 	Floor3_2->listener = this;
-	Floor3_ac = App->physics->CreateRectangleSensor(69, 132, 10, 6);
+	Floor3_ac = App->physics->CreateRectangleSensor(68, 131, 10, 7);
 
 	b2RevoluteJointDef rightFlip;
 	rightFlip.bodyA = rightflipper->body;
@@ -76,6 +76,7 @@ bool ModuleSceneIntro::Start()
 	MapaPin = { 1, 1, 256, 432 };
 	RightFlipperRect = { 235,651,60,10 };
 	LeftFlipperRect = { 205,662,60,10 };
+
 	mapselector = true;
 	floornum = 1;
 	return ret;
@@ -130,12 +131,12 @@ update_status ModuleSceneIntro::Update()
 	
 	if ((App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT))
 	{
-		rightflipper->body->ApplyForceToCenter(b2Vec2(0, -200), 1);
+		rightflipper->body->ApplyForceToCenter(b2Vec2(0, -150), 1);
 	}
 
 	if ((App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT))
 	{
-		leftflipper->body->ApplyForceToCenter(b2Vec2(0, -200), 1);
+		leftflipper->body->ApplyForceToCenter(b2Vec2(0, -150), 1);
 	}
 	
 
@@ -436,6 +437,54 @@ void ModuleSceneIntro::map()
 	
 		};
 		Map.push_back(App->physics->CreateChain(0, -910, bouncerLeft, 8));
+
+		int ballBouncer1[22] = {
+			50, 991,
+			54, 993,
+			58, 993,
+			61, 997,
+			62, 1005,
+			58, 1010,
+			51, 1011,
+			44, 1009,
+			42, 1004,
+			42, 996,
+			45, 992
+		};
+
+		Map.push_back(App->physics->CreateBouncyChain(0, -910, ballBouncer1, 22));
+
+		int ballBouncer2[24] = {
+			65, 974,
+			68, 976,
+			73, 975,
+			75, 979,
+			76, 987,
+			73, 994,
+			65, 994,
+			58, 994,
+			57, 989,
+			55, 985,
+			55, 980,
+			59, 976
+		};
+		Map.push_back(App->physics->CreateBouncyChain(0, -910, ballBouncer2, 24));
+
+		int bouncerRightSens[8] = {
+			182, 1226,
+			168, 1256,
+			166, 1255,
+			180, 1226
+		};
+		Map.push_back(App->physics->CreateBouncyChain(0, -910, bouncerRightSens, 8));
+
+		int bouncerLeftSens[8] = {
+			62, 1238,
+			63, 1227,
+			76, 1256,
+			67, 1250
+		};
+		Map.push_back(App->physics->CreateBouncyChain(0, -910, bouncerLeftSens, 8));
 	}
 	if (floornum == 2) {
 		for (int i = 0; i < Map.size(); i++) {

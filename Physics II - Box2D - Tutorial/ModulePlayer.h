@@ -38,7 +38,7 @@ public:
 	SDL_Rect MapaPin1f;
 	SDL_Rect Reixa;
 	SDL_Rect NightRampPart;
-
+	SDL_Rect BouncerBall;
 	//PhysBodies
 	PhysBody* Ball;
 	PhysBody* Rectangle;
