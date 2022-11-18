@@ -61,7 +61,12 @@ bool ModulePlayer::Start()
 
 	//Animations
 
-	
+	ChipAnim.PushBack({ 261,731,39,77 });
+	ChipAnim.PushBack({ 300,731,39,77 });
+	ChipAnim.PushBack({ 339,731,39,77 });
+	ChipAnim.PushBack({ 378,731,39,77 });
+	ChipAnim.loop = true;
+	ChipAnim.speed = 0.03f;
 
 	//Sensors
 
@@ -189,7 +194,12 @@ update_status ModulePlayer::Update()
 		}
 
 	}
-	if (llumblava == true /*&& llumvermella == true && llumverda > 2 && llumgroga == true && llumgroga2 == true && llumgroga3 == true && llumblanca == true*/)
+
+	Chip = ChipAnim.GetCurrentFrame();
+	App->renderer->Blit(Bola, 15 * SCREEN_SIZE, 106 * SCREEN_SIZE, &Chip);
+	ChipAnim.Update();
+
+	if (llumblava == true && llumvermella == true && llumverda > 2 && llumgroga == true && llumgroga2 == true && llumgroga3 == true && llumblanca == true)
 	{
 		SDL_Rect Llumlila = { 173, 566, 30, 18 };
 		App->renderer->Blit(Bola, 106 * SCREEN_SIZE, 362 * SCREEN_SIZE, &Llumlila);
@@ -243,10 +253,8 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	if (llumblava == true /*&& llumvermella == true && llumverda > 2 && llumgroga == true && llumgroga2 == true && llumgroga3 == true && llumblanca == true*/)
+	if (llumblava == true && llumvermella == true && llumverda > 2 && llumgroga == true && llumgroga2 == true && llumgroga3 == true && llumblanca == true)
 	{
-		/*SDL_Rect Llumlila = { 173, 566, 30, 18 };
-		App->renderer->Blit(Bola, 106 * SCREEN_SIZE, 362 * SCREEN_SIZE, &Llumlila);*/
 		SDL_Rect LlumBoss = { 176, 722, 9, 12 };
 		App->renderer->Blit(Bola, 190 * SCREEN_SIZE, 105 * SCREEN_SIZE, &LlumBoss);
 		Boss2 = BossAnim.GetCurrentFrame();

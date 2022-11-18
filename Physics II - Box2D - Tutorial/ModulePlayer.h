@@ -40,6 +40,7 @@ public:
 	SDL_Rect NightRampPart;
 	SDL_Rect BouncerBall;
 	SDL_Rect Boss2;
+	SDL_Rect Chip;
 	//PhysBodies
 	PhysBody* Ball;
 	PhysBody* Rectangle;
@@ -58,6 +59,7 @@ public:
 	Animation bolapin;
 	Animation CanoAnim;
 	Animation BossAnim;
+	Animation ChipAnim;
 
 	int botonsound;
 	int pedrasound;
