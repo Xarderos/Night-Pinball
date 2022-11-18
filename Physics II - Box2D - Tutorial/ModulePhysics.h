@@ -53,6 +53,8 @@ public:
 	PhysBody* CreateRectangleStatic(int x, int y, int width, int height);
 	PhysBody* CreateRectangleSensor(int x, int y, int width, int height);
 	PhysBody* CreateChain(int x, int y, int* points, int size);
+	PhysBody* CreateBouncyChain(int x, int y, int* points, int size);
+
 	b2World* world;
 
 	// b2ContactListener ---

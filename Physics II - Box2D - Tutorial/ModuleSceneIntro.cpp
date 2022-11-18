@@ -38,16 +38,16 @@ bool ModuleSceneIntro::Start()
 	leftflipper = App->physics->CreateRectangle(101, 385, 20, 6);
 	NightsensorF1_1 = App->physics->CreateRectangleSensor(23,210,30,10);
 	NightsensorF1_2 = App->physics->CreateRectangleSensor(201, 100, 35, 10);
-	NightsensorF1_3 = App->physics->CreateRectangleSensor(225, 210, 30, 10);
+	NightsensorF1_3 = App->physics->CreateRectangleSensor(225, 215, 30, 10);
 
 	NightsensorF2_1 = App->physics->CreateRectangleSensor(14, 186, 25, 5);
 	NightsensorF2_2 = App->physics->CreateRectangleSensor(198, 66, 15, 5);
-	NightsensorF2_3 = App->physics->CreateRectangleSensor(232, 195, 20, 5);
+	NightsensorF2_3 = App->physics->CreateRectangleSensor(233, 198, 25, 5);
 
 	Floor3_1 = App->physics->CreateRectangleSensor(43, 327, 25, 5);
 	Floor3_2 = App->physics->CreateRectangleSensor(77, 145, 25, 5);
 	Floor3_2->listener = this;
-	Floor3_ac = App->physics->CreateRectangleSensor(70, 135, 10, 5);
+	Floor3_ac = App->physics->CreateRectangleSensor(69, 132, 10, 6);
 
 	b2RevoluteJointDef rightFlip;
 	rightFlip.bodyA = rightflipper->body;
@@ -419,6 +419,23 @@ void ModuleSceneIntro::map()
 			221, 193
 		};
 		Map.push_back(App->physics->CreateChain(0, 0, topMap, 112));
+
+		int bouncerRight[8] = {
+			182, 1224,
+			165, 1261,
+			183, 1252,
+			184, 1224
+		};
+		Map.push_back(App->physics->CreateChain(0, -910, bouncerRight, 8));
+
+		int bouncerLeft[8] = {
+			60, 1224,
+			77, 1261,
+			58, 1252,
+			58, 1224
+	
+		};
+		Map.push_back(App->physics->CreateChain(0, -910, bouncerLeft, 8));
 	}
 	if (floornum == 2) {
 		for (int i = 0; i < Map.size(); i++) {
