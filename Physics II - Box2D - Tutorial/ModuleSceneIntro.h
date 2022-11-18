@@ -63,6 +63,8 @@ public:
 	SDL_Rect LeftFlipperRect;
 	SDL_Rect RightBouncer;
 	SDL_Rect LeftBouncer;
+	SDL_Rect ShineRightBouncer;
+	SDL_Rect ShineLeftBouncer;
 
 
 
@@ -75,5 +77,10 @@ public:
 	bool ray_on;
 
 	bool mapselector;
+	bool bouncerRight;
+	int rightBtimer;
+	bool bouncerLeft;
+	int leftBtimer;
+
 	int floornum;
 };

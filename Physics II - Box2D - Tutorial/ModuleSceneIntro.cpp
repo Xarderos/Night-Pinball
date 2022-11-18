@@ -78,7 +78,8 @@ bool ModuleSceneIntro::Start()
 	LeftFlipperRect = { 205,662,60,10 };
 	RightBouncer = { 290, 544, 21, 40 };
 	LeftBouncer = { 238, 544, 21, 40 };
-
+	ShineRightBouncer = { 316, 544, 21, 40 };
+	ShineLeftBouncer = { 264, 544, 21, 40 };
 	mapselector = true;
 	floornum = 1;
 	int bouncerRightSens[8] = {
@@ -96,6 +97,11 @@ bool ModuleSceneIntro::Start()
 		67, 1250
 	};
 	rBumperLeft = App->physics->CreateBouncyChain(0, -910, bouncerLeftSens, 8);
+	bouncerRight = false;
+	bouncerLeft = false;
+	rightBtimer = 0;
+	leftBtimer = 0;
+
 	return ret;
 }
 
@@ -195,9 +201,24 @@ update_status ModuleSceneIntro::Update()
 	App->renderer->Blit(Mapa, 2, 2, &MapaPin);
 	App->renderer->Blit(Mapa, 127 * SCREEN_SIZE, 380 * SCREEN_SIZE, &RightFlipperRect, 0, App->scene_intro->rightflipper->GetRotation());
 	App->renderer->Blit(Mapa, 55 * SCREEN_SIZE, 380 * SCREEN_SIZE, &LeftFlipperRect, 0, App->scene_intro->leftflipper->GetRotation());
-	App->renderer->Blit(Mapa, 163 * SCREEN_SIZE, 313 * SCREEN_SIZE, &RightBouncer);
-	App->renderer->Blit(Mapa, 58 * SCREEN_SIZE, 313 * SCREEN_SIZE, &LeftBouncer);
-	
+	if (rightBtimer<=0) {
+		App->renderer->Blit(Mapa, 163 * SCREEN_SIZE, 313 * SCREEN_SIZE, &RightBouncer);
+		
+	}
+	if (leftBtimer <= 0) {
+		App->renderer->Blit(Mapa, 58 * SCREEN_SIZE, 313 * SCREEN_SIZE, &LeftBouncer);
+	}
+	if (rightBtimer > 0) {
+		App->renderer->Blit(Mapa, 163 * SCREEN_SIZE, 313 * SCREEN_SIZE, &ShineRightBouncer);
+
+	}
+	if (leftBtimer > 0) {
+		App->renderer->Blit(Mapa, 58 * SCREEN_SIZE, 313 * SCREEN_SIZE, &ShineLeftBouncer);
+	}
+
+	rightBtimer--;
+	leftBtimer--;
+
 	// Keep playing
 	return UPDATE_CONTINUE;
 }

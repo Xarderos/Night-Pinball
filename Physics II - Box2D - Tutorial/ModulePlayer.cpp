@@ -511,4 +511,11 @@ void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 		canoverdsen2 = true;
 		canoverd2 = false;
 	}
+	if (bodyB == App->scene_intro->rBumperRight) {
+		App->scene_intro->rightBtimer = 20;
+	}
+	if (bodyB == App->scene_intro->rBumperLeft) {
+		App->scene_intro->leftBtimer = 20;
+	}
+
 }
