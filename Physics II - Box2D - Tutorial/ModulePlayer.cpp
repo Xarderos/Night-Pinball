@@ -59,6 +59,9 @@ bool ModulePlayer::Start()
 	BossAnim.loop = true;
 	BossAnim.speed = 0.05f;
 
+	//Animations
+
+	
 
 	//Sensors
 
@@ -186,7 +189,11 @@ update_status ModulePlayer::Update()
 		}
 
 	}
-
+	if (llumblava == true /*&& llumvermella == true && llumverda > 2 && llumgroga == true && llumgroga2 == true && llumgroga3 == true && llumblanca == true*/)
+	{
+		SDL_Rect Llumlila = { 173, 566, 30, 18 };
+		App->renderer->Blit(Bola, 106 * SCREEN_SIZE, 362 * SCREEN_SIZE, &Llumlila);
+	}
 	SDL_Rect BolaPin = { 20,703,14,14 };
 	position = Ball->body->GetPosition();
 	App->renderer->Blit(Bola, 43 * SCREEN_SIZE, 83 * SCREEN_SIZE, &BouncerBall);
@@ -238,8 +245,10 @@ update_status ModulePlayer::Update()
 
 	if (llumblava == true /*&& llumvermella == true && llumverda > 2 && llumgroga == true && llumgroga2 == true && llumgroga3 == true && llumblanca == true*/)
 	{
-		SDL_Rect Llumlila = { 173, 566, 30, 18 };
-		App->renderer->Blit(Bola, 106 * SCREEN_SIZE, 362 * SCREEN_SIZE, &Llumlila);
+		/*SDL_Rect Llumlila = { 173, 566, 30, 18 };
+		App->renderer->Blit(Bola, 106 * SCREEN_SIZE, 362 * SCREEN_SIZE, &Llumlila);*/
+		SDL_Rect LlumBoss = { 176, 722, 9, 12 };
+		App->renderer->Blit(Bola, 190 * SCREEN_SIZE, 105 * SCREEN_SIZE, &LlumBoss);
 		Boss2 = BossAnim.GetCurrentFrame();
 		App->renderer->Blit(Bola, 173 * SCREEN_SIZE, 37 * SCREEN_SIZE, &Boss2);
 		BossAnim.Update();
