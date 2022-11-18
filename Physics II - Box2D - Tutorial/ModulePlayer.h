@@ -65,7 +65,7 @@ public:
 
 	int botonsound;
 	int pedrasound;
-	int lifes = 3;
+	int lifes;
 	int llumverda;
 	bool llumblanca;
 	bool llumvermella;
