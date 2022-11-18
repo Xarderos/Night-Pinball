@@ -42,6 +42,8 @@ bool ModuleSceneIntro::Start()
 	NightsensorF1_2 = App->physics->CreateRectangleSensor(201, 100, 35, 10);
 	NightsensorF1_3 = App->physics->CreateRectangleSensor(225, 215, 30, 10);
 
+	gameover = App->physics->CreateRectangleSensor(87, 419, 66, 10);
+
 	NightsensorF2_1 = App->physics->CreateRectangleSensor(14, 186, 25, 5);
 	NightsensorF2_2 = App->physics->CreateRectangleSensor(198, 66, 15, 5);
 	NightsensorF2_3 = App->physics->CreateRectangleSensor(233, 198, 25, 5);
@@ -162,6 +164,8 @@ bool ModuleSceneIntro::CleanUp()
 	rightflipcircle2 = nullptr;
 	delete rightflipper2;
 	rightflipper2 = nullptr;
+	delete gameover;
+	gameover = nullptr;
 	return true;
 }
 
@@ -259,6 +263,8 @@ void ModuleSceneIntro::map()
 			delete Map[i];
 			Map[i] = nullptr;
 		}
+
+		
 
 		int bottomLeftMap[40] = {
 				93, 433,

@@ -53,6 +53,8 @@ public:
 	PhysBody* rBumperRight;
 	PhysBody* rBumperLeft;
 
+	PhysBody* gameover;
+
 
 	bool sensed;
 
