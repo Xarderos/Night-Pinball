@@ -39,7 +39,7 @@ bool ModulePlayer::Start()
 	pedrasound = App->audio->LoadFx("pinball/Pedra.ogg");
 	botonsound = App->audio->LoadFx("pinball/Botons.ogg");
 
-	Ball = App->physics->CreateCircle(250, 400, 7);
+	Ball = App->physics->CreateCircle(23, 243, 7);
 
 	//Sensors
 
@@ -219,7 +219,7 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	if (llumblava == true && llumvermella == true)
+	if (llumblava == true && llumvermella == true && llumverda > 2 && llumgroga == true && llumgroga2 == true && llumgroga3 == true)
 	{
 		SDL_Rect Boss = { 216, 438, 44, 56 };
 		App->renderer->Blit(Bola, 180 * SCREEN_SIZE, 45 * SCREEN_SIZE, &Boss);
