@@ -53,6 +53,8 @@ public:
 	SDL_Rect BlauSen2;
 	SDL_Rect Llumlila;
 	SDL_Rect Boss;
+	SDL_Rect Lilatriangle;
+	SDL_Rect Lilatriangle2;
 	SDL_Rect PedraSen_;
 	SDL_Rect VerdSen;
 	SDL_Rect VermeSen_;
@@ -83,6 +85,7 @@ public:
 	PhysBody* BlauSen;
 	PhysBody* BlancSen;
 	PhysBody* PortaSen;
+	PhysBody* TriangleLilaSen;
 	PhysBody* CanoVerdSen1;
 	PhysBody* CanoVerdSen2;
 	PhysBody* RampaT1;
@@ -104,6 +107,7 @@ public:
 	int lifes;
 	int llumverda;
 	bool portablanca;
+	bool lilatriangle;
 	bool llumblanca;
 	bool llumvermella;
 	bool llumblava;
