@@ -33,7 +33,6 @@ public:
 	SDL_Texture* cano;
 	SDL_Texture* Tcanoverd1;
 	SDL_Texture* Tcanoverd2;
-
 	SDL_Texture* Black;
 
 	SDL_Rect BolaPin;
@@ -44,6 +43,32 @@ public:
 	SDL_Rect Boss2;
 	SDL_Rect Chip;
 	SDL_Rect FleGroc;
+	SDL_Rect BotonsPin;
+	SDL_Rect BotonsPin2;
+	SDL_Rect BotonsPin3;
+	SDL_Rect MapSen_;
+	SDL_Rect GrocSen;
+	SDL_Rect BlauSen_;
+	SDL_Rect BlauSen2;
+	SDL_Rect Llumlila;
+	SDL_Rect Boss;
+	SDL_Rect PedraSen_;
+	SDL_Rect VerdSen;
+	SDL_Rect VermeSen_;
+	SDL_Rect VermeSen2;
+	SDL_Rect VermeSen3;
+	SDL_Rect VermeSen4;
+	SDL_Rect Porteta;
+	SDL_Rect PedraPin;
+	SDL_Rect LlumBoss;
+	SDL_Rect SuportCanoPin;
+	SDL_Rect CanoPin;
+	SDL_Rect animaciocano;
+	SDL_Rect rampataronja1;
+	SDL_Rect rampataronja2;
+	SDL_Rect CanoVerd1Pin;
+	SDL_Rect CanoVerd2Pin;
+
 	//PhysBodies
 	PhysBody* Ball;
 	PhysBody* Rectangle;

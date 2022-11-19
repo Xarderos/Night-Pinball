@@ -24,20 +24,11 @@ bool ModulePlayer::Start()
 {
 
 	//Textures
-	Botons = App->textures->Load("pinball/SpriteSheet.png");
-	Pedra = App->textures->Load("pinball/SpriteSheet.png");
+
 	Bola = App->textures->Load("pinball/SpriteSheet.png");
-	llumPedra = App->textures->Load("pinball/SpriteSheet.png");
-	llumVerda = App->textures->Load("pinball/SpriteSheet.png");
-	llumMap = App->textures->Load("pinball/SpriteSheet.png");
-	llumGroga = App->textures->Load("pinball/SpriteSheet.png");
-	suportCano = App->textures->Load("pinball/SpriteSheet.png");
-	cano = App->textures->Load("pinball/SpriteSheet.png");
-	Tcanoverd1 = App->textures->Load("pinball/SpriteSheet.png");
-	Tcanoverd2 = App->textures->Load("pinball/SpriteSheet.png");
 
 	//Fonts
-	
+
 	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
 	scoreFont = App->font->Load("pinball/rtype_font3.png", lookupTable, 2);
 	
@@ -90,6 +81,9 @@ bool ModulePlayer::Start()
 
 	CanoVerdAnim2.loop = false;
 	CanoVerdAnim2.speed = 0.05;
+
+
+
 	//Sensors
 
 	PedraSen = App->physics->CreateRectangleSensor(120, 193, 35, 34);
@@ -102,6 +96,8 @@ bool ModulePlayer::Start()
 	BlancSen = App->physics->CreateRectangleSensor(249, 112, 5, 4);
 	CanoVerdSen1 = App->physics->CreateRectangleSensor(23, 382, 10, 10);
 	CanoVerdSen2 = App->physics->CreateRectangleSensor(219, 382, 10, 10);
+
+
 	int Rampa1[8] = {
 			208, 1297,
 			229, 1287,
@@ -189,44 +185,44 @@ update_status ModulePlayer::Update()
 	
 	if (llumgroga == false)
 	{
-		SDL_Rect BotonsPin = { 396, 517, 8, 13 };
-		App->renderer->Blit(Botons, 22 * SCREEN_SIZE, 240 * SCREEN_SIZE, &BotonsPin);
+		BotonsPin = { 396, 517, 8, 13 };
+		App->renderer->Blit(Bola, 22 * SCREEN_SIZE, 240 * SCREEN_SIZE, &BotonsPin);
 	}
 	if (llumgroga2 == false)
 	{
-		SDL_Rect BotonsPin2 = { 396, 517, 8, 13 };
-		App->renderer->Blit(Botons, 22 * SCREEN_SIZE, 258 * SCREEN_SIZE, &BotonsPin2);
+		BotonsPin2 = { 396, 517, 8, 13 };
+		App->renderer->Blit(Bola, 22 * SCREEN_SIZE, 258 * SCREEN_SIZE, &BotonsPin2);
 	}
 	if (llumgroga3 == false)
 	{
-		SDL_Rect BotonsPin3 = { 396, 517, 8, 13 };
-		App->renderer->Blit(Botons, 22 * SCREEN_SIZE, 276 * SCREEN_SIZE, &BotonsPin3);
+		BotonsPin3 = { 396, 517, 8, 13 };
+		App->renderer->Blit(Bola, 22 * SCREEN_SIZE, 276 * SCREEN_SIZE, &BotonsPin3);
 	}
 	if (llumgroga == true)
 	{
-		SDL_Rect MapSen = { 21, 858, 19,15 };
-		App->renderer->Blit(llumPedra, 35 * SCREEN_SIZE, 241 * SCREEN_SIZE, &MapSen);
-		SDL_Rect BotonsPin = { 409, 519, 6, 11 };
-		App->renderer->Blit(Botons, 22 * SCREEN_SIZE, 240 * SCREEN_SIZE, &BotonsPin);
+		MapSen_ = { 21, 858, 19,15 };
+		App->renderer->Blit(Bola, 35 * SCREEN_SIZE, 241 * SCREEN_SIZE, &MapSen_);
+		BotonsPin = { 409, 519, 6, 11 };
+		App->renderer->Blit(Bola, 22 * SCREEN_SIZE, 240 * SCREEN_SIZE, &BotonsPin);
 	}
 	if (llumgroga2 == true)
 	{
-		SDL_Rect MapSen = { 21, 874, 19,15 };
-		App->renderer->Blit(llumPedra, 35 * SCREEN_SIZE, 257 * SCREEN_SIZE, &MapSen);
-		SDL_Rect BotonsPin = { 409, 519, 6, 11 };
-		App->renderer->Blit(Botons, 22 * SCREEN_SIZE, 258 * SCREEN_SIZE, &BotonsPin);
+		MapSen_ = { 21, 874, 19,15 };
+		App->renderer->Blit(Bola, 35 * SCREEN_SIZE, 257 * SCREEN_SIZE, &MapSen_);
+		BotonsPin = { 409, 519, 6, 11 };
+		App->renderer->Blit(Bola, 22 * SCREEN_SIZE, 258 * SCREEN_SIZE, &BotonsPin);
 	}
 	if (llumgroga3 == true)
 	{
-		SDL_Rect MapSen = { 21, 890, 19,15 };
-		App->renderer->Blit(llumPedra, 35 * SCREEN_SIZE, 273 * SCREEN_SIZE, &MapSen);
-		SDL_Rect BotonsPin = { 409, 519, 6, 11 };
-		App->renderer->Blit(Botons, 22 * SCREEN_SIZE, 276 * SCREEN_SIZE, &BotonsPin);
+		MapSen_ = { 21, 890, 19,15 };
+		App->renderer->Blit(Bola, 35 * SCREEN_SIZE, 273 * SCREEN_SIZE, &MapSen_);
+		BotonsPin = { 409, 519, 6, 11 };
+		App->renderer->Blit(Bola, 22 * SCREEN_SIZE, 276 * SCREEN_SIZE, &BotonsPin);
 	}
 	if (llumgroga == true && llumgroga2 == true && llumgroga3 == true)
 	{
-		SDL_Rect GrocSen = { 147, 548, 14, 14 };
-		App->renderer->Blit(llumGroga, 122 * SCREEN_SIZE, 322 * SCREEN_SIZE, &GrocSen);
+		GrocSen = { 147, 548, 14, 14 };
+		App->renderer->Blit(Bola, 122 * SCREEN_SIZE, 322 * SCREEN_SIZE, &GrocSen);
 
 		//RECUPERA UN CANÓ
 		if (estrellagroga == false) {
@@ -237,9 +233,9 @@ update_status ModulePlayer::Update()
 	}
 	if (llumblava == true)
 	{
-		SDL_Rect BlauSen = { 82,731,23,19 };
-		App->renderer->Blit(Bola, 96 * SCREEN_SIZE, 114 * SCREEN_SIZE, &BlauSen);
-		SDL_Rect BlauSen2 = { 153,563,14,14 };
+		BlauSen_ = { 82,731,23,19 };
+		App->renderer->Blit(Bola, 96 * SCREEN_SIZE, 114 * SCREEN_SIZE, &BlauSen_);
+		BlauSen2 = { 153,563,14,14 };
 		App->renderer->Blit(Bola, 128 * SCREEN_SIZE, 337 * SCREEN_SIZE, &BlauSen2);
 
 		//RECUPERA UN CANÓ
@@ -261,12 +257,12 @@ update_status ModulePlayer::Update()
 
 	if (llumblava == true && llumvermella == true && llumverda > 2 && llumgroga == true && llumgroga2 == true && llumgroga3 == true && llumblanca == true)
 	{
-		SDL_Rect Llumlila = { 173, 566, 30, 18 };
+		Llumlila = { 173, 566, 30, 18 };
 		App->renderer->Blit(Bola, 106 * SCREEN_SIZE, 362 * SCREEN_SIZE, &Llumlila);
 	}
 	if (llumblanca == true)
 	{
-		SDL_Rect Boss = { 125, 563, 14, 14 };
+		Boss = { 125, 563, 14, 14 };
 		App->renderer->Blit(Bola, 100 * SCREEN_SIZE, 337 * SCREEN_SIZE, &Boss);
 
 		//RECUPERA UN CANÓ
@@ -277,23 +273,23 @@ update_status ModulePlayer::Update()
 	}
 	if (llumverda > 0)
 	{
-		SDL_Rect PedraSen = { 82,844,16,15 };
-		App->renderer->Blit(llumPedra, 96 * SCREEN_SIZE, 227 * SCREEN_SIZE, &PedraSen);
+		PedraSen_ = { 82,844,16,15 };
+		App->renderer->Blit(Bola, 96 * SCREEN_SIZE, 227 * SCREEN_SIZE, &PedraSen_);
 	}
 	if (llumverda > 1)
 	{
-		SDL_Rect PedraSen = { 82,844,16,15 };
-		App->renderer->Blit(llumPedra, 113 * SCREEN_SIZE, 231 * SCREEN_SIZE, &PedraSen);
+		PedraSen_ = { 82,844,16,15 };
+		App->renderer->Blit(Bola, 113 * SCREEN_SIZE, 231 * SCREEN_SIZE, &PedraSen_);
 	}
 	if (llumverda > 2)
 	{
-		SDL_Rect PedraSen = { 82,844,16,15 };
-		App->renderer->Blit(llumPedra, 130 * SCREEN_SIZE, 227 * SCREEN_SIZE, &PedraSen);
+		PedraSen_ = { 82,844,16,15 };
+		App->renderer->Blit(Bola, 130 * SCREEN_SIZE, 227 * SCREEN_SIZE, &PedraSen_);
 	}
 	if (llumverda > 2)
 	{
-		SDL_Rect VerdSen = { 131,548,14,14 };
-		App->renderer->Blit(llumVerda, 106 * SCREEN_SIZE, 322 * SCREEN_SIZE, &VerdSen);
+		VerdSen = { 131,548,14,14 };
+		App->renderer->Blit(Bola, 106 * SCREEN_SIZE, 322 * SCREEN_SIZE, &VerdSen);
 
 		//RECUPERA UN CANÓ
 		if (estrellaverda == false) {
@@ -303,13 +299,13 @@ update_status ModulePlayer::Update()
 	}
 	if (llumvermella == true)
 	{
-		SDL_Rect VermeSen = { 122,758,9,9 };
-		App->renderer->Blit(Bola, 136 * SCREEN_SIZE, 141 * SCREEN_SIZE, &VermeSen);
-		SDL_Rect VermeSen2 = { 135,761,9,9 };
+		VermeSen_ = { 122,758,9,9 };
+		App->renderer->Blit(Bola, 136 * SCREEN_SIZE, 141 * SCREEN_SIZE, &VermeSen_);
+		VermeSen2 = { 135,761,9,9 };
 		App->renderer->Blit(Bola, 149 * SCREEN_SIZE, 144 * SCREEN_SIZE, &VermeSen2);
-		SDL_Rect VermeSen3 = { 148,758,9,9 };
+		VermeSen3 = { 148,758,9,9 };
 		App->renderer->Blit(Bola, 162 * SCREEN_SIZE, 141 * SCREEN_SIZE, &VermeSen3);
-		SDL_Rect VermeSen4 = { 139,569,14,14 };
+		VermeSen4 = { 139,569,14,14 };
 		App->renderer->Blit(Bola, 114 * SCREEN_SIZE, 343 * SCREEN_SIZE, &VermeSen4);
 
 		//RECUPERA UN CANÓ
@@ -318,7 +314,7 @@ update_status ModulePlayer::Update()
 			estrellavermella = true;
 		}
 	}
-	SDL_Rect BolaPin = { 20,703,14,14 };
+	BolaPin = { 20,703,14,14 };
 	position = Ball->body->GetPosition();
 	App->renderer->Blit(Bola, 43 * SCREEN_SIZE, 83 * SCREEN_SIZE, &BouncerBall);
 	App->renderer->Blit(Bola, 55 * SCREEN_SIZE, 65 * SCREEN_SIZE, &BouncerBall);
@@ -349,15 +345,15 @@ update_status ModulePlayer::Update()
 		App->renderer->Blit(Bola, 33 * SCREEN_SIZE, 8 * SCREEN_SIZE, &NightRampPart);
 	}
 
-	SDL_Rect Porteta = {202,523,19,7};
+	Porteta = {202,523,19,7};
 	App->renderer->Blit(Bola, 237 * SCREEN_SIZE, 109 * SCREEN_SIZE, &Porteta);
 
-	SDL_Rect PedraPin = { 354,165,56,55 };
-	App->renderer->Blit(Pedra, 92 * SCREEN_SIZE, 165 * SCREEN_SIZE, &PedraPin);
+	PedraPin = { 354,165,56,55 };
+	App->renderer->Blit(Bola, 92 * SCREEN_SIZE, 165 * SCREEN_SIZE, &PedraPin);
 
 	if (llumblava == true && llumvermella == true && llumverda > 2 && llumgroga == true && llumgroga2 == true && llumgroga3 == true && llumblanca == true)
 	{
-		SDL_Rect LlumBoss = { 176, 722, 9, 12 };
+		LlumBoss = { 176, 722, 9, 12 };
 		App->renderer->Blit(Bola, 190 * SCREEN_SIZE, 105 * SCREEN_SIZE, &LlumBoss);
 		Boss2 = BossAnim.GetCurrentFrame();
 		App->renderer->Blit(Bola, 173 * SCREEN_SIZE, 37 * SCREEN_SIZE, &Boss2);
@@ -390,10 +386,10 @@ update_status ModulePlayer::Update()
 
 
 	//TEXTURAS CAÑÓN
-	SDL_Rect SuportCanoPin = { 494, 1009, 24, 192 };
-	App->renderer->Blit(suportCano, 233 * SCREEN_SIZE, 233 * SCREEN_SIZE, &SuportCanoPin);
+	SuportCanoPin = { 494, 1009, 24, 192 };
+	App->renderer->Blit(Bola, 233 * SCREEN_SIZE, 233 * SCREEN_SIZE, &SuportCanoPin);
 
-	SDL_Rect CanoPin;
+	CanoPin;
 
 	if (canoframe3 == 0) {
 
@@ -408,7 +404,7 @@ update_status ModulePlayer::Update()
 		CanoPin = { 69, 498, 33, 34 };
 		canoframe3--;
 	}
-	App->renderer->Blit(cano, 224 * SCREEN_SIZE, 280 * SCREEN_SIZE, &CanoPin);
+	App->renderer->Blit(Bola, 224 * SCREEN_SIZE, 280 * SCREEN_SIZE, &CanoPin);
 
 	//SALTA AL MAPA QUAN TOCA EL CANÓ
 	if (SaltCano == true) {
@@ -448,38 +444,38 @@ update_status ModulePlayer::Update()
 		CanoVerdSen2->body->SetActive(false);
 	}
 	if (canoverd1 == true) {
-		SDL_Rect animaciocano;
+		animaciocano;
 		animaciocano = CanoVerdAnim.GetCurrentFrame();
-		App->renderer->Blit(Tcanoverd1, 15 * SCREEN_SIZE, 391 * SCREEN_SIZE, &animaciocano);
+		App->renderer->Blit(Bola, 15 * SCREEN_SIZE, 391 * SCREEN_SIZE, &animaciocano);
 		CanoVerdAnim.Update();
-		SDL_Rect rampataronja1;
+		rampataronja1;
 		rampataronja1 = { 449, 621, 20, 16 };
 		App->renderer->Blit(Bola, 13 * SCREEN_SIZE, 376 * SCREEN_SIZE, &rampataronja1);
 
 	}
 
 	if (canoverd2 == true) {
-		SDL_Rect animaciocano;
+		animaciocano;
 		animaciocano = CanoVerdAnim2.GetCurrentFrame();
-		App->renderer->Blit(Tcanoverd1, 211 * SCREEN_SIZE, 391 * SCREEN_SIZE, &animaciocano);
+		App->renderer->Blit(Bola, 211 * SCREEN_SIZE, 391 * SCREEN_SIZE, &animaciocano);
 		CanoVerdAnim2.Update();
-		SDL_Rect rampataronja2;
+		rampataronja2;
 		rampataronja2 = { 420, 621, 20, 16 };
 		App->renderer->Blit(Bola, 209 * SCREEN_SIZE, 376 * SCREEN_SIZE, &rampataronja2);
 	}
 
 
 	if (canoverd1 == false) {
-		SDL_Rect CanoVerd1Pin;
+		CanoVerd1Pin;
 		CanoVerd1Pin = { 52, 617, 16, 21 };
-		App->renderer->Blit(Tcanoverd1, 15 * SCREEN_SIZE, 384 * SCREEN_SIZE, &CanoVerd1Pin);
+		App->renderer->Blit(Bola, 15 * SCREEN_SIZE, 384 * SCREEN_SIZE, &CanoVerd1Pin);
 		canoverd1Anim = 1;
 		
 	}
 	if (canoverd2 == false) {
-		SDL_Rect CanoVerd2Pin;
+		CanoVerd2Pin;
 		CanoVerd2Pin = { 52, 617, 16, 21 };
-		App->renderer->Blit(Tcanoverd2, 211 * SCREEN_SIZE, 384 * SCREEN_SIZE, &CanoVerd2Pin);
+		App->renderer->Blit(Bola, 211 * SCREEN_SIZE, 384 * SCREEN_SIZE, &CanoVerd2Pin);
 		canoverd2Anim = 1;
 
 	}
