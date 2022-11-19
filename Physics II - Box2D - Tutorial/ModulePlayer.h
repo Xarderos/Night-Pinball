@@ -34,6 +34,8 @@ public:
 	SDL_Texture* Tcanoverd1;
 	SDL_Texture* Tcanoverd2;
 
+	SDL_Texture* Black;
+
 	SDL_Rect BolaPin;
 	SDL_Rect MapaPin1f;
 	SDL_Rect Reixa;

@@ -141,8 +141,21 @@ update_status ModulePlayer::Update()
 
 	if (lifes <= 0) {
 		GameOver = true;
-		//demà: imprimir fons negre per pantalla
-		//imprimir text amb fonts que digui "Game Over"
+		if (App->player->lifes <= 0) {
+			Black = App->textures->Load("pinball/black.png");
+			App->font->BlitText(300, 500, scoreFont, "g  a  m  e    o  v  e  r");
+			App->font->BlitText(300, 520, scoreFont, "p  r  e  s  s    r    t  o");
+			App->font->BlitText(300, 540, scoreFont, "r  e  s  t  a  r  t");
+			lifes = 5;
+			score = 0;
+			if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN) {
+				App->textures->Unload(Black);
+				App->font->UnLoad(scoreFont);
+				App->player->Start();
+			}
+		}
+		
+		
 	}
 	
 	if (llumgroga == false)
@@ -331,10 +344,10 @@ update_status ModulePlayer::Update()
 			Ball->body->SetLinearVelocity(vel);
 		}
 	}
-	if ((METERS_TO_PIXELS(position.y)) > 1500 && lifes > 0)
+	if ((METERS_TO_PIXELS(position.y)) > 1500)
 	{
 		Ball->body->SetTransform({ PIXEL_TO_METERS(250), PIXEL_TO_METERS(400) }, 0);
-		lifes--;
+		//lifes--;
 		canjump = true;
 	}
 

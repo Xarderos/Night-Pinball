@@ -42,7 +42,7 @@ bool ModuleSceneIntro::Start()
 	NightsensorF1_2 = App->physics->CreateRectangleSensor(201, 100, 35, 10);
 	NightsensorF1_3 = App->physics->CreateRectangleSensor(225, 215, 30, 10);
 
-	gameover = App->physics->CreateRectangleSensor(87, 419, 66, 10);
+	gameover = App->physics->CreateRectangleSensor(87, 430, 66, 10);
 
 	NightsensorF2_1 = App->physics->CreateRectangleSensor(14, 186, 25, 5);
 	NightsensorF2_2 = App->physics->CreateRectangleSensor(198, 66, 15, 5);
