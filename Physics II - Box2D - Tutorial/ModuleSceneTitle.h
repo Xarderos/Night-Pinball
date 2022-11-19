@@ -11,7 +11,7 @@ class ModuleSceneTitle : public Module
 {
 public:
 
-	ModuleSceneTitle(Application* app, bool start_enabled);
+	ModuleSceneTitle(Application* app, bool start_enabled=true);
 	~ModuleSceneTitle();
 
 	bool Start();

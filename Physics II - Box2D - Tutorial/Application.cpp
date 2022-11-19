@@ -21,12 +21,12 @@ Application::Application()
 	textures = new ModuleTextures(this);
 	input = new ModuleInput(this);
 	audio = new ModuleAudio(this, true);
-	physics = new ModulePhysics(this);
-	player = new ModulePlayer(this);
+	physics = new ModulePhysics(this, false);
+	player = new ModulePlayer(this, false);
 	fade = new ModuleFadeToBlack(this);
 	font = new ModuleFont(this);
-	scene_intro = new ModuleSceneIntro(this);
-	scene_title = new ModuleSceneTitle(this, false);
+	scene_intro = new ModuleSceneIntro(this, false);
+	scene_title = new ModuleSceneTitle(this);
 
 	// The order of calls is very important!
 	// Modules will Init() Start() and Update in this order
