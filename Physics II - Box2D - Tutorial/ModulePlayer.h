@@ -80,8 +80,8 @@ public:
 	bool dinsCano = false;
 	int canoframe3 = 0;
 	bool canjump = true;
-	bool canoverdsen1 = false;
-	bool canoverdsen2 = false;
+	bool canoverdsen1;
+	bool canoverdsen2;
 	bool canoverd1 = true;
 	bool canoverd2 = true;
 	int canoverd1Anim = 0;

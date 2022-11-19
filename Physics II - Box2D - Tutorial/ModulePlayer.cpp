@@ -85,8 +85,10 @@ bool ModulePlayer::Start()
 	VermeSen = App->physics->CreateRectangleSensor(154, 132, 7, 7);
 	BlauSen = App->physics->CreateRectangleSensor(107, 104, 7, 7);
 	BlancSen = App->physics->CreateRectangleSensor(249, 112, 5, 4);
-	CanoVerdSen1 = App->physics->CreateRectangleSensor(23, 373, 10, 10);
-	CanoVerdSen2 = App->physics->CreateRectangleSensor(219, 373, 10, 10);
+	CanoVerdSen1 = App->physics->CreateRectangleSensor(23, 400, 10, 10);//373
+	CanoVerdSen2 = App->physics->CreateRectangleSensor(219, 400, 10, 10);
+	canoverd1 = false;
+	canoverd2 = false;
 
 	llumgroga = false;
 	llumgroga2 = false;
@@ -403,71 +405,61 @@ update_status ModulePlayer::Update()
 		
 	}
 	
-	if (canoverdsen1 == true) {
-		b2Vec2 vel = b2Vec2(0, 2 * GRAVITY_Y);
+	if (canoverd1 == true && CanoVerdSen1->body->IsActive()==true)
+	{
+		b2Vec2 vel = b2Vec2(0, 2.2 * GRAVITY_Y);
 		Ball->body->SetLinearVelocity(vel);
-		canoverdsen1 = false;
+		CanoVerdSen1->body->SetActive(false);
 	}
 
-	if (canoverdsen2 == true) {
-		b2Vec2 vel = b2Vec2(0, 2 * GRAVITY_Y);
+	if (canoverd2 == true && CanoVerdSen2->body->IsActive() == true) {
+		b2Vec2 vel = b2Vec2(0, 2.2 * GRAVITY_Y);
 		Ball->body->SetLinearVelocity(vel);
-		canoverdsen2 = false;
+		CanoVerdSen2->body->SetActive(false);
 	}
 
 	//TEXTURA CANONS VERDS
 	SDL_Rect CanoVerd1Pin;
 	SDL_Rect CanoVerd2Pin;
 
-	if (canoverd1 == true) {
+	if (canoverd1 == false) {
 		CanoVerd1Pin = { 52, 617, 16, 21 };
+		App->renderer->Blit(Tcanoverd1, 15 * SCREEN_SIZE, 391 * SCREEN_SIZE, &CanoVerd1Pin);
 		canoverd1Anim = 1;
 		
 	}
-	else {
-		if (canoverd1Anim > 0 && canoverd1Anim <= 3) {
-			CanoVerd1Pin = { 131, 617, 16, 21 };
-			canoverd1Anim++;
-		}
-		else if (canoverd1Anim > 3 && canoverd1Anim <= 6) {
-			CanoVerd1Pin = { 113, 617, 16, 21 };
-			canoverd1Anim++;
-		}
-	}
+	//else {
+	//	if (canoverd1Anim > 0 && canoverd1Anim <= 3) {
+	//		CanoVerd1Pin = { 131, 617, 16, 21 };
+	//		canoverd1Anim++;
+	//	}
+	//	else if (canoverd1Anim > 3 && canoverd1Anim <= 6) {
+	//		CanoVerd1Pin = { 113, 617, 16, 21 };
+	//		canoverd1Anim++;
+	//	}
+	//}
 
-	if (canoverd2 == true) {
+	if (canoverd2 == false) {
 		CanoVerd2Pin = { 52, 617, 16, 21 };
+		App->renderer->Blit(Tcanoverd2, 211 * SCREEN_SIZE, 391 * SCREEN_SIZE, &CanoVerd2Pin);
 		canoverd2Anim = 1;
 
 	}
-	else {
-		if (canoverd2Anim > 0 && canoverd2Anim <= 3) {
-			CanoVerd2Pin = { 131, 617, 16, 21 };
-			canoverd2Anim++;
-		}
-		else if (canoverd2Anim > 3 && canoverd2Anim <= 6) {
-			CanoVerd2Pin = { 113, 617, 16, 21 };
-			canoverd2Anim++;
-		}
-	}
-	App->renderer->Blit(Tcanoverd1, 15 * SCREEN_SIZE, 364 * SCREEN_SIZE, &CanoVerd1Pin);
-	App->renderer->Blit(Tcanoverd2, 211 * SCREEN_SIZE, 364 * SCREEN_SIZE, &CanoVerd2Pin);
+	//else {
+	//	if (canoverd2Anim > 0 && canoverd2Anim <= 3) {
+	//		CanoVerd2Pin = { 131, 617, 16, 21 };
+	//		canoverd2Anim++;
+	//	}
+	//	else if (canoverd2Anim > 3 && canoverd2Anim <= 6) {
+	//		CanoVerd2Pin = { 113, 617, 16, 21 };
+	//		canoverd2Anim++;
+	//	}
+	//}
+	
+	
 
 
-	//RECUPERA CANONS VERDS QUAN GUANYA UNA ESTRELLA
-	if (canoverd1 == false) {
-		if (numCVerds > 0) {
-			canoverd1 = true;
-			numCVerds--;
-		}
-	}
 
-	if (canoverd2 == false) {
-		if (numCVerds > 0) {
-			canoverd2 = true;
-			numCVerds--;
-		}
-	}
 
 
 	//TEMPORAL (testeo de sensores)
@@ -529,18 +521,20 @@ void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 	}
 	if (bodyB == BlancSen && llumblanca == false) {
 		llumblanca = true;
+		
+
 	}
 	if (bodyB == App->scene_intro->Floor3_2) {
 		App->scene_intro->floornum = 1;
 		App->scene_intro->mapselector = true;
 	}
-	if (bodyB == CanoVerdSen1 && canoverd1 == true) {
-		canoverdsen1 = true;
-		canoverd1 = false;
+	if (bodyB == CanoVerdSen1) {
+		canoverd1 = true;
+
 	}
-	if (bodyB == CanoVerdSen2 && canoverd2 == true) {
-		canoverdsen2 = true;
-		canoverd2 = false;
+	if (bodyB == CanoVerdSen2) {
+		canoverd2 = true;
+
 	}
 	if (bodyB == App->scene_intro->rBumperRight) {
 		App->scene_intro->rightBtimer = 20;
