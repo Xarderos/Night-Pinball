@@ -141,7 +141,6 @@ update_status ModulePlayer::Update()
 
 	if (lifes <= 0) {
 		GameOver = true;
-		if (App->player->lifes <= 0) {
 			Black = App->textures->Load("pinball/black.png");
 			App->font->BlitText(300, 500, scoreFont, "g  a  m  e    o  v  e  r");
 			App->font->BlitText(300, 520, scoreFont, "p  r  e  s  s    r    t  o");
@@ -152,9 +151,7 @@ update_status ModulePlayer::Update()
 				App->textures->Unload(Black);
 				App->font->UnLoad(scoreFont);
 				App->player->Start();
-			}
-		}
-		
+			}	
 		
 	}
 	
