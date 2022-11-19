@@ -64,7 +64,8 @@ public:
 	Animation BossAnim;
 	Animation ChipAnim;
 	Animation FleGrocAnim;
-
+	Animation CanoVerdAnim;
+	Animation CanoVerdAnim2;
 	int botonsound;
 	int pedrasound;
 	int lifes;

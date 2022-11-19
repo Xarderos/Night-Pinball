@@ -75,6 +75,21 @@ bool ModulePlayer::Start()
 	FleGrocAnim.loop = true;
 	FleGrocAnim.speed = 0.03f;
 
+	CanoVerdAnim.PushBack({ 52, 617, 16, 21 });
+	CanoVerdAnim.PushBack({ 113, 617, 16, 21 });
+	CanoVerdAnim.PushBack({ 131, 617, 16, 21 });
+	CanoVerdAnim.PushBack({ 0, 0, 0, 0 });
+
+	CanoVerdAnim.loop = false;
+	CanoVerdAnim.speed = 0.05;
+
+	CanoVerdAnim2.PushBack({ 52, 617, 16, 21 });
+	CanoVerdAnim2.PushBack({ 113, 617, 16, 21 });
+	CanoVerdAnim2.PushBack({ 131, 617, 16, 21 });
+	CanoVerdAnim2.PushBack({ 0, 0, 0, 0 });
+
+	CanoVerdAnim2.loop = false;
+	CanoVerdAnim2.speed = 0.05;
 	//Sensors
 
 	PedraSen = App->physics->CreateRectangleSensor(120, 193, 35, 34);
@@ -85,8 +100,8 @@ bool ModulePlayer::Start()
 	VermeSen = App->physics->CreateRectangleSensor(154, 132, 7, 7);
 	BlauSen = App->physics->CreateRectangleSensor(107, 104, 7, 7);
 	BlancSen = App->physics->CreateRectangleSensor(249, 112, 5, 4);
-	CanoVerdSen1 = App->physics->CreateRectangleSensor(23, 400, 10, 10);//373
-	CanoVerdSen2 = App->physics->CreateRectangleSensor(219, 400, 10, 10);
+	CanoVerdSen1 = App->physics->CreateRectangleSensor(23, 382, 10, 10);
+	CanoVerdSen2 = App->physics->CreateRectangleSensor(219, 382, 10, 10);
 	canoverd1 = false;
 	canoverd2 = false;
 
@@ -417,44 +432,37 @@ update_status ModulePlayer::Update()
 		Ball->body->SetLinearVelocity(vel);
 		CanoVerdSen2->body->SetActive(false);
 	}
+	if (canoverd1 == true) {
+		SDL_Rect animaciocano;
+		animaciocano = CanoVerdAnim.GetCurrentFrame();
+		App->renderer->Blit(Tcanoverd1, 15 * SCREEN_SIZE, 391 * SCREEN_SIZE, &animaciocano);
+		CanoVerdAnim.Update();
+	}
 
-	//TEXTURA CANONS VERDS
-	SDL_Rect CanoVerd1Pin;
-	SDL_Rect CanoVerd2Pin;
+	if (canoverd2 == true) {
+		SDL_Rect animaciocano;
+		animaciocano = CanoVerdAnim2.GetCurrentFrame();
+		App->renderer->Blit(Tcanoverd1, 211 * SCREEN_SIZE, 391 * SCREEN_SIZE, &animaciocano);
+		CanoVerdAnim2.Update();
+	}
+
 
 	if (canoverd1 == false) {
+		SDL_Rect CanoVerd1Pin;
 		CanoVerd1Pin = { 52, 617, 16, 21 };
-		App->renderer->Blit(Tcanoverd1, 15 * SCREEN_SIZE, 391 * SCREEN_SIZE, &CanoVerd1Pin);
+		App->renderer->Blit(Tcanoverd1, 15 * SCREEN_SIZE, 384 * SCREEN_SIZE, &CanoVerd1Pin);
 		canoverd1Anim = 1;
 		
 	}
-	//else {
-	//	if (canoverd1Anim > 0 && canoverd1Anim <= 3) {
-	//		CanoVerd1Pin = { 131, 617, 16, 21 };
-	//		canoverd1Anim++;
-	//	}
-	//	else if (canoverd1Anim > 3 && canoverd1Anim <= 6) {
-	//		CanoVerd1Pin = { 113, 617, 16, 21 };
-	//		canoverd1Anim++;
-	//	}
-	//}
-
 	if (canoverd2 == false) {
+		SDL_Rect CanoVerd2Pin;
 		CanoVerd2Pin = { 52, 617, 16, 21 };
-		App->renderer->Blit(Tcanoverd2, 211 * SCREEN_SIZE, 391 * SCREEN_SIZE, &CanoVerd2Pin);
+		App->renderer->Blit(Tcanoverd2, 211 * SCREEN_SIZE, 384 * SCREEN_SIZE, &CanoVerd2Pin);
 		canoverd2Anim = 1;
 
 	}
-	//else {
-	//	if (canoverd2Anim > 0 && canoverd2Anim <= 3) {
-	//		CanoVerd2Pin = { 131, 617, 16, 21 };
-	//		canoverd2Anim++;
-	//	}
-	//	else if (canoverd2Anim > 3 && canoverd2Anim <= 6) {
-	//		CanoVerd2Pin = { 113, 617, 16, 21 };
-	//		canoverd2Anim++;
-	//	}
-	//}
+
+
 	
 	
 
