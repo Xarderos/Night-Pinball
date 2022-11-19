@@ -412,7 +412,7 @@ PhysBody* ModulePhysics::CreateBouncyChain(int x, int y, int* points, int size)
 	// Create FIXTURE
 	b2FixtureDef fixture;
 	fixture.shape = &shape;
-	fixture.restitution = 1.6f;
+	fixture.restitution = 1.4f;
 	// Add fixture to the BODY
 	b->CreateFixture(&fixture);
 
@@ -457,6 +457,7 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 		if (App->scene_intro->floornum != 3) {
 			App->scene_intro->floornum = 3;
 			App->scene_intro->mapselector = true;
+
 		}
 	}
 

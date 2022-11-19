@@ -417,6 +417,7 @@ update_status ModulePlayer::Update()
 		if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN) {
 			App->textures->Unload(Black);
 			App->font->UnLoad(scoreFont);
+			App->player->CleanUp();
 			App->player->Start();
 		}
 
@@ -462,10 +463,10 @@ update_status ModulePlayer::Update()
 
 		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 		{
-			b2Vec2 tp = b2Vec2(PIXEL_TO_METERS(207), PIXEL_TO_METERS(273));
+			b2Vec2 tp = b2Vec2(PIXEL_TO_METERS(207), PIXEL_TO_METERS(275));
 			Ball->body->SetTransform(tp, 0);
 
-			b2Vec2 vel = b2Vec2(-14, -15);
+			b2Vec2 vel = b2Vec2(-25, -28);
 			Ball->body->SetLinearVelocity(vel);
 
 			DrawBola = true;
@@ -479,13 +480,13 @@ update_status ModulePlayer::Update()
 	
 	if (canoverd1 == true && CanoVerdSen1->body->IsActive()==true)
 	{
-		b2Vec2 vel = b2Vec2(0, 2.2 * GRAVITY_Y);
+		b2Vec2 vel = b2Vec2(0, 1.7 * GRAVITY_Y);
 		Ball->body->SetLinearVelocity(vel);
 		CanoVerdSen1->body->SetActive(false);
 	}
 
 	if (canoverd2 == true && CanoVerdSen2->body->IsActive() == true) {
-		b2Vec2 vel = b2Vec2(0, 2.2 * GRAVITY_Y);
+		b2Vec2 vel = b2Vec2(0, 1.7 * GRAVITY_Y);
 		Ball->body->SetLinearVelocity(vel);
 		CanoVerdSen2->body->SetActive(false);
 	}
@@ -630,5 +631,7 @@ void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 	if (bodyB == App->scene_intro->rBumperLeft) {
 		App->scene_intro->leftBtimer = 20;
 	}
-
+	if (bodyB == App->scene_intro->Floor3_ac) {
+		Ball->body->SetLinearVelocity({ -20, -20 });
+	}
 }

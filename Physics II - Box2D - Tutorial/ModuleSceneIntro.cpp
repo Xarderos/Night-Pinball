@@ -47,13 +47,13 @@ bool ModuleSceneIntro::Start()
 	gameover = App->physics->CreateRectangleSensor(87, 430, 66, 10);
 
 	NightsensorF2_1 = App->physics->CreateRectangleSensor(14, 186, 25, 5);
-	NightsensorF2_2 = App->physics->CreateRectangleSensor(198, 66, 15, 5);
+	NightsensorF2_2 = App->physics->CreateRectangleSensor(198, 67, 15, 4);
 	NightsensorF2_3 = App->physics->CreateRectangleSensor(233, 198, 25, 5);
 
 	Floor3_1 = App->physics->CreateRectangleSensor(43, 327, 25, 5);
-	Floor3_2 = App->physics->CreateRectangleSensor(77, 145, 25, 5);
+	Floor3_2 = App->physics->CreateRectangleSensor(75, 147, 17, 5);
 	Floor3_2->listener = this;
-	Floor3_ac = App->physics->CreateRectangleSensor(68, 131, 10, 7);
+	Floor3_ac = App->physics->CreateRectangleSensor(70, 135, 10, 9);
 
 	b2RevoluteJointDef rightFlip;
 	rightFlip.bodyA = rightflipper->body;
@@ -173,7 +173,7 @@ bool ModuleSceneIntro::CleanUp()
 
 update_status ModuleSceneIntro::Update()
 {
-	if ((App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)) {
+	if ((App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN)) {
 		mapselector = true;
 		floornum = 3;
 	}
@@ -183,13 +183,13 @@ update_status ModuleSceneIntro::Update()
 	
 	if ((App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT))
 	{
-		rightflipper->body->ApplyForceToCenter(b2Vec2(0, -150), 1);
-		rightflipper2->body->ApplyForceToCenter(b2Vec2(0, -150), 1);
+		rightflipper->body->ApplyForceToCenter(b2Vec2(0, -500), 1);
+		rightflipper2->body->ApplyForceToCenter(b2Vec2(0, -500), 1);
 	}
 
 	if ((App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT))
 	{
-		leftflipper->body->ApplyForceToCenter(b2Vec2(0, -150), 1);
+		leftflipper->body->ApplyForceToCenter(b2Vec2(0, -500), 1);
 	}
 	
 
@@ -350,26 +350,22 @@ void ModuleSceneIntro::map()
 		};
 		Map.push_back(App->physics->CreateChain(0, 0, bottomRightWall, 18));
 
-		int paretAdalt[32] = {
-				66, 143,
-				55, 154,
-				52, 152,
+		int paretAdalt[26] = {
+				54, 154,
 				52, 149,
-				54, 147,
-				55, 143,
-				57, 120,
-				65, 114,
-				74, 115,
-				93, 132,
+				55, 147,
+				56, 123,
+				60, 116,
+				67, 114,
+				76, 116,
+				93, 133,
 				88, 137,
-				83, 132,
-				79, 131,
-				73, 125,
-				61, 136,
-				66, 141
-
+				71, 121,
+				57, 132,
+				65, 144,
+				56, 153
 		};
-		Map.push_back(App->physics->CreateChain(0, 0, paretAdalt, 32));
+		Map.push_back(App->physics->CreateChain(0, 0, paretAdalt, 26));
 
 		int topCurve1[32] = {
 				32, 97,
@@ -653,85 +649,89 @@ void ModuleSceneIntro::map()
 			delete Map[i];
 			Map[i] = nullptr;
 		}
-		int Floor3[152] = {
-			47, 1237,
-			52, 1235,
-			55, 1231,
-			55, 1225,
-			54, 1219,
-			54, 1213,
-			54, 1207,
-			52, 1201,
-			47, 1195,
-			40, 1191,
-			31, 1186,
-			24, 1183,
-			19, 1179,
-			18, 1117,
-			30, 1104,
-			51, 1094,
-			76, 1081,
-			116, 1061,
-			136, 1041,
-			151, 1004,
-			153, 974,
-			143, 942,
-			133, 934,
-			120, 928,
-			97, 925,
-			73, 927,
-			52, 937,
-			37, 953,
-			32, 973,
-			30, 1002,
-			39, 1022,
-			55, 1039,
-			66, 1052,
-			0, 1010,
-			43, 907,
-			182, 934,
-			103, 1183,
-			48, 1250,
-			-8, 1207,
-			-16, 1146,
-			3, 1094,
-			26, 1082,
-			48, 1071,
-			65, 1066,
-			102, 1046,
-			116, 1032,
-			126, 977,
-			107, 954,
-			80, 956,
-			60, 992,
-			71, 1022,
-			78, 1039,
-			59, 1021,
-			52, 1013,
-			48, 999,
-			49, 977,
-			52, 961,
-			62, 949,
-			77, 942,
-			100, 942,
-			122, 948,
-			134, 965,
-			136, 976,
-			135, 1001,
-			124, 1031,
-			105, 1049,
-			20, 1092,
-			1, 1109,
-			1, 1183,
-			7, 1192,
-			17, 1198,
-			36, 1207,
-			38, 1221,
-			35, 1227,
-			37, 1234,
-			42, 1236
+		int Floor3[160] = {
+				47, 1237,
+				52, 1235,
+				55, 1231,
+				55, 1225,
+				54, 1219,
+				54, 1213,
+				54, 1207,
+				52, 1201,
+				47, 1195,
+				40, 1191,
+				31, 1186,
+				24, 1183,
+				19, 1179,
+				18, 1117,
+				30, 1104,
+				51, 1094,
+				76, 1081,
+				116, 1061,
+				136, 1041,
+				151, 1004,
+				153, 974,
+				143, 942,
+				133, 934,
+				120, 928,
+				97, 925,
+				73, 927,
+				52, 937,
+				37, 953,
+				30, 977,
+				30, 996,
+				33, 1015,
+				39, 1025,
+				50, 1038,
+				58, 1045,
+				65, 1054,
+				74, 1061,
+				-4, 1044,
+				43, 907,
+				182, 934,
+				103, 1183,
+				48, 1250,
+				-8, 1207,
+				-16, 1146,
+				3, 1094,
+				26, 1082,
+				48, 1071,
+				63, 1068,
+				103, 1048,
+				116, 1032,
+				126, 977,
+				107, 954,
+				80, 956,
+				78, 993,
+				105, 1032,
+				88, 1045,
+				80, 1039,
+				60, 1019,
+				53, 1011,
+				48, 997,
+				49, 977,
+				52, 961,
+				62, 949,
+				77, 942,
+				100, 942,
+				122, 948,
+				134, 965,
+				136, 976,
+				135, 1001,
+				124, 1031,
+				105, 1049,
+				20, 1092,
+				1, 1109,
+				1, 1183,
+				7, 1192,
+				17, 1198,
+				36, 1207,
+				38, 1221,
+				35, 1227,
+				37, 1234,
+				42, 1236
 		};
-		Map.push_back(App->physics->CreateChain(0, -910, Floor3, 152));
+		Map.push_back(App->physics->CreateChain(0, -910, Floor3, 160));
 	}
 	
 	mapselector = false;
