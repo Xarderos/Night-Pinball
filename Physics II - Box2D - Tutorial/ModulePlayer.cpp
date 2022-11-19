@@ -9,6 +9,9 @@
 #include "ModuleSceneIntro.h"
 #include "ModuleFont.h"
 #include "Animation.h"
+#include <iostream>
+using namespace std;
+#include <sstream>
 
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -22,7 +25,8 @@ ModulePlayer::~ModulePlayer()
 // Load assets
 bool ModulePlayer::Start()
 {
-
+	score = 000;
+	lifes = 5;
 	//Textures
 
 	Bola = App->textures->Load("pinball/SpriteSheet.png");
@@ -506,12 +510,21 @@ update_status ModulePlayer::Update()
 
 	App->font->BlitText(58, 248, scoreFont, scoreText);
 
+	string puntuacion = std::to_string(score);
+	const char* scorechar = puntuacion.c_str();
 
-	App->font->BlitText(620,15, scoreFont, "s  t  a  g  e           0 1");
+	string vidas = std::to_string(lifes);
+	const char* lifeschar = vidas.c_str();
+
+	App->font->BlitText(620, 15, scoreFont, "s  t  a  g  e           0 1");
 	App->font->BlitText(620, 200, scoreFont, "s  c  o  r  e");
+	App->font->BlitText(620, 230, scoreFont, scorechar);
 	App->font->BlitText(620, 450, scoreFont, "l i v  e  s");
+	App->font->BlitText(620, 480, scoreFont, lifeschar);
 	App->font->BlitText(620, 700, scoreFont, "c  o  m  b  o");
+	//App->font->BlitText(620,15, scoreFont, scorechar);
 	App->font->BlitText(620, 900, scoreFont, "h i g  h  s  c  o  r  e");
+	//App->font->BlitText(620,15, scoreFont, scorechar);
 
 
 	return UPDATE_CONTINUE;

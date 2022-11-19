@@ -126,7 +126,7 @@ public:
 	bool GameOver = false;
 
 	// Font score index
-	uint score = 000;
-	int scoreFont = -1;
+	int score;
+	int scoreFont = -1; //SCORE ELIMINAR AIXÒ
 	char scoreText[10] = { "\0" };
 };
