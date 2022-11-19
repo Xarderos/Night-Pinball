@@ -90,9 +90,10 @@ bool ModulePlayer::Start()
 	PortaBlanca.PushBack({ 226,522,19,9 });
 	PortaBlanca.PushBack({ 250,523,19,7 });
 	PortaBlanca.PushBack({ 177,525,20,3 });
+	PortaBlanca.PushBack({ 226,522,19,9 });
 	PortaBlanca.PushBack({ 202,523,19,7 });
 	PortaBlanca.loop = false;
-	PortaBlanca.speed = 0.05;
+	PortaBlanca.speed = 0.08;
 
 	//Sensors
 

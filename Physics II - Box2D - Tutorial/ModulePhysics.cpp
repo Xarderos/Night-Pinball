@@ -467,7 +467,10 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 		
 		
 	} 
-
+	if (physA == App->player->PortaSen)
+	{
+		App->player->PortaBlanca.Reset();
+	}
 	if(physA && physA->listener != NULL)
 		physA->listener->OnCollision(physA, physB);
 	if(physB && physB->listener != NULL)
