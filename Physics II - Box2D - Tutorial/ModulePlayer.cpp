@@ -139,7 +139,6 @@ bool ModulePlayer::Start()
 	Reixa = { 1,596,28,42 };
 	BouncerBall = { 90,618,21,20 };
 	NightRampPart = { 1,547,104,36 };
-	lifes = 5;
 	LOG("Loading player");
 	return true;
 }
@@ -178,22 +177,6 @@ update_status ModulePlayer::Update()
 {
 
 	b2Vec2 position;
-
-	if (lifes <= 0) {
-		GameOver = true;
-			Black = App->textures->Load("pinball/black.png");
-			App->font->BlitText(300, 500, scoreFont, "g  a  m  e    o  v  e  r");
-			App->font->BlitText(300, 520, scoreFont, "p  r  e  s  s    r    t  o");
-			App->font->BlitText(300, 540, scoreFont, "r  e  s  t  a  r  t");
-			lifes = 5;
-			score = 0;
-			if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN) {
-				App->textures->Unload(Black);
-				App->font->UnLoad(scoreFont);
-				App->player->Start();
-			}	
-		
-	}
 	
 	if (llumgroga == false)
 	{
@@ -391,11 +374,27 @@ update_status ModulePlayer::Update()
 			Ball->body->SetLinearVelocity(vel);
 		}
 	}
-	if ((METERS_TO_PIXELS(position.y)) > 1500)
+	if ((METERS_TO_PIXELS(position.y)) > 1500 && lifes>0)
 	{
 		Ball->body->SetTransform({ PIXEL_TO_METERS(250), PIXEL_TO_METERS(400) }, 0);
-		//lifes--;
+		lifes--;
 		canjump = true;
+	}
+
+	if (lifes <= 0) {
+		GameOver = true;
+		Black = App->textures->Load("pinball/black.png");
+		App->font->BlitText(300, 500, scoreFont, "g  a  m  e    o  v  e  r");
+		App->font->BlitText(300, 520, scoreFont, "p  r  e  s  s    r    t  o");
+		App->font->BlitText(300, 540, scoreFont, "r  e  s  t  a  r  t");
+		lifes = 5;
+		score = 0;
+		if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN) {
+			App->textures->Unload(Black);
+			App->font->UnLoad(scoreFont);
+			App->player->Start();
+		}
+
 	}
 
 	//temporal
