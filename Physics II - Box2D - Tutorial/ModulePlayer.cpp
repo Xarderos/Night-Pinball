@@ -109,6 +109,7 @@ bool ModulePlayer::Start()
 	CanoVerdSen2 = App->physics->CreateRectangleSensor(219, 382, 10, 10);
 	PortaSen = App->physics->CreateRectangleSensor(249, 112, 5, 6);
 	TriangleLilaSen = App->physics->CreateRectangleSensor(120, 10, 10, 10);
+	LlumRectangle = App->physics->CreateRectangleSensor(243, 221, 7, 7);
 
 
 	int Rampa1[8] = {
@@ -179,6 +180,8 @@ bool ModulePlayer::CleanUp()
 	RampaT2 = nullptr;
 	delete TriangleLilaSen;
 	TriangleLilaSen = nullptr;
+	delete LlumRectangle;
+	LlumRectangle = nullptr;
 	return true;
 }
 
@@ -256,6 +259,12 @@ update_status ModulePlayer::Update()
 		App->renderer->Blit(Bola, 29 * SCREEN_SIZE, 215 * SCREEN_SIZE, &Lilatriangle);
 		Lilatriangle2 = { 192,832,15,14 };
 		App->renderer->Blit(Bola, 206 * SCREEN_SIZE, 215 * SCREEN_SIZE, &Lilatriangle2);
+	}
+	if (llumrectangle == true)
+	{
+		Llumrectangle = { 192,849,31,31 };
+		App->renderer->Blit(Bola, 206 * SCREEN_SIZE, 226 * SCREEN_SIZE, &Llumrectangle);
+		
 	}
 	Chip = ChipAnim.GetCurrentFrame();
 	App->renderer->Blit(Bola, 15 * SCREEN_SIZE, 106 * SCREEN_SIZE, &Chip);
@@ -593,6 +602,9 @@ void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 	}
 	if (bodyB == TriangleLilaSen && lilatriangle == false) {
 		lilatriangle = true;
+	}
+	if (bodyB == LlumRectangle && llumrectangle == false) {
+		llumrectangle = true;
 	}
 	if (bodyB == BlancSen && llumblanca == false) {
 		llumblanca = true;
