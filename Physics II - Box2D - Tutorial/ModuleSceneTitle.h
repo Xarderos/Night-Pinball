@@ -20,4 +20,6 @@ public:
 
 public:
 	SDL_Texture* title;
+	int TitleFont = -1;
+	char TitleText[10] = { "\0" };
 };

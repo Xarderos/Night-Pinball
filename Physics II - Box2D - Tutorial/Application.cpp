@@ -26,7 +26,7 @@ Application::Application()
 	fade = new ModuleFadeToBlack(this);
 	font = new ModuleFont(this);
 	scene_intro = new ModuleSceneIntro(this);
-	scene_title = new ModuleSceneTitle(this, true);
+	scene_title = new ModuleSceneTitle(this, false);
 
 	// The order of calls is very important!
 	// Modules will Init() Start() and Update in this order
