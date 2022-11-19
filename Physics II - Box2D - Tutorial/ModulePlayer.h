@@ -33,6 +33,10 @@ public:
 	SDL_Texture* cano;
 	SDL_Texture* Tcanoverd1;
 	SDL_Texture* Tcanoverd2;
+	SDL_Texture* RampaT1;
+	SDL_Texture* RampaT2;
+
+
 
 	SDL_Texture* Black;
 
@@ -86,6 +90,9 @@ public:
 	bool canoverd2 = true;
 	int canoverd1Anim = 0;
 	int canoverd2Anim = 0;
+
+	bool rampataronja1 = false;
+	bool rampataronja2 = false;
 
 	int numCVerds = 0;
 
