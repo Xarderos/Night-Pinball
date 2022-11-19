@@ -460,10 +460,11 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 		}
 	}
 
-	if (physA == App->scene_intro->gameover) {
+	/*if (physA == App->scene_intro->gameover) {
 		if (App->player->lifes > 0) {
 			App->player->lifes--;
 		}
+<<<<<<< Updated upstream
 		
 		
 	} 
@@ -471,6 +472,10 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 	{
 		App->player->PortaBlanca.Reset();
 	}
+=======
+	} innecessari, resta 2 vides, deixo x si acas */ 
+
+>>>>>>> Stashed changes
 	if(physA && physA->listener != NULL)
 		physA->listener->OnCollision(physA, physB);
 	if(physB && physB->listener != NULL)
