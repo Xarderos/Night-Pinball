@@ -734,36 +734,36 @@ void ModuleSceneIntro::map()
 <<<<<<< HEAD
 
 	
-	////APAREIXEN COLLIDERS DE LES RAMPES TARONJES QUAN UN DELS CANONS NO EXISTEIX
-	//if (App->player->rampataronja1 == false) {
+	//APAREIXEN COLLIDERS DE LES RAMPES TARONJES QUAN UN DELS CANONS NO EXISTEIX
+	if (App->player->rampataronja1 == false) {
 
-	//	//RampaTaronja1
-	//	int Rampa1[10] = {
-	//		34, 1302,
-	//		34, 1297,
-	//		10, 1283,
-	//		10, 1289,
-	//		34, 1302
-	//	};
-	//	Map.push_back(App->physics->CreateChain(0, -910, Rampa1, 10));
-	//}
-	//if (App->player->rampataronja2 == false) {
+		//RampaTaronja1
+		int Rampa1[10] = {
+			34, 1302,
+			34, 1297,
+			10, 1283,
+			10, 1289,
+			34, 1302
+		};
+		Map.push_back(App->physics->CreateChain(0, -910, Rampa1, 10));
+	}
+	if (App->player->rampataronja2 == false) {
 
-	//	for (int i = 0; i < Map.size(); i++) {
-	//		delete Map[i];
-	//		Map[i] = nullptr;
-	//	}
+		for (int i = 0; i < Map.size(); i++) {
+			delete Map[i];
+			Map[i] = nullptr;
+		}
 
-	//	//RampaTaronja2
-	//	int Rampa2[10] = {
-	//		205, 1298,
-	//		230, 1284,
-	//		230, 1289,
-	//		205, 1302,
-	//		205, 1298
-	//	};
-	//	Map.push_back(App->physics->CreateChain(0, -910, Rampa2, 10));
-	//}
+		//RampaTaronja2
+		int Rampa2[10] = {
+			205, 1298,
+			230, 1284,
+			230, 1289,
+			205, 1302,
+			205, 1298
+		};
+		Map.push_back(App->physics->CreateChain(0, -910, Rampa2, 10));
+	}
 
 
 
