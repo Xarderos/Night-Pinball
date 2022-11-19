@@ -475,7 +475,7 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 =======
 	} innecessari, resta 2 vides, deixo x si acas */ 
 
->>>>>>> Stashed changes
+
 	if(physA && physA->listener != NULL)
 		physA->listener->OnCollision(physA, physB);
 	if(physB && physB->listener != NULL)
