@@ -731,6 +731,7 @@ void ModuleSceneIntro::map()
 		};
 		Map.push_back(App->physics->CreateChain(0, -910, Floor3, 152));
 	}
+<<<<<<< HEAD
 
 	
 	//APAREIXEN COLLIDERS DE LES RAMPES TARONJES QUAN UN DELS CANONS NO EXISTEIX
@@ -766,6 +767,8 @@ void ModuleSceneIntro::map()
 
 
 
+=======
+>>>>>>> parent of 21cecce (Canons verds baixats + textura rampa taronja)
 	mapselector = false;
 }
 void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
