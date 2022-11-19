@@ -463,29 +463,17 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 	/*if (physA == App->scene_intro->gameover) {
 		if (App->player->lifes > 0) {
 			App->player->lifes--;
-		}
-    */
-		
+		}	
+	} */
 
 	if (physA == App->player->PortaSen)
 	{
-	App->player->PortaBlanca.Reset();
+		App->player->PortaBlanca.Reset();
 	}
-<<<<<<< Updated upstream
-=======
-	} innecessari, resta 2 vides, deixo x si acas */ 
-
-
 	if(physA && physA->listener != NULL)
 		physA->listener->OnCollision(physA, physB);
 	if(physB && physB->listener != NULL)
 		physB->listener->OnCollision(physB, physA);
-=======
-	if (physA && physA->listener != NULL)
-	physA->listener->OnCollision(physA, physB);
-	if (physB && physB->listener != NULL)
-	physB->listener->OnCollision(physB, physA);
->>>>>>> Stashed changes
 
 }
 
