@@ -86,7 +86,13 @@ bool ModulePlayer::Start()
 	CanoVerdAnim2.loop = false;
 	CanoVerdAnim2.speed = 0.05;
 
-
+	PortaBlanca.PushBack({ 202,523,19,7 });
+	PortaBlanca.PushBack({ 226,522,19,9 });
+	PortaBlanca.PushBack({ 250,523,19,7 });
+	PortaBlanca.PushBack({ 177,525,20,3 });
+	PortaBlanca.PushBack({ 202,523,19,7 });
+	PortaBlanca.loop = false;
+	PortaBlanca.speed = 0.05;
 
 	//Sensors
 
@@ -100,6 +106,7 @@ bool ModulePlayer::Start()
 	BlancSen = App->physics->CreateRectangleSensor(249, 112, 5, 4);
 	CanoVerdSen1 = App->physics->CreateRectangleSensor(23, 382, 10, 10);
 	CanoVerdSen2 = App->physics->CreateRectangleSensor(219, 382, 10, 10);
+	PortaSen = App->physics->CreateRectangleSensor(249, 112, 5, 6);
 
 
 	int Rampa1[8] = {
@@ -125,6 +132,7 @@ bool ModulePlayer::Start()
 	llumgroga3 = false;
 	llumblava = false;
 	llumvermella = false;
+	portablanca = false;
 
 	Ball->listener = this;
 	MapaPin1f = { 262, 1, 256, 432 };
@@ -349,8 +357,18 @@ update_status ModulePlayer::Update()
 		App->renderer->Blit(Bola, 33 * SCREEN_SIZE, 8 * SCREEN_SIZE, &NightRampPart);
 	}
 
-	Porteta = {202,523,19,7};
-	App->renderer->Blit(Bola, 237 * SCREEN_SIZE, 109 * SCREEN_SIZE, &Porteta);
+	if(portablanca == false)
+	{
+		Porteta = { 202,523,19,7 };
+		App->renderer->Blit(Bola, 237 * SCREEN_SIZE, 109 * SCREEN_SIZE, &Porteta);
+	}
+	if (portablanca == true)
+	{
+		Portablanca = PortaBlanca.GetCurrentFrame();
+		App->renderer->Blit(Bola, 237 * SCREEN_SIZE, 109 * SCREEN_SIZE, &Portablanca);
+		PortaBlanca.Update();
+	}
+
 
 	PedraPin = { 354,165,56,55 };
 	App->renderer->Blit(Bola, 92 * SCREEN_SIZE, 165 * SCREEN_SIZE, &PedraPin);
@@ -560,8 +578,9 @@ void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 	}
 	if (bodyB == BlancSen && llumblanca == false) {
 		llumblanca = true;
-		
-
+	}
+	if (bodyB == PortaSen && portablanca == false) {
+		portablanca = true;
 	}
 	if (bodyB == App->scene_intro->Floor3_2) {
 		App->scene_intro->floornum = 1;

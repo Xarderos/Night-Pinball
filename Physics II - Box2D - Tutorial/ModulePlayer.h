@@ -35,6 +35,7 @@ public:
 	SDL_Texture* Tcanoverd2;
 	SDL_Texture* Black;
 
+	//SDL_Rect
 	SDL_Rect BolaPin;
 	SDL_Rect MapaPin1f;
 	SDL_Rect Reixa;
@@ -68,6 +69,7 @@ public:
 	SDL_Rect rampataronja2;
 	SDL_Rect CanoVerd1Pin;
 	SDL_Rect CanoVerd2Pin;
+	SDL_Rect Portablanca;
 
 	//PhysBodies
 	PhysBody* Ball;
@@ -80,12 +82,13 @@ public:
 	PhysBody* VermeSen;
 	PhysBody* BlauSen;
 	PhysBody* BlancSen;
+	PhysBody* PortaSen;
 	PhysBody* CanoVerdSen1;
 	PhysBody* CanoVerdSen2;
 	PhysBody* RampaT1;
 	PhysBody* RampaT2;
-	//Sensors bools
-
+	
+	//Animations
 	Animation bolapin;
 	Animation CanoAnim;
 	Animation BossAnim;
@@ -93,10 +96,14 @@ public:
 	Animation FleGrocAnim;
 	Animation CanoVerdAnim;
 	Animation CanoVerdAnim2;
+	Animation PortaBlanca;
+
+	//Definitions
 	int botonsound;
 	int pedrasound;
 	int lifes;
 	int llumverda;
+	bool portablanca;
 	bool llumblanca;
 	bool llumvermella;
 	bool llumblava;
