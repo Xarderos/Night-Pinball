@@ -480,11 +480,7 @@ update_status ModulePlayer::Update()
 		Ball->body->SetTransform(vel, 0);
 	}
 
-	//TEMPORAL (resetear cañones verdes)
-	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN) {
-		canoverd1 = true;
-		canoverd2 = true;
-	}
+
 
 
 	//FONTS
