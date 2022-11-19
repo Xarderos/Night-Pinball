@@ -73,6 +73,8 @@ public:
 	SDL_Rect CanoVerd1Pin;
 	SDL_Rect CanoVerd2Pin;
 	SDL_Rect Portablanca;
+	SDL_Rect RightFlipperRect;
+	SDL_Rect LeftFlipperRect;
 
 	//PhysBodies
 	PhysBody* Ball;

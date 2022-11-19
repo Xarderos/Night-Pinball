@@ -42,7 +42,6 @@ bool ModulePlayer::Start()
 	botonsound = App->audio->LoadFx("pinball/Botons.ogg");
 
 	Ball = App->physics->CreateCircle(250, 400, 7);
-
 	//Boss Animations
 
 	BossAnim.PushBack({ 3,438,64,58 });
@@ -52,7 +51,7 @@ bool ModulePlayer::Start()
 	BossAnim.PushBack({ 259,438,64,58 });
 	BossAnim.PushBack({ 323,438,64,58 });
 	BossAnim.loop = true;
-	BossAnim.speed = 0.05f;
+	BossAnim.speed = 0.08f;
 
 	//Animations
 
@@ -61,14 +60,14 @@ bool ModulePlayer::Start()
 	ChipAnim.PushBack({ 339,731,39,77 });
 	ChipAnim.PushBack({ 378,731,39,77 });
 	ChipAnim.loop = true;
-	ChipAnim.speed = 0.03f;
+	ChipAnim.speed = 0.05f;
 
 	FleGrocAnim.PushBack({ 279,933,37,72 });
 	FleGrocAnim.PushBack({ 316,933,37,72 });
 	FleGrocAnim.PushBack({ 353,933,37,72 });
 	FleGrocAnim.PushBack({ 390,933,36,72 });
 	FleGrocAnim.loop = true;
-	FleGrocAnim.speed = 0.03f;
+	FleGrocAnim.speed = 0.05f;
 
 	CanoVerdAnim.PushBack({ 52, 617, 16, 21 });
 	CanoVerdAnim.PushBack({ 113, 617, 16, 21 });
@@ -76,7 +75,7 @@ bool ModulePlayer::Start()
 	CanoVerdAnim.PushBack({ 0, 0, 0, 0 });
 
 	CanoVerdAnim.loop = false;
-	CanoVerdAnim.speed = 0.05;
+	CanoVerdAnim.speed = 0.1;
 
 	CanoVerdAnim2.PushBack({ 52, 617, 16, 21 });
 	CanoVerdAnim2.PushBack({ 113, 617, 16, 21 });
@@ -84,7 +83,7 @@ bool ModulePlayer::Start()
 	CanoVerdAnim2.PushBack({ 0, 0, 0, 0 });
 
 	CanoVerdAnim2.loop = false;
-	CanoVerdAnim2.speed = 0.05;
+	CanoVerdAnim2.speed = 0.1;
 
 	PortaBlanca.PushBack({ 202,523,19,7 });
 	PortaBlanca.PushBack({ 226,522,19,9 });
@@ -93,7 +92,7 @@ bool ModulePlayer::Start()
 	PortaBlanca.PushBack({ 226,522,19,9 });
 	PortaBlanca.PushBack({ 202,523,19,7 });
 	PortaBlanca.loop = false;
-	PortaBlanca.speed = 0.08;
+	PortaBlanca.speed = 0.1;
 
 	//Sensors
 
@@ -142,6 +141,9 @@ bool ModulePlayer::Start()
 	Reixa = { 1,596,28,42 };
 	BouncerBall = { 90,618,21,20 };
 	NightRampPart = { 1,547,104,36 };
+	RightFlipperRect = { 235,651,60,10 };
+	LeftFlipperRect = { 205,662,60,10 };
+	llumverda = 0;
 	LOG("Loading player");
 	return true;
 }
@@ -426,7 +428,7 @@ update_status ModulePlayer::Update()
 	//temporal
 	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
 	{
-		b2Vec2 vel = b2Vec2(0, 3 * GRAVITY_Y);
+		b2Vec2 vel = b2Vec2(0, 1.7 * GRAVITY_Y);
 		Ball->body->SetLinearVelocity(vel);
 	}
 	//temporal
@@ -480,13 +482,13 @@ update_status ModulePlayer::Update()
 	
 	if (canoverd1 == true && CanoVerdSen1->body->IsActive()==true)
 	{
-		b2Vec2 vel = b2Vec2(0, 1.7 * GRAVITY_Y);
+		b2Vec2 vel = b2Vec2(0, 1.5 * GRAVITY_Y);
 		Ball->body->SetLinearVelocity(vel);
 		CanoVerdSen1->body->SetActive(false);
 	}
 
 	if (canoverd2 == true && CanoVerdSen2->body->IsActive() == true) {
-		b2Vec2 vel = b2Vec2(0, 1.7 * GRAVITY_Y);
+		b2Vec2 vel = b2Vec2(0, 1.5 * GRAVITY_Y);
 		Ball->body->SetLinearVelocity(vel);
 		CanoVerdSen2->body->SetActive(false);
 	}
@@ -569,6 +571,9 @@ update_status ModulePlayer::Update()
 	App->font->BlitText(620, 900, scoreFont, "h i g  h  s  c  o  r  e");
 	//App->font->BlitText(620,15, scoreFont, scorechar);
 
+	App->renderer->Blit(Bola, 127 * SCREEN_SIZE, 380 * SCREEN_SIZE, &RightFlipperRect, 0, App->scene_intro->rightflipper->GetRotation());
+	App->renderer->Blit(Bola, 199 * SCREEN_SIZE, 250 * SCREEN_SIZE, &RightFlipperRect, 0, App->scene_intro->rightflipper2->GetRotation());
+	App->renderer->Blit(Bola, 55 * SCREEN_SIZE, 380 * SCREEN_SIZE, &LeftFlipperRect, 0, App->scene_intro->leftflipper->GetRotation());
 
 	return UPDATE_CONTINUE;
 }

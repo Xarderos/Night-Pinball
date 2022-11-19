@@ -47,7 +47,7 @@ bool ModuleSceneIntro::Start()
 	gameover = App->physics->CreateRectangleSensor(87, 430, 66, 10);
 
 	NightsensorF2_1 = App->physics->CreateRectangleSensor(14, 186, 25, 5);
-	NightsensorF2_2 = App->physics->CreateRectangleSensor(198, 67, 15, 4);
+	NightsensorF2_2 = App->physics->CreateRectangleSensor(200, 71, 15, 10);
 	NightsensorF2_3 = App->physics->CreateRectangleSensor(233, 198, 25, 5);
 
 	Floor3_1 = App->physics->CreateRectangleSensor(43, 327, 25, 5);
@@ -92,8 +92,6 @@ bool ModuleSceneIntro::Start()
 	b2RevoluteJoint* leftflipjoint = (b2RevoluteJoint*)App->physics->world->CreateJoint(&leftFlip);
 
 	MapaPin = { 1, 1, 256, 432 };
-	RightFlipperRect = { 235,651,60,10 };
-	LeftFlipperRect = { 205,662,60,10 };
 	RightBouncer = { 290, 544, 21, 40 };
 	LeftBouncer = { 238, 544, 21, 40 };
 	ShineRightBouncer = { 316, 544, 21, 40 };
@@ -183,13 +181,13 @@ update_status ModuleSceneIntro::Update()
 	
 	if ((App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT))
 	{
-		rightflipper->body->ApplyForceToCenter(b2Vec2(0, -500), 1);
-		rightflipper2->body->ApplyForceToCenter(b2Vec2(0, -500), 1);
+		rightflipper->body->ApplyForceToCenter(b2Vec2(0, -400), 1);
+		rightflipper2->body->ApplyForceToCenter(b2Vec2(0, -400), 1);
 	}
 
 	if ((App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT))
 	{
-		leftflipper->body->ApplyForceToCenter(b2Vec2(0, -500), 1);
+		leftflipper->body->ApplyForceToCenter(b2Vec2(0, -400), 1);
 	}
 	
 
@@ -229,10 +227,9 @@ update_status ModuleSceneIntro::Update()
 
 	
 	App->renderer->Blit(Mapa, 2, 2, &MapaPin);
-	App->renderer->Blit(Mapa, 127 * SCREEN_SIZE, 380 * SCREEN_SIZE, &RightFlipperRect, 0, App->scene_intro->rightflipper->GetRotation());
-	App->renderer->Blit(Mapa, 199 * SCREEN_SIZE, 250 * SCREEN_SIZE, &RightFlipperRect, 0, App->scene_intro->rightflipper2->GetRotation());
 
-	App->renderer->Blit(Mapa, 55 * SCREEN_SIZE, 380 * SCREEN_SIZE, &LeftFlipperRect, 0, App->scene_intro->leftflipper->GetRotation());
+
+	
 	if (rightBtimer<=0) {
 		App->renderer->Blit(Mapa, 163 * SCREEN_SIZE, 313 * SCREEN_SIZE, &RightBouncer);
 		
@@ -525,7 +522,7 @@ void ModuleSceneIntro::map()
 			45, 992
 		};
 
-		Map.push_back(App->physics->CreateBouncyChain(0, -910, ballBouncer1, 22));
+		Map.push_back(App->physics->CreateNotThatBouncyChain(0, -910, ballBouncer1, 22));
 
 		int ballBouncer2[24] = {
 			65, 974,
@@ -541,7 +538,7 @@ void ModuleSceneIntro::map()
 			55, 980,
 			59, 976
 		};
-		Map.push_back(App->physics->CreateBouncyChain(0, -910, ballBouncer2, 24));
+		Map.push_back(App->physics->CreateNotThatBouncyChain(0, -910, ballBouncer2, 24));
 	
 		int bouncerleft[12] = {
 			226, 1056,
