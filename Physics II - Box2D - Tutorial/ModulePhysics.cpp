@@ -464,14 +464,14 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 		if (App->player->lifes > 0) {
 			App->player->lifes--;
 		}
-<<<<<<< Updated upstream
+    */
 		
-		
-	} 
+
 	if (physA == App->player->PortaSen)
 	{
-		App->player->PortaBlanca.Reset();
+	App->player->PortaBlanca.Reset();
 	}
+<<<<<<< Updated upstream
 =======
 	} innecessari, resta 2 vides, deixo x si acas */ 
 
@@ -480,6 +480,12 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 		physA->listener->OnCollision(physA, physB);
 	if(physB && physB->listener != NULL)
 		physB->listener->OnCollision(physB, physA);
+=======
+	if (physA && physA->listener != NULL)
+	physA->listener->OnCollision(physA, physB);
+	if (physB && physB->listener != NULL)
+	physB->listener->OnCollision(physB, physA);
+>>>>>>> Stashed changes
 
 }
 
