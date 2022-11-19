@@ -102,6 +102,21 @@ bool ModulePlayer::Start()
 	BlancSen = App->physics->CreateRectangleSensor(249, 112, 5, 4);
 	CanoVerdSen1 = App->physics->CreateRectangleSensor(23, 382, 10, 10);
 	CanoVerdSen2 = App->physics->CreateRectangleSensor(219, 382, 10, 10);
+	int Rampa1[8] = {
+			208, 1297,
+			229, 1287,
+			229, 1299,
+			208, 1307
+	};
+	RampaT1=App->physics->CreateChain(0, -910, Rampa1, 8);
+	
+	int Rampa2[8] = {
+			36, 1298,
+			13, 1289,
+			13, 1304,
+			33, 1311
+	};
+	RampaT2 = App->physics->CreateChain(0, -910, Rampa2, 8);
 	canoverd1 = false;
 	canoverd2 = false;
 
@@ -437,6 +452,10 @@ update_status ModulePlayer::Update()
 		animaciocano = CanoVerdAnim.GetCurrentFrame();
 		App->renderer->Blit(Tcanoverd1, 15 * SCREEN_SIZE, 391 * SCREEN_SIZE, &animaciocano);
 		CanoVerdAnim.Update();
+		SDL_Rect rampataronja1;
+		rampataronja1 = { 449, 621, 20, 16 };
+		App->renderer->Blit(Bola, 13 * SCREEN_SIZE, 376 * SCREEN_SIZE, &rampataronja1);
+
 	}
 
 	if (canoverd2 == true) {
@@ -444,6 +463,9 @@ update_status ModulePlayer::Update()
 		animaciocano = CanoVerdAnim2.GetCurrentFrame();
 		App->renderer->Blit(Tcanoverd1, 211 * SCREEN_SIZE, 391 * SCREEN_SIZE, &animaciocano);
 		CanoVerdAnim2.Update();
+		SDL_Rect rampataronja2;
+		rampataronja2 = { 420, 621, 20, 16 };
+		App->renderer->Blit(Bola, 209 * SCREEN_SIZE, 376 * SCREEN_SIZE, &rampataronja2);
 	}
 
 

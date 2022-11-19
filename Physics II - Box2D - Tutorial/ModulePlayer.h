@@ -57,6 +57,8 @@ public:
 	PhysBody* BlancSen;
 	PhysBody* CanoVerdSen1;
 	PhysBody* CanoVerdSen2;
+	PhysBody* RampaT1;
+	PhysBody* RampaT2;
 	//Sensors bools
 
 	Animation bolapin;
