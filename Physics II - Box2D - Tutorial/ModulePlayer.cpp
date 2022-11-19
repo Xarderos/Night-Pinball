@@ -170,6 +170,12 @@ bool ModulePlayer::CleanUp()
 	CanoVerdSen1 = nullptr;
 	delete CanoVerdSen2;
 	CanoVerdSen2 = nullptr;
+	delete PortaSen;
+	PortaSen = nullptr;
+	delete RampaT1;
+	RampaT1 = nullptr;
+	delete RampaT2;
+	RampaT2 = nullptr;
 	return true;
 }
 
