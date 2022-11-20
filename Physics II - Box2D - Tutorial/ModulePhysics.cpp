@@ -7,6 +7,7 @@
 #include "math.h"
 #include "ModuleSceneIntro.h"
 #include "ModulePlayer.h"
+#include "ModuleAudio.h"
 // Tell the compiler to reference the compiled Box2D libraries
 #ifdef _DEBUG
 	#pragma comment( lib, "Box2D/libx86/Debug/Box2D.lib" )
@@ -45,6 +46,8 @@ bool ModulePhysics::Start()
 	// This will be used to create joints like a mouse joint
 	b2BodyDef bd;
 	ground = world->CreateBody(&bd); // Add the static ground body to the World
+
+	bosshit = App->audio->LoadFx("pinball/Audios/BossHit.wav");
 
 	return true;
 }
@@ -501,6 +504,7 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 	}
 	if (physA == App->player->BossHitbox) {
 		App->player->bossvida--;
+		App->audio->PlayFx(bosshit);
 	}
 
 	/*if (physA == App->scene_intro->gameover) {
@@ -546,7 +550,7 @@ void PhysBody::GetPosition(int& x, int &y) const
 
 float PhysBody::GetRotation() const
 {
-	return RADTODEG * body->GetAngle();
+ return RADTODEG * body->GetAngle();
 }
 
 bool PhysBody::Contains(int x, int y) const

@@ -122,7 +122,7 @@ bool ModuleSceneIntro::Start()
 	rightBtimer = 0;
 	leftBtimer = 0;
 
-	App->audio->PlayMusic("pinball/Nightmaren.ogg");
+	App->audio->PlayMusic("pinball/Audios/Nightmaren.ogg");
 
 	return ret;
 }

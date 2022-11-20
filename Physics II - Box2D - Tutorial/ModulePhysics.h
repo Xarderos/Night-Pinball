@@ -58,6 +58,10 @@ public:
 
 	b2World* world;
 
+	//Audios
+
+	uint bosshit;
+
 	// b2ContactListener ---
 	void BeginContact(b2Contact* contact);
 

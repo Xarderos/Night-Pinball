@@ -114,6 +114,8 @@ public:
 	uint fire_ball;
 	uint flipper;
 	uint bolafuera;
+	uint bumper;
+	
 
 	//Definitions
 	int botonsound;
