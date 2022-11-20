@@ -15,6 +15,7 @@ class ModuleFont;
 class ModuleSceneIntro;
 class ModulePhysics;
 class ModuleSceneTitle;
+class ModuleGameOver;
 
 class Application
 {
@@ -30,6 +31,7 @@ public:
 	ModuleSceneIntro* scene_intro;
 	ModulePhysics* physics;
 	ModuleSceneTitle* scene_title;
+	ModuleGameOver* game_over;
 
 private:
 

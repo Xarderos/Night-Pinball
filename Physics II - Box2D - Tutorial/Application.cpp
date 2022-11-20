@@ -11,6 +11,7 @@
 #include "ModuleFont.h"
 #include "ModuleSceneIntro.h"
 #include "ModuleSceneTitle.h"
+#include "ModuleGameOver.h"
 #include "Application.h"
 
 Application::Application()
@@ -26,6 +27,7 @@ Application::Application()
 	fade = new ModuleFadeToBlack(this);
 	font = new ModuleFont(this);
 	scene_intro = new ModuleSceneIntro(this, false);
+	game_over = new ModuleGameOver(this, false);
 	scene_title = new ModuleSceneTitle(this);
 
 	// The order of calls is very important!
@@ -45,6 +47,7 @@ Application::Application()
 	AddModule(fade);
 	AddModule(scene_intro);
 	AddModule(scene_title);
+	AddModule(game_over);
 	
 	// Player
 	AddModule(player);
