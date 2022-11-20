@@ -123,6 +123,7 @@ bool ModuleSceneIntro::Start()
 	leftBtimer = 0;
 
 	App->audio->PlayMusic("pinball/Audios/Nightmaren.ogg");
+	flippers = App->audio->LoadFx("pinball/Audios/FlipperMove.wav");
 
 	return ret;
 }
@@ -190,12 +191,18 @@ update_status ModuleSceneIntro::Update()
 		rightflipper->body->ApplyForceToCenter(b2Vec2(0, -300), 1);
 		rightflipper2->body->ApplyForceToCenter(b2Vec2(0, -300), 1);
 	}
-
+	if ((App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN))
+	{
+		App->audio->PlayFx(flippers);
+	}
 	if ((App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT))
 	{
 		leftflipper->body->ApplyForceToCenter(b2Vec2(0, -400), 1);
 	}
-	
+	if ((App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_DOWN))
+	{
+		App->audio->PlayFx(flippers);
+	}
 	if (App->player->lifes <= 0 || (App->input->GetKey(SDL_SCANCODE_L) == KEY_REPEAT)) {
 		App->player->GameOver = true; 
 		App->physics->CleanUp();

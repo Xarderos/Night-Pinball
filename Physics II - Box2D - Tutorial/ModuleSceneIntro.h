@@ -55,6 +55,9 @@ public:
 
 	PhysBody* gameover;
 
+	//Audios
+
+	uint flippers;
 
 	bool sensed;
 
