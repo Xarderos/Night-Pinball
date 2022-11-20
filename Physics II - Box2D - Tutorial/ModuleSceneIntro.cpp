@@ -198,7 +198,9 @@ update_status ModuleSceneIntro::Update()
 	}
 
 	if (App->physics->Win == true || (App->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN)) {
-		App->physics->Win = true;
+		if (App->physics->Win = false) {
+			App->physics->Win = true;
+		}
 		App->player->Disable();
 		App->game_over->Enable();
 		App->scene_intro->Disable();
