@@ -166,6 +166,7 @@ bool ModulePlayer::Start()
 	boss = false;
 	bossvida = 3;
 	gravity = -18.0;
+	GameOver = false;
 	changegrav = true;
 	LOG("Loading player");
 	return true;
@@ -207,6 +208,8 @@ bool ModulePlayer::CleanUp()
 	TriangleLilaSen = nullptr;
 	delete LlumRectangle;
 	LlumRectangle = nullptr;
+	delete BossHitbox;
+	BossHitbox = nullptr;
 	return true;
 }
 
@@ -320,12 +323,7 @@ update_status ModulePlayer::Update()
 	{
 		Boss = { 125, 563, 14, 14 };
 		App->renderer->Blit(Bola, 100 * SCREEN_SIZE, 337 * SCREEN_SIZE, &Boss);
-
-		//RECUPERA UN CANÓ
-		if (estrellablanca == false) {
-			numCVerds++;
-			estrellablanca = true;
-		}
+		
 	}
 	if (bossvida <= 2)
 	{

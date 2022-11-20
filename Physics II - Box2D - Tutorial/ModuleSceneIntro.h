@@ -92,7 +92,7 @@ public:
 	bool bouncerLeft;
 	int leftBtimer;
 
-	bool boss = false;
-
+	bool boss;
+	bool restitution;
 	int floornum;
 };

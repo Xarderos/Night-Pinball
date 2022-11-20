@@ -147,13 +147,13 @@ public:
 
 	int numCVerds = 0;
 
-	bool estrellablanca = false;
-	bool estrellablava = false;
-	bool estrellagroga = false;
-	bool estrellaverda = false;
-	bool estrellavermella = false;
+	bool estrellablanca;
+	bool estrellablava;
+	bool estrellagroga;
+	bool estrellaverda;
+	bool estrellavermella;
 
-	bool GameOver = false;
+	bool GameOver;
 	bool boss;
 	bool WIN;
 	bool oai;

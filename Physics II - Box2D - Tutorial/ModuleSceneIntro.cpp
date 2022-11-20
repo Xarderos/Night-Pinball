@@ -109,7 +109,6 @@ bool ModuleSceneIntro::Start()
 	180, 1226
 	};
 	rBumperRight= App->physics->CreateBouncyChain(0, -910, bouncerRightSens, 8);
-
 	int bouncerLeftSens[8] = {
 		62, 1238,
 		63, 1227,
@@ -121,10 +120,10 @@ bool ModuleSceneIntro::Start()
 	bouncerLeft = false;
 	rightBtimer = 0;
 	leftBtimer = 0;
-
+	boss = false;
 	App->audio->PlayMusic("pinball/Audios/Nightmaren.ogg");
 	flippers = App->audio->LoadFx("pinball/Audios/FlipperMove.wav");
-
+	restitution = false;
 	return ret;
 }
 
@@ -177,6 +176,20 @@ bool ModuleSceneIntro::CleanUp()
 
 update_status ModuleSceneIntro::Update()
 {
+	//Change restitutions of bumpers
+	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
+		restitution = !restitution;
+		if (restitution == false) {
+			rBumperRight->body->GetFixtureList()->SetRestitution(1.4f);
+			rBumperLeft->body->GetFixtureList()->SetRestitution(1.4f);
+
+		}
+		if (restitution == true) {
+			rBumperRight->body->GetFixtureList()->SetRestitution(3.0f);
+			rBumperLeft->body->GetFixtureList()->SetRestitution(3.0f);
+		}
+
+	}
 	if (App->player->lifes <= 0 || (App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)) {
 		App->player->GameOver = true;
 		App->player->Disable();
