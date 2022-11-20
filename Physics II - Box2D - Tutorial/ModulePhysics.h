@@ -47,6 +47,9 @@ public:
 
 	bool Gameover;
 	bool Win;
+	int Score;
+	int scoreFont = -1; //SCORE ELIMINAR AIXÒ
+	char scoreText[10] = { "\0" };
 	int Highscore;
 
 	

@@ -153,14 +153,19 @@ public:
 	bool estrellaverda;
 	bool estrellavermella;
 
+<<<<<<< Updated upstream
 	bool GameOver;
+=======
+
+	//bool GameOver;
+
+>>>>>>> Stashed changes
 	bool boss;
 	bool oai;
 	// Font score index
-	int score;
-	int scoreFont = -1; //SCORE ELIMINAR AIXÒ
+	
 	int slowtimer;
 	float gravity;
 	bool changegrav;
-	char scoreText[10] = { "\0" };
+	
 };
