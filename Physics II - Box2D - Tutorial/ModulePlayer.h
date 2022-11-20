@@ -153,13 +153,9 @@ public:
 	bool estrellaverda;
 	bool estrellavermella;
 
-<<<<<<< Updated upstream
-	bool GameOver;
-=======
 
-	//bool GameOver;
+	//bool GameOver; ja hi ha el de physics.h
 
->>>>>>> Stashed changes
 	bool boss;
 	bool oai;
 	// Font score index
