@@ -122,6 +122,8 @@ bool ModuleSceneIntro::Start()
 	rightBtimer = 0;
 	leftBtimer = 0;
 
+	App->audio->PlayMusic("pinball/Nightmaren.ogg");
+
 	return ret;
 }
 
