@@ -26,7 +26,7 @@ ModulePlayer::~ModulePlayer()
 // Load assets
 bool ModulePlayer::Start()
 {
-	App->physics->Score = 000;
+	App->physics->Score = 10000;
 	lifes = 5;
 	//Textures
 
@@ -668,6 +668,7 @@ update_status ModulePlayer::Update()
 	App->font->BlitText(620, 700, App->physics->scoreFont, "c  o  m  b  o");
 	//App->font->BlitText(620,15, scoreFont, scorechar);
 	App->font->BlitText(620, 900, App->physics->scoreFont, "h i g  h  s  c  o  r  e");
+	App->font->BlitText(690, 230, App->physics->scoreFont, scorechar);
 	//App->font->BlitText(620,15, scoreFont, scorechar);
 
 	App->renderer->Blit(Bola, 127 * SCREEN_SIZE, 380 * SCREEN_SIZE, &RightFlipperRect, 0, App->scene_intro->rightflipper->GetRotation());
