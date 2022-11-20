@@ -28,7 +28,7 @@ bool ModuleSceneTitle::Start()
 	TitleFont = App->font->Load("pinball/rtype_font3.png", lookupTable, 2);
 
 	//App->renderer->camera.x = App->renderer->camera.y = 0;
-	title = App->textures->Load("pinball/titlepetit.png");
+	title = App->textures->Load("pinball/titol.png");
 
 	return true;
 }
