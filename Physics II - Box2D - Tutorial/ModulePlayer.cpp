@@ -25,6 +25,7 @@ ModulePlayer::~ModulePlayer()
 // Load assets
 bool ModulePlayer::Start()
 {
+	gravity = GRAVITY_Y;
 	score = 000;
 	lifes = 5;
 	//Textures
@@ -163,6 +164,8 @@ bool ModulePlayer::Start()
 	llumverda = 0;
 	boss = false;
 	bossvida = 3;
+	changegrav = true;
+
 	LOG("Loading player");
 	return true;
 }
@@ -203,6 +206,8 @@ bool ModulePlayer::CleanUp()
 	TriangleLilaSen = nullptr;
 	delete LlumRectangle;
 	LlumRectangle = nullptr;
+	delete BossHitbox;
+	BossHitbox = nullptr;
 	return true;
 }
 
@@ -210,7 +215,21 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update()
 {
 	b2Vec2 position;
+	if (App->input->GetKey(SDL_SCANCODE_G) == KEY_DOWN) {
+		changegrav = !changegrav;
+		if (changegrav == true) {
+
+			gravity = -18.0;
+
+		}
+		if (changegrav == false) {
+			gravity = -4.0;
+		}
+		App->physics->world->SetGravity({ 0, -gravity });
+	}
 	
+	
+
 	if (llumgroga == false)
 	{
 		BotonsPin = { 396, 517, 8, 13 };
@@ -464,7 +483,7 @@ update_status ModulePlayer::Update()
 	if (canjump) {
 		if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
 		{
-			b2Vec2 vel = b2Vec2(0, 3 * GRAVITY_Y);
+			b2Vec2 vel = b2Vec2(0, 3 * gravity);
 			Ball->body->SetLinearVelocity(vel);
 			App->audio->PlayFx(fire_ball);
 		}
@@ -496,7 +515,7 @@ update_status ModulePlayer::Update()
 	//temporal
 	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
 	{
-		b2Vec2 vel = b2Vec2(0, 1.7 * GRAVITY_Y);
+		b2Vec2 vel = b2Vec2(0, 1.7 * gravity);
 		Ball->body->SetLinearVelocity(vel);
 	}
 	//temporal
@@ -552,12 +571,13 @@ update_status ModulePlayer::Update()
 	
 	if (canoverd1 == true && CanoVerdSen1->body->IsActive()==true)
 	{
-		b2Vec2 vel = b2Vec2(0, 1.5 * GRAVITY_Y);
+		b2Vec2 vel = b2Vec2(0, 1.5 * gravity);
 		Ball->body->SetLinearVelocity(vel);
 		CanoVerdSen1->body->SetActive(false);
 
 		App->audio->PlayFx(canonshot);
 	}
+
 
 	if (canoverd2 == true && CanoVerdSen2->body->IsActive() == true) 
 	{

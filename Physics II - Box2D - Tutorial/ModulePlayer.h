@@ -142,9 +142,10 @@ public:
 	bool canoverdsen2;
 	bool canoverd1 = true;
 	bool canoverd2 = true;
+	bool changegrav;
 	int canoverd1Anim = 0;
 	int canoverd2Anim = 0;
-
+	float gravity;
 	int numCVerds = 0;
 
 	bool estrellablanca = false;
