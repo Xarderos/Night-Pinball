@@ -7,6 +7,9 @@
 #include "ModuleAudio.h"
 #include "ModulePhysics.h"
 #include "ModulePlayer.h"
+#include "ModuleGameOver.h"
+#include "ModuleFadeToBlack.h"
+
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 
@@ -190,7 +193,14 @@ update_status ModuleSceneIntro::Update()
 		leftflipper->body->ApplyForceToCenter(b2Vec2(0, -400), 1);
 	}
 	
+	if (App->player->lifes <= 0) {
+		App->player->GameOver = true; 
+		App->fade->FadeToBlack(this, (Module*)App->game_over, 50);
+	}
 
+	if (App->player->WIN == true) {
+		App->fade->FadeToBlack(this, (Module*)App->game_over, 50);
+	}
 
 	// The target point of the raycast is the mouse current position (will change over game time)
 	iPoint mouse;
