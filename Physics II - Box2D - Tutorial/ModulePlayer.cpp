@@ -44,7 +44,7 @@ bool ModulePlayer::Start()
 	canonshot = App->audio->LoadFx("pinball/canon_shot.wav");
 	fire_ball = App->audio->LoadFx("pinball/fire_ball.wav");
 	flipper = App->audio->LoadFx("pinball/flipper.wav");
-
+	bolafuera = App->audio->LoadFx("pinball/lose.wav");
 
 	Ball = App->physics->CreateCircle(250, 400, 7);
 	//Boss Animations
@@ -449,11 +449,13 @@ update_status ModulePlayer::Update()
 			App->audio->PlayFx(fire_ball);
 		}
 	}
+
 	if ((METERS_TO_PIXELS(position.y)) > 1500 && lifes>0)
 	{
 		Ball->body->SetTransform({ PIXEL_TO_METERS(250), PIXEL_TO_METERS(400) }, 0);
 		lifes--;
 		canjump = true;
+		App->audio->PlayFx(bolafuera);
 	}
 
 	if (lifes <= 0) {

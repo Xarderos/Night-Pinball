@@ -113,6 +113,7 @@ public:
 	uint canonshot;
 	uint fire_ball;
 	uint flipper;
+	uint bolafuera;
 
 	//Definitions
 	int botonsound;
