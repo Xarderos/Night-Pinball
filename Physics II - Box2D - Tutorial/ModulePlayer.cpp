@@ -164,6 +164,7 @@ bool ModulePlayer::Start()
 	llumverda = 0;
 	boss = false;
 	bossvida = 3;
+
 	LOG("Loading player");
 	return true;
 }
@@ -419,12 +420,28 @@ update_status ModulePlayer::Update()
 	}
 	//Actives el boss i les hitbox
 	if (boss == true && bossvida>=0) {
-		BossHitbox->body->SetActive(true);
-		LlumBoss = { 176, 722, 9, 12 };
-		App->renderer->Blit(Bola, 190 * SCREEN_SIZE, 105 * SCREEN_SIZE, &LlumBoss);
-		Boss2 = BossAnim.GetCurrentFrame();
-		App->renderer->Blit(Bola, 173 * SCREEN_SIZE, 37 * SCREEN_SIZE, &Boss2);
-		BossAnim.Update();
+		if (oai == false) {
+			oai = true;
+			slowtimer = 894;
+			App->audio->PlayMusic("pinball/HuntingDrowningKurapika.ogg");
+
+		}
+		if (slowtimer > 0) {
+			App->physics->velocity = 8000.0f;
+
+		}
+		if(slowtimer==0)
+		{
+			App->physics->velocity = 60.0f;
+		}
+		if (slowtimer < 0) {
+			BossHitbox->body->SetActive(true);
+			LlumBoss = { 176, 722, 9, 12 };
+			App->renderer->Blit(Bola, 190 * SCREEN_SIZE, 105 * SCREEN_SIZE, &LlumBoss);
+			Boss2 = BossAnim.GetCurrentFrame();
+			App->renderer->Blit(Bola, 173 * SCREEN_SIZE, 37 * SCREEN_SIZE, &Boss2);
+			BossAnim.Update();
+		}
 	}
 	//Shortcut per matar al boss
 	if (App->input->GetKey(SDL_SCANCODE_K) == KEY_DOWN) {
@@ -633,7 +650,7 @@ update_status ModulePlayer::Update()
 	App->renderer->Blit(Bola, 127 * SCREEN_SIZE, 380 * SCREEN_SIZE, &RightFlipperRect, 0, App->scene_intro->rightflipper->GetRotation());
 	App->renderer->Blit(Bola, 199 * SCREEN_SIZE, 250 * SCREEN_SIZE, &RightFlipperRect, 0, App->scene_intro->rightflipper2->GetRotation());
 	App->renderer->Blit(Bola, 55 * SCREEN_SIZE, 380 * SCREEN_SIZE, &LeftFlipperRect, 0, App->scene_intro->leftflipper->GetRotation());
-
+	slowtimer--;
 	return UPDATE_CONTINUE;
 }
 void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)

@@ -155,8 +155,10 @@ public:
 	bool GameOver = false;
 	bool boss;
 	bool WIN;
+	bool oai;
 	// Font score index
 	int score;
 	int scoreFont = -1; //SCORE ELIMINAR AIXÒ
+	int slowtimer;
 	char scoreText[10] = { "\0" };
 };
