@@ -39,13 +39,13 @@ bool ModulePlayer::Start()
 	
 	//Sorolls
 
-	pedrasound = App->audio->LoadFx("pinball/Pedra.ogg");
-	botonsound = App->audio->LoadFx("pinball/Botons.ogg");
+	pedrasound = App->audio->LoadFx("pinball/Audios/Pedra.ogg");
+	botonsound = App->audio->LoadFx("pinball/Audios/Botons.ogg");
 	silencio = App->audio->LoadFx("Silencio(2s).wav");
-	canonshot = App->audio->LoadFx("pinball/canon_shot.wav");
-	fire_ball = App->audio->LoadFx("pinball/fire_ball.wav");
-	flipper = App->audio->LoadFx("pinball/flipper.wav");
-
+	canonshot = App->audio->LoadFx("pinball/Audios/canon_shot.wav");
+	fire_ball = App->audio->LoadFx("pinball/Audios/fire_ball.wav");
+	flipper = App->audio->LoadFx("pinball/Audios/flipper.wav");
+	bumper = App->audio->LoadFx("pinball/Audios/Bumper.wav");
 
 	Ball = App->physics->CreateCircle(250, 400, 7);
 	//Boss Animations
@@ -728,9 +728,11 @@ void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 	}
 	if (bodyB == App->scene_intro->rBumperRight) {
 		App->scene_intro->rightBtimer = 20;
+		App->audio->PlayFx(bumper);
 	}
 	if (bodyB == App->scene_intro->rBumperLeft) {
 		App->scene_intro->leftBtimer = 20;
+		App->audio->PlayFx(bumper);
 	}
 	if (bodyB == App->scene_intro->Floor3_ac) {
 		Ball->body->SetLinearVelocity({ -20, -20 });

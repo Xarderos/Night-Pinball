@@ -114,6 +114,7 @@ public:
 	uint canonshot;
 	uint fire_ball;
 	uint flipper;
+	uint bumper;
 
 	//Definitions
 	int botonsound;
