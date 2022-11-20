@@ -196,12 +196,14 @@ update_status ModuleSceneIntro::Update()
 		leftflipper->body->ApplyForceToCenter(b2Vec2(0, -400), 1);
 	}
 	
-	if (App->player->lifes <= 0) {
+	if (App->player->lifes <= 0 || (App->input->GetKey(SDL_SCANCODE_L) == KEY_REPEAT)) {
 		App->player->GameOver = true; 
+		App->physics->CleanUp();
+		App->player->CleanUp();
 		App->fade->FadeToBlack(this, (Module*)App->game_over, 50);
 	}
 
-	if (App->player->WIN == true) {
+	if (App->player->WIN == true || (App->input->GetKey(SDL_SCANCODE_K) == KEY_REPEAT)) {
 		App->fade->FadeToBlack(this, (Module*)App->game_over, 50);
 	}
 
