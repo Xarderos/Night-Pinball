@@ -508,6 +508,7 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 	}
 	if (physA == App->player->BossHitbox) {
 		App->player->bossvida--;
+		Score += 100;
 		App->audio->PlayFx(bosshit);
 	}
 

@@ -587,7 +587,7 @@ update_status ModulePlayer::Update()
 		b2Vec2 vel = b2Vec2(0, 1.5 * gravity);
 		Ball->body->SetLinearVelocity(vel);
 		CanoVerdSen1->body->SetActive(false);
-
+		App->physics->Score += 100;
 		App->audio->PlayFx(canonshot);
 	}
 
@@ -596,7 +596,7 @@ update_status ModulePlayer::Update()
 		b2Vec2 vel = b2Vec2(0, 1.5 * gravity);
 		Ball->body->SetLinearVelocity(vel);
 		CanoVerdSen2->body->SetActive(false);
-
+		App->physics->Score += 100;
 		App->audio->PlayFx(canonshot);
 	}
 
@@ -740,10 +740,12 @@ void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 	}
 	if (bodyB == App->scene_intro->rBumperRight) {
 		App->scene_intro->rightBtimer = 20;
+		App->physics->Score += 50;
 		App->audio->PlayFx(bumper);
 	}
 	if (bodyB == App->scene_intro->rBumperLeft) {
 		App->scene_intro->leftBtimer = 20;
+		App->physics->Score += 50;
 		App->audio->PlayFx(bumper);
 	}
 	if (bodyB == App->scene_intro->Floor3_ac) {
