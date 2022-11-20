@@ -126,6 +126,9 @@ bool ModulePlayer::Start()
 			33, 1311
 	};
 	RampaT2 = App->physics->CreateChain(0, -910, Rampa2, 8);
+	BossHitbox = App->physics->CreateRectangleSensor(173, 37,20,20);
+	BossHitbox->body->SetActive(false);
+
 	canoverd1 = false;
 	canoverd2 = false;
 
@@ -144,6 +147,8 @@ bool ModulePlayer::Start()
 	RightFlipperRect = { 235,651,60,10 };
 	LeftFlipperRect = { 205,662,60,10 };
 	llumverda = 0;
+	boss = false;
+	bossvida = 4;
 	LOG("Loading player");
 	return true;
 }
@@ -385,6 +390,20 @@ update_status ModulePlayer::Update()
 
 	if (llumblava == true && llumvermella == true && llumverda > 2 && llumgroga == true && llumgroga2 == true && llumgroga3 == true && llumblanca == true)
 	{
+		boss = true;
+	}
+	if (App->input->GetKey(SDL_SCANCODE_B) == KEY_DOWN) {
+		boss = true;
+		llumblava = true;
+		llumvermella = true;
+		llumverda = 3;
+		llumgroga = true;
+		llumgroga2 = true;
+		llumgroga3 = true;
+		llumblanca = true;
+	}
+	if (boss == true && bossvida>=0) {
+		BossHitbox->body->SetActive(true);
 		LlumBoss = { 176, 722, 9, 12 };
 		App->renderer->Blit(Bola, 190 * SCREEN_SIZE, 105 * SCREEN_SIZE, &LlumBoss);
 		Boss2 = BossAnim.GetCurrentFrame();
@@ -639,4 +658,5 @@ void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 	if (bodyB == App->scene_intro->Floor3_ac) {
 		Ball->body->SetLinearVelocity({ -20, -20 });
 	}
+	
 }

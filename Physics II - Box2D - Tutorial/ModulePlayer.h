@@ -94,7 +94,8 @@ public:
 	PhysBody* CanoVerdSen2;
 	PhysBody* RampaT1;
 	PhysBody* RampaT2;
-	
+	PhysBody* BossHitbox;
+
 	//Animations
 	Animation bolapin;
 	Animation CanoAnim;
@@ -110,6 +111,7 @@ public:
 	int pedrasound;
 	int lifes;
 	int llumverda;
+	int bossvida;
 	bool portablanca;
 	bool lilatriangle;
 	bool llumrectangle;
@@ -140,7 +142,7 @@ public:
 	bool estrellavermella = false;
 
 	bool GameOver = false;
-
+	bool boss;
 	// Font score index
 	int score;
 	int scoreFont = -1; //SCORE ELIMINAR AIXÒ

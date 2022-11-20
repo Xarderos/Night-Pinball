@@ -499,6 +499,9 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 
 		}
 	}
+	if (physA == App->player->BossHitbox) {
+		App->player->bossvida--;
+	}
 
 	/*if (physA == App->scene_intro->gameover) {
 		if (App->player->lifes > 0) {
