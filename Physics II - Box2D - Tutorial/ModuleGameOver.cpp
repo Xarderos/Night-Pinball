@@ -39,7 +39,7 @@ update_status ModuleGameOver::Update()
 {
 	App->renderer->Blit(fondo, 0, 0);
 	App->font->BlitText(58, 248, TitleFont, TitleText);
-	if (App->player->lifes <= 0||App->physics->Gameover==true) {
+	if (App->physics->Gameover==true) {
 		App->font->BlitText(300, 430, TitleFont, "g  a  m  e    o  v  e  r");
 		App->font->BlitText(300, 460, TitleFont, "p  r  e  s  s     r");
 		App->font->BlitText(300, 490, TitleFont, "t  o    p  l  a  y");
@@ -76,6 +76,6 @@ update_status ModuleGameOver::Update()
 bool ModuleGameOver::CleanUp()
 {
 	LOG("Unloading title scene");
-	App->textures->Unload(fondo);
+	//App->textures->Unload(fondo);
 	return true;
 }
