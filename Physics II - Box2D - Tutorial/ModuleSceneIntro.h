@@ -75,9 +75,9 @@ public:
 
 
 
-
 	// FX
 	uint bonus_fx;
+	uint silencio;
 
 	// Raycast
 	p2Point<int> ray;
@@ -88,6 +88,8 @@ public:
 	int rightBtimer;
 	bool bouncerLeft;
 	int leftBtimer;
+
+	bool boss = false;
 
 	int floornum;
 };

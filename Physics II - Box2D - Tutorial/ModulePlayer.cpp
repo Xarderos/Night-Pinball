@@ -40,6 +40,11 @@ bool ModulePlayer::Start()
 
 	pedrasound = App->audio->LoadFx("pinball/Pedra.ogg");
 	botonsound = App->audio->LoadFx("pinball/Botons.ogg");
+	silencio = App->audio->LoadFx("Silencio(2s).wav");
+	canonshot = App->audio->LoadFx("pinball/canon_shot.wav");
+	fire_ball = App->audio->LoadFx("pinball/fire_ball.wav");
+	flipper = App->audio->LoadFx("pinball/flipper.wav");
+
 
 	Ball = App->physics->CreateCircle(250, 400, 7);
 	//Boss Animations
@@ -204,7 +209,6 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update()
 {
-
 	b2Vec2 position;
 	
 	if (llumgroga == false)
@@ -442,6 +446,7 @@ update_status ModulePlayer::Update()
 		{
 			b2Vec2 vel = b2Vec2(0, 3 * GRAVITY_Y);
 			Ball->body->SetLinearVelocity(vel);
+			App->audio->PlayFx(fire_ball);
 		}
 	}
 	if ((METERS_TO_PIXELS(position.y)) > 1500 && lifes>0)
@@ -519,6 +524,8 @@ update_status ModulePlayer::Update()
 			dinsCano = false;
 			canoframe3 = 5;
 			canjump = false; //Quan estiguis a dins del mapa la bola no pujarà quan li donis a DOWN
+
+			App->audio->PlayFx(canonshot);
 		}
 		
 	}
@@ -528,13 +535,19 @@ update_status ModulePlayer::Update()
 		b2Vec2 vel = b2Vec2(0, 1.5 * GRAVITY_Y);
 		Ball->body->SetLinearVelocity(vel);
 		CanoVerdSen1->body->SetActive(false);
+
+		App->audio->PlayFx(canonshot);
 	}
 
-	if (canoverd2 == true && CanoVerdSen2->body->IsActive() == true) {
+	if (canoverd2 == true && CanoVerdSen2->body->IsActive() == true) 
+	{
 		b2Vec2 vel = b2Vec2(0, 1.5 * GRAVITY_Y);
 		Ball->body->SetLinearVelocity(vel);
 		CanoVerdSen2->body->SetActive(false);
+
+		App->audio->PlayFx(canonshot);
 	}
+
 	if (canoverd1 == true) {
 		animaciocano;
 		animaciocano = CanoVerdAnim.GetCurrentFrame();
@@ -682,5 +695,9 @@ void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 	if (bodyB == App->scene_intro->Floor3_ac) {
 		Ball->body->SetLinearVelocity({ -20, -20 });
 	}
+	if (bodyB == App->scene_intro->rightflipper || bodyB == App->scene_intro->rightflipper2 || bodyB == App->scene_intro->leftflipper) {
+		App->audio->PlayFx(flipper);
+	}
+
 	
 }

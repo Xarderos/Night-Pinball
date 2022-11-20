@@ -107,6 +107,13 @@ public:
 	Animation PortaBlanca;
 	Animation BossDeathAnim;
 
+
+	//FX
+	uint silencio;
+	uint canonshot;
+	uint fire_ball;
+	uint flipper;
+
 	//Definitions
 	int botonsound;
 	int pedrasound;
