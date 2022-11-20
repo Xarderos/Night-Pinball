@@ -673,7 +673,7 @@ update_status ModulePlayer::Update()
 
 	App->font->BlitText(620, 15, App->physics->scoreFont, "s  t  a  g  e           0 1");
 	App->font->BlitText(620, 200, App->physics->scoreFont, "s  c  o  r  e");
-	App->font->BlitText(620, 230, App->physics->scoreFont, scorechar);
+	App->font->BlitText(690, 230, App->physics->scoreFont, scorechar);
 	App->font->BlitText(620, 450, App->physics->scoreFont, "l i v  e  s");
 	App->font->BlitText(620, 480, App->physics->scoreFont, lifeschar);
 	App->font->BlitText(620, 700, App->physics->scoreFont, "c  o  m  b  o");
