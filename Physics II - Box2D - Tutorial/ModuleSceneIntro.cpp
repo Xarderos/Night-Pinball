@@ -40,17 +40,17 @@ bool ModuleSceneIntro::Start()
 	rightflipcircle = App->physics->CreateCircleStatic(155, 386, 5);
 	rightflipcircle2 = App->physics->CreateCircleStatic(227, 257, 5);
 	leftflipcircle = App->physics->CreateCircleStatic(87, 386, 5);
-	rightflipper = App->physics->CreateRectangle(140, 385, 20, 6);
-	rightflipper2 = App->physics->CreateRectangle(212, 256, 20, 6);
-	leftflipper = App->physics->CreateRectangle(101, 385, 20, 6);
+	rightflipper = App->physics->CreateRectangle(140, 385, 22, 6);
+	rightflipper2 = App->physics->CreateRectangle(212, 256, 22, 6);
+	leftflipper = App->physics->CreateRectangle(101, 385, 22, 6);
 	NightsensorF1_1 = App->physics->CreateRectangleSensor(23,210,30,10);
-	NightsensorF1_2 = App->physics->CreateRectangleSensor(201, 100, 35, 10);
+	NightsensorF1_2 = App->physics->CreateRectangleSensor(203, 84, 40, 8);
 	NightsensorF1_3 = App->physics->CreateRectangleSensor(225, 215, 30, 10);
 
 	gameover = App->physics->CreateRectangleSensor(87, 430, 66, 10);
 
 	NightsensorF2_1 = App->physics->CreateRectangleSensor(14, 186, 25, 5);
-	NightsensorF2_2 = App->physics->CreateRectangleSensor(200, 71, 15, 10);
+	NightsensorF2_2 = App->physics->CreateRectangleSensor(200, 72, 15, 6);
 	NightsensorF2_3 = App->physics->CreateRectangleSensor(233, 198, 25, 5);
 
 	Floor3_1 = App->physics->CreateRectangleSensor(43, 327, 25, 5);
@@ -187,8 +187,8 @@ update_status ModuleSceneIntro::Update()
 	
 	if ((App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT))
 	{
-		rightflipper->body->ApplyForceToCenter(b2Vec2(0, -400), 1);
-		rightflipper2->body->ApplyForceToCenter(b2Vec2(0, -400), 1);
+		rightflipper->body->ApplyForceToCenter(b2Vec2(0, -300), 1);
+		rightflipper2->body->ApplyForceToCenter(b2Vec2(0, -300), 1);
 	}
 
 	if ((App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT))
@@ -633,25 +633,26 @@ void ModuleSceneIntro::map()
 		};
 		Map.push_back(App->physics->CreateChain(-261, 0, NightRamp2, 48));
 
-		int NightRamp3[32] = {
-				469, 71,
-				467, 52,
-				464, 44,
-				458, 31,
-				466, 34,
-				479, 45,
-				488, 56,
-				495, 74,
-				498, 101,
-				496, 125,
-				495, 140,
-				486, 183,
-				476, 203,
-				485, 89,
-				483, 80,
-				476, 74
+		int NightRamp3[34] = {
+			472, 63,
+			468, 52,
+			464, 44,
+			458, 31,
+			466, 34,
+			479, 45,
+			488, 56,
+			495, 74,
+			498, 101,
+			496, 125,
+			495, 140,
+			486, 183,
+			476, 203,
+			492, 92,
+			491, 77,
+			485, 70,
+			477, 65
 		};
-		Map.push_back(App->physics->CreateChain(-261, 0, NightRamp3, 32));
+		Map.push_back(App->physics->CreateChain(-261, 0, NightRamp3, 34));
 
 	}
 	if (floornum == 3) {
