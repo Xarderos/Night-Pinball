@@ -50,6 +50,7 @@ bool ModulePhysics::Start()
 	bosshit = App->audio->LoadFx("pinball/Audios/BossHit.wav");
 	velocity = 60.0f;
 
+	Score = 10000;
 	Gameover = false;
 	Win = false;
 

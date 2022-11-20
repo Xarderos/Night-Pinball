@@ -515,22 +515,6 @@ update_status ModulePlayer::Update()
 		App->audio->PlayFx(bolafuera);
 	}
 
-	if (lifes <= 0) {
-		App->physics->Gameover = true;
-		//Black = App->textures->Load("pinball/black.png");
-		//App->font->BlitText(300, 500, scoreFont, "g  a  m  e    o  v  e  r");
-		//App->font->BlitText(300, 520, scoreFont, "p  r  e  s  s    r    t  o");
-		//App->font->BlitText(300, 540, scoreFont, "r  e  s  t  a  r  t");
-		////lifes = 5;
-		////score = 0;
-		//if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN) {
-		//	App->textures->Unload(Black);
-		//	App->font->UnLoad(scoreFont);
-		//	App->player->CleanUp();
-		//	App->player->Start();
-		//}
-
-	}
 
 	//temporal
 	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
@@ -678,7 +662,7 @@ update_status ModulePlayer::Update()
 
 	App->font->BlitText(620, 15, App->physics->scoreFont, "s  t  a  g  e           0 1");
 	App->font->BlitText(620, 200, App->physics->scoreFont, "s  c  o  r  e");
-	App->font->BlitText(690, 230, App->physics->scoreFont, scorechar);
+	App->font->BlitText(620, 230, App->physics->scoreFont, scorechar);
 	App->font->BlitText(620, 450, App->physics->scoreFont, "l i v  e  s");
 	App->font->BlitText(620, 480, App->physics->scoreFont, lifeschar);
 	App->font->BlitText(620, 700, App->physics->scoreFont, "c  o  m  b  o");
