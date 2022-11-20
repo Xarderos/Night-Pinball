@@ -45,6 +45,10 @@ public:
 	update_status PostUpdate();
 	bool CleanUp();
 
+	bool Gameover;
+	bool Win;
+	int Highscore;
+
 	
 	// Create basic physics objects
 	PhysBody* CreateCircle(int x, int y, int radius);

@@ -191,13 +191,14 @@ update_status ModuleSceneIntro::Update()
 
 	}
 	if (App->player->lifes <= 0 || (App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)) {
-		App->player->GameOver = true;
+		App->physics->Gameover = true;
 		App->player->Disable();
 		App->game_over->Enable();
 		App->scene_intro->Disable();
 	}
 
-	if (App->player->WIN == true || (App->input->GetKey(SDL_SCANCODE_K) == KEY_DOWN)) {
+	if (App->physics->Win == true || (App->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN)) {
+		App->physics->Win = true;
 		App->player->Disable();
 		App->game_over->Enable();
 		App->scene_intro->Disable();

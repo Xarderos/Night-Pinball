@@ -153,9 +153,11 @@ public:
 	bool estrellaverda;
 	bool estrellavermella;
 
+<<<<<<< Updated upstream
 	bool GameOver;
+=======
+>>>>>>> Stashed changes
 	bool boss;
-	bool WIN;
 	bool oai;
 	// Font score index
 	int score;

@@ -155,7 +155,6 @@ bool ModulePlayer::Start()
 	llumvermella = false;
 	llumblanca = false;
 	portablanca = false;
-	WIN = false;
 	Ball->listener = this;
 	MapaPin1f = { 262, 1, 256, 432 };
 	Reixa = { 1,596,28,42 };
@@ -487,7 +486,7 @@ update_status ModulePlayer::Update()
 		BossDeathAnim.Update();
 		//WIN CONDITIOn
 		if(BossDeathAnim.HasFinished()==true)
-		WIN = true;
+		App->physics->Win = true;
 	}
 
 
@@ -510,7 +509,7 @@ update_status ModulePlayer::Update()
 	}
 
 	if (lifes <= 0) {
-		GameOver = true;
+		App->physics->Gameover = true;
 		//Black = App->textures->Load("pinball/black.png");
 		//App->font->BlitText(300, 500, scoreFont, "g  a  m  e    o  v  e  r");
 		//App->font->BlitText(300, 520, scoreFont, "p  r  e  s  s    r    t  o");
