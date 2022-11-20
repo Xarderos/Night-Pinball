@@ -153,6 +153,7 @@ bool ModulePlayer::Start()
 	llumgroga3 = false;
 	llumblava = false;
 	llumvermella = false;
+	llumblanca = false;
 	portablanca = false;
 	WIN = false;
 	Ball->listener = this;

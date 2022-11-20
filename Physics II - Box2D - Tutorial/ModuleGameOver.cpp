@@ -8,6 +8,7 @@
 #include "ModuleAudio.h"
 #include "ModuleFont.h"
 #include "ModulePlayer.h"
+#include "ModulePhysics.h"
 
 #include <sstream>
 #include <string.h>
@@ -27,7 +28,7 @@ bool ModuleGameOver::Start()
 	LOG("Loading Title assets uwu");
 	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
 	TitleFont = App->font->Load("pinball/rtype_font3.png", lookupTable, 2);
-
+	App->physics->velocity = 60.0f;
 	//App->renderer->camera.x = App->renderer->camera.y = 0;
 	fondo = App->textures->Load("pinball/black.png");
 

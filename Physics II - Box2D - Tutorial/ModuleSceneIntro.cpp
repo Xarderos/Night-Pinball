@@ -176,7 +176,7 @@ bool ModuleSceneIntro::CleanUp()
 
 update_status ModuleSceneIntro::Update()
 {
-	//Change restitutions of bumpers
+	//Change restitutions of bumpers 
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
 		restitution = !restitution;
 		if (restitution == false) {
