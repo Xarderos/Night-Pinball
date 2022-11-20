@@ -166,7 +166,6 @@ bool ModulePlayer::Start()
 	boss = false;
 	bossvida = 3;
 	gravity = -18.0;
-	GameOver = false;
 	changegrav = true;
 	oai = false;
 	LOG("Loading player");
