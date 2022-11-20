@@ -166,8 +166,8 @@ bool ModulePlayer::Start()
 	boss = false;
 	bossvida = 3;
 	gravity = -18.0;
-	GameOver = false;
 	changegrav = true;
+	oai = false;
 	LOG("Loading player");
 	return true;
 }
@@ -454,12 +454,12 @@ update_status ModulePlayer::Update()
 	if (boss == true && bossvida>=0) {
 		if (oai == false) {
 			oai = true;
-			slowtimer = 894;
+			slowtimer = 890;
 			App->audio->PlayMusic("pinball/HuntingDrowningKurapika.ogg");
 
 		}
 		if (slowtimer > 0) {
-			App->physics->velocity = 8000.0f;
+			App->physics->velocity = 7600.0f;
 
 		}
 		if(slowtimer==0)
