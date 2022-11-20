@@ -160,5 +160,7 @@ public:
 	int score;
 	int scoreFont = -1; //SCORE ELIMINAR AIXÒ
 	int slowtimer;
+	float gravity;
+	bool changegrav;
 	char scoreText[10] = { "\0" };
 };
