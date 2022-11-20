@@ -40,6 +40,7 @@ a little yellow circle will apear at the bottom of the map
   - B: Spawns the boss
   - F1: Collisions
   - F2: Change bounce cofficient
+  - F3: Resets the ball
   - G: Change gravity
   - R: Once you lose/win press it to restart the game
 
