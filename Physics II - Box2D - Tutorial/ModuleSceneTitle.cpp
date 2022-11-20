@@ -28,7 +28,7 @@ bool ModuleSceneTitle::Start()
 	TitleFont = App->font->Load("pinball/rtype_font3.png", lookupTable, 2);
 
 	//App->renderer->camera.x = App->renderer->camera.y = 0;
-	title = App->textures->Load("pinball/black.png");
+	title = App->textures->Load("pinball/titlepetit.png");
 
 	return true;
 }
@@ -37,9 +37,7 @@ update_status ModuleSceneTitle::Update()
 {
 	App->renderer->Blit(title, 0, 0);
 	App->font->BlitText(58, 248, TitleFont, TitleText);
-	App->font->BlitText(300, 450, TitleFont, "p  r  e  s  s    s  p  a  c  e");
-	App->font->BlitText(300, 490, TitleFont, "    t  o    p  l  a  y");
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN|| App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->scene_intro, 50);
 	}
