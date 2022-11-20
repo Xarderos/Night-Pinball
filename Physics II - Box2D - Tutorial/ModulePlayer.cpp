@@ -219,7 +219,12 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update()
 {
 	b2Vec2 position;
-	
+	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) {
+		App->scene_intro->floornum = 1;
+		App->scene_intro->mapselector = true;
+		App->scene_intro->map();
+		Ball->body->SetTransform({ PIXEL_TO_METERS(250), PIXEL_TO_METERS(400) }, 0);
+	}
 	if (App->input->GetKey(SDL_SCANCODE_G) == KEY_DOWN) {
 		changegrav = !changegrav;
 		if (changegrav == true) {
@@ -501,7 +506,7 @@ update_status ModulePlayer::Update()
 			App->audio->PlayFx(fire_ball);
 		}
 	}
-
+	//perdre bola
 	if ((METERS_TO_PIXELS(position.y)) > 1500 && lifes>0)
 	{
 		Ball->body->SetTransform({ PIXEL_TO_METERS(250), PIXEL_TO_METERS(400) }, 0);
