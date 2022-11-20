@@ -38,10 +38,10 @@ update_status ModuleSceneTitle::Update()
 	App->renderer->Blit(title, 0, 0);
 	App->font->BlitText(58, 248, TitleFont, TitleText);
 	App->font->BlitText(300, 450, TitleFont, "p  r  e  s  s    s  p  a  c  e");
-	App->font->BlitText(300, 470, TitleFont, "t  o    p  l  a  y");
+	App->font->BlitText(300, 490, TitleFont, "    t  o    p  l  a  y");
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
-		App->fade->FadeToBlack(this, (Module*)App->scene_intro, 90);
+		App->fade->FadeToBlack(this, (Module*)App->scene_intro, 50);
 	}
 	
 	return UPDATE_CONTINUE;

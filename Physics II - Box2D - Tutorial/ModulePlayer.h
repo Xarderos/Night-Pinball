@@ -75,7 +75,7 @@ public:
 	SDL_Rect Portablanca;
 	SDL_Rect RightFlipperRect;
 	SDL_Rect LeftFlipperRect;
-
+	SDL_Rect BossPart;
 	//PhysBodies
 	PhysBody* Ball;
 	PhysBody* Rectangle;
@@ -105,6 +105,7 @@ public:
 	Animation CanoVerdAnim;
 	Animation CanoVerdAnim2;
 	Animation PortaBlanca;
+	Animation BossDeathAnim;
 
 	//Definitions
 	int botonsound;
@@ -143,6 +144,7 @@ public:
 
 	bool GameOver = false;
 	bool boss;
+	bool WIN;
 	// Font score index
 	int score;
 	int scoreFont = -1; //SCORE ELIMINAR AIXÒ

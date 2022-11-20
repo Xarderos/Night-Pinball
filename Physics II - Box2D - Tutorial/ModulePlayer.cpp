@@ -94,6 +94,15 @@ bool ModulePlayer::Start()
 	PortaBlanca.loop = false;
 	PortaBlanca.speed = 0.1;
 
+	BossDeathAnim.PushBack({ 308,678,49,48 });
+	BossDeathAnim.PushBack({ 357,678,49,48 });
+	BossDeathAnim.PushBack({ 406,678,49,48 });
+	BossDeathAnim.PushBack({ 455,678,49,48 });
+	BossDeathAnim.PushBack({ 0,0,0,0 });
+	BossDeathAnim.loop = false;
+	BossDeathAnim.speed = 0.1;
+
+
 	//Sensors
 
 	PedraSen = App->physics->CreateRectangleSensor(120, 193, 35, 34);
@@ -126,7 +135,7 @@ bool ModulePlayer::Start()
 			33, 1311
 	};
 	RampaT2 = App->physics->CreateChain(0, -910, Rampa2, 8);
-	BossHitbox = App->physics->CreateRectangleSensor(173, 37,20,20);
+	BossHitbox = App->physics->CreateRectangleSensor(202, 75,10,20);
 	BossHitbox->body->SetActive(false);
 
 	canoverd1 = false;
@@ -138,7 +147,7 @@ bool ModulePlayer::Start()
 	llumblava = false;
 	llumvermella = false;
 	portablanca = false;
-
+	WIN = false;
 	Ball->listener = this;
 	MapaPin1f = { 262, 1, 256, 432 };
 	Reixa = { 1,596,28,42 };
@@ -148,7 +157,7 @@ bool ModulePlayer::Start()
 	LeftFlipperRect = { 205,662,60,10 };
 	llumverda = 0;
 	boss = false;
-	bossvida = 4;
+	bossvida = 3;
 	LOG("Loading player");
 	return true;
 }
@@ -387,11 +396,12 @@ update_status ModulePlayer::Update()
 
 	PedraPin = { 354,165,56,55 };
 	App->renderer->Blit(Bola, 92 * SCREEN_SIZE, 165 * SCREEN_SIZE, &PedraPin);
-
+	//Si actives les llums actives el boss
 	if (llumblava == true && llumvermella == true && llumverda > 2 && llumgroga == true && llumgroga2 == true && llumgroga3 == true && llumblanca == true)
 	{
 		boss = true;
 	}
+	//Shortcut per activar el boss
 	if (App->input->GetKey(SDL_SCANCODE_B) == KEY_DOWN) {
 		boss = true;
 		llumblava = true;
@@ -402,6 +412,7 @@ update_status ModulePlayer::Update()
 		llumgroga3 = true;
 		llumblanca = true;
 	}
+	//Actives el boss i les hitbox
 	if (boss == true && bossvida>=0) {
 		BossHitbox->body->SetActive(true);
 		LlumBoss = { 176, 722, 9, 12 };
@@ -409,6 +420,19 @@ update_status ModulePlayer::Update()
 		Boss2 = BossAnim.GetCurrentFrame();
 		App->renderer->Blit(Bola, 173 * SCREEN_SIZE, 37 * SCREEN_SIZE, &Boss2);
 		BossAnim.Update();
+	}
+	//Shortcut per matar al boss
+	if (App->input->GetKey(SDL_SCANCODE_K) == KEY_DOWN) {
+		bossvida = -1;
+	}
+	//Mates al boss
+	if (bossvida < 0) {
+		BossPart = BossDeathAnim.GetCurrentFrame();
+		App->renderer->Blit(Bola, 178 * SCREEN_SIZE, 45 * SCREEN_SIZE, &BossPart);
+		BossDeathAnim.Update();
+		//WIN CONDITIOn
+		if(BossDeathAnim.HasFinished()==true)
+		WIN = true;
 	}
 
 
