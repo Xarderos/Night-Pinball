@@ -312,18 +312,18 @@ update_status ModulePlayer::Update()
 	}
 	if (bossvida <= 1)
 	{
-		BossVida2 = { 58,889,10,11 };
-		App->renderer->Blit(Bola, 44 * SCREEN_SIZE, 307 * SCREEN_SIZE, &BossVida2);
+		BossVida = { 58,889,10,11 };
+		App->renderer->Blit(Bola, 44 * SCREEN_SIZE, 307 * SCREEN_SIZE, &BossVida);
 	}
 	if (bossvida <= 0)
 	{
-		BossVida3 = { 58,889,10,11 };
-		App->renderer->Blit(Bola, 188 * SCREEN_SIZE, 307 * SCREEN_SIZE, &BossVida3);
+		BossVida = { 58,889,10,11 };
+		App->renderer->Blit(Bola, 188 * SCREEN_SIZE, 307 * SCREEN_SIZE, &BossVida);
 	}
 	if (bossvida <= -1)
 	{
-		BossVida4 = { 58,889,10,11 };
-		App->renderer->Blit(Bola, 212 * SCREEN_SIZE, 304 * SCREEN_SIZE, &BossVida4);
+		BossVida = { 58,889,10,11 };
+		App->renderer->Blit(Bola, 212 * SCREEN_SIZE, 304 * SCREEN_SIZE, &BossVida);
 	}
 	Chip = ChipAnim.GetCurrentFrame();
 	App->renderer->Blit(Bola, 15 * SCREEN_SIZE, 106 * SCREEN_SIZE, &Chip);

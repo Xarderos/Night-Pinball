@@ -77,9 +77,6 @@ public:
 	SDL_Rect LeftFlipperRect;
 	SDL_Rect BossPart;
 	SDL_Rect BossVida;
-	SDL_Rect BossVida2;
-	SDL_Rect BossVida3;
-	SDL_Rect BossVida4;
 	//PhysBodies
 	PhysBody* Ball;
 	PhysBody* Rectangle;
