@@ -1,6 +1,6 @@
 # Night-Pinball
 
-##Description
+## Description
 
 A Pinball game made by four CITM students.
 
@@ -22,6 +22,11 @@ There are 5 differents stars represented in different colors, you have to do som
   - Green Star: The player has to pass through a rock 3 times
   - Red Star: Similar to the blue one, the player has to touch a hole to activate the red star
   - Grey Star: The player has to pass through a little white door
+
+## How to win
+
+To win in this pinball the player has to hit the boss 4 times, each time the player hits the boss
+a little yellow circle will apear at the bottom of the map
 
 ## Controls
 
