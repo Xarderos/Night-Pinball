@@ -155,6 +155,8 @@ bool ModulePlayer::Start()
 	llumvermella = false;
 	llumblanca = false;
 	portablanca = false;
+	lilatriangle = false;
+	llumrectangle = false;
 	Ball->listener = this;
 	MapaPin1f = { 262, 1, 256, 432 };
 	Reixa = { 1,596,28,42 };
