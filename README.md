@@ -30,6 +30,7 @@ There are 5 differents stars represented in different colors, you have to do som
   - SPACE: Shoot the canon
   - ENTER: Enter the game, it acts like a "start" button
   - K: Insta win
+  - W: Insta win
   - L: Insta lose
   - B: Spawns the boss
   - F1: Collisions
