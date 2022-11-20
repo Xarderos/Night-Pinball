@@ -49,20 +49,19 @@ update_status ModuleGameOver::Update()
 			App->fade->FadeToBlack(this, (Module*)App->scene_intro, 50);
 		}
 	}
-	if (App->player->WIN == true) {
-		App->font->BlitText(300, 430, TitleFont, "l  l  e  n  g  u  a  t    l  l  e  n  g  u  a  t");
-		App->font->BlitText(300, 460, TitleFont, "a    a  q  u  e  s  t    p i n  b  a  l  l");
-		App->font->BlitText(300, 490, TitleFont, "h  a  s    g  u  a  n  y  a  t  A  A  A  A");
-		App->font->BlitText(300, 600, TitleFont, "s  c  o  r  e");
-		App->font->BlitText(300, 750, TitleFont, "p  r  e  s  s     r");
-		App->font->BlitText(300, 780, TitleFont, "t  o    p  l  a  y");
-		App->font->BlitText(300, 810, TitleFont, "a  g  a i n");
+	App->font->BlitText(300, 430, TitleFont, "l  l  e  n  g  u  a  t    l  l  e  n  g  u  a  t");
+	App->font->BlitText(300, 460, TitleFont, "a    a  q  u  e  s  t    p i n  b  a  l  l");
+	App->font->BlitText(300, 490, TitleFont, "h  a  s    g  u  a  n  y  a  t  A  A  A  A");
+	App->font->BlitText(300, 600, TitleFont, "s  c  o  r  e");
+	App->font->BlitText(300, 750, TitleFont, "p  r  e  s  s     r");
+	App->font->BlitText(300, 780, TitleFont, "t  o    p  l  a  y");
+	App->font->BlitText(300, 810, TitleFont, "a  g  a i n");
 
-		if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
 		{
-			App->fade->FadeToBlack(this, (Module*)App->scene_intro, 50);
+		  App->fade->FadeToBlack(this, (Module*)App->scene_intro, 50);
 		}
-	}
+
 
 	return UPDATE_CONTINUE;
 }

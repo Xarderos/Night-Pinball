@@ -9,6 +9,7 @@
 #include "ModuleSceneIntro.h"
 #include "ModuleFont.h"
 #include "Animation.h"
+#include "ModuleFadeToBlack.h"
 #include <iostream>
 using namespace std;
 #include <sstream>

@@ -177,6 +177,18 @@ bool ModuleSceneIntro::CleanUp()
 
 update_status ModuleSceneIntro::Update()
 {
+	if (App->player->lifes <= 0 || (App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)) {
+		App->player->GameOver = true;
+		App->player->Disable();
+		App->game_over->Enable();
+		App->scene_intro->Disable();
+	}
+
+	if (App->player->WIN == true || (App->input->GetKey(SDL_SCANCODE_K) == KEY_DOWN)) {
+		App->player->Disable();
+		App->game_over->Enable();
+		App->scene_intro->Disable();
+	}
 
 	if ((App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN)) {
 		mapselector = true;
@@ -203,16 +215,7 @@ update_status ModuleSceneIntro::Update()
 	{
 		App->audio->PlayFx(flippers);
 	}
-	if (App->player->lifes <= 0 || (App->input->GetKey(SDL_SCANCODE_L) == KEY_REPEAT)) {
-		App->player->GameOver = true; 
-		App->physics->CleanUp();
-		App->player->CleanUp();
-		App->fade->FadeToBlack(this, (Module*)App->game_over, 50);
-	}
-
-	if (App->player->WIN == true || (App->input->GetKey(SDL_SCANCODE_K) == KEY_REPEAT)) {
-		App->fade->FadeToBlack(this, (Module*)App->game_over, 50);
-	}
+	
 
 	// The target point of the raycast is the mouse current position (will change over game time)
 	iPoint mouse;
