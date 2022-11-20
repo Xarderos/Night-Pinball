@@ -153,14 +153,15 @@ public:
 	bool estrellaverda;
 	bool estrellavermella;
 
-	bool GameOver;
+
+	//bool GameOver; ja hi ha el de physics.h
+
 	bool boss;
 	bool oai;
 	// Font score index
-	int score;
-	int scoreFont = -1; //SCORE ELIMINAR AIXÒ
+	
 	int slowtimer;
 	float gravity;
 	bool changegrav;
-	char scoreText[10] = { "\0" };
+	
 };

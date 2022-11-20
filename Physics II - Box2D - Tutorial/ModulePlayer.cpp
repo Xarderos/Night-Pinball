@@ -26,7 +26,7 @@ ModulePlayer::~ModulePlayer()
 // Load assets
 bool ModulePlayer::Start()
 {
-	score = 000;
+	App->physics->Score = 000;
 	lifes = 5;
 	//Textures
 
@@ -35,7 +35,7 @@ bool ModulePlayer::Start()
 	//Fonts
 
 	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
-	scoreFont = App->font->Load("pinball/rtype_font3.png", lookupTable, 2);
+	App->physics->scoreFont = App->font->Load("pinball/rtype_font3.png", lookupTable, 2);
 	
 	//Sorolls
 
@@ -662,22 +662,22 @@ update_status ModulePlayer::Update()
 	//FONTS
 
 
-	App->font->BlitText(58, 248, scoreFont, scoreText);
+	App->font->BlitText(58, 248, App->physics->scoreFont, App ->physics->scoreText);
 
-	string puntuacion = std::to_string(score);
+	string puntuacion = std::to_string(App->physics->Score);
 	const char* scorechar = puntuacion.c_str();
 
 	string vidas = std::to_string(lifes);
 	const char* lifeschar = vidas.c_str();
 
-	App->font->BlitText(620, 15, scoreFont, "s  t  a  g  e           0 1");
-	App->font->BlitText(620, 200, scoreFont, "s  c  o  r  e");
-	App->font->BlitText(620, 230, scoreFont, scorechar);
-	App->font->BlitText(620, 450, scoreFont, "l i v  e  s");
-	App->font->BlitText(620, 480, scoreFont, lifeschar);
-	App->font->BlitText(620, 700, scoreFont, "c  o  m  b  o");
+	App->font->BlitText(620, 15, App->physics->scoreFont, "s  t  a  g  e           0 1");
+	App->font->BlitText(620, 200, App->physics->scoreFont, "s  c  o  r  e");
+	App->font->BlitText(620, 230, App->physics->scoreFont, scorechar);
+	App->font->BlitText(620, 450, App->physics->scoreFont, "l i v  e  s");
+	App->font->BlitText(620, 480, App->physics->scoreFont, lifeschar);
+	App->font->BlitText(620, 700, App->physics->scoreFont, "c  o  m  b  o");
 	//App->font->BlitText(620,15, scoreFont, scorechar);
-	App->font->BlitText(620, 900, scoreFont, "h i g  h  s  c  o  r  e");
+	App->font->BlitText(620, 900, App->physics->scoreFont, "h i g  h  s  c  o  r  e");
 	//App->font->BlitText(620,15, scoreFont, scorechar);
 
 	App->renderer->Blit(Bola, 127 * SCREEN_SIZE, 380 * SCREEN_SIZE, &RightFlipperRect, 0, App->scene_intro->rightflipper->GetRotation());

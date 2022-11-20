@@ -51,15 +51,15 @@ update_status ModuleGameOver::Update()
 		}
 	}
 
-	string puntuacion = std::to_string(App->player->score);
-	const char* scorechar = puntuacion.c_str();
+	string puntuacion = std::to_string(App->physics->Score);
+	const char* Scorechar = puntuacion.c_str();
 
 	if (App->physics->Win == true) {
 		App->font->BlitText(300, 430, TitleFont, "l  l  e  n  g  u  a  t    l  l  e  n  g  u  a  t");
 		App->font->BlitText(300, 460, TitleFont, "a    a  q  u  e  s  t    p i n  b  a  l  l");
 		App->font->BlitText(300, 490, TitleFont, "h  a  s    g  u  a  n  y  a  t  A  A  A  A");
 		App->font->BlitText(300, 600, TitleFont, "s  c  o  r  e");
-		App->font->BlitText(300, 630, TitleFont, scorechar);
+		App->font->BlitText(300, 630, TitleFont, Scorechar);
 		App->font->BlitText(300, 750, TitleFont, "p  r  e  s  s     r");
 		App->font->BlitText(300, 780, TitleFont, "t  o    p  l  a  y");
 		App->font->BlitText(300, 810, TitleFont, "a  g  a i n");
