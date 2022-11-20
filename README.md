@@ -12,6 +12,7 @@ A Pinball game made by four CITM students.
  - The boss appears with an epic soundtrack
  - The player can change the gravity
  - The player can manipulate the bounce coefficient
+ - When the boss spawns, there's a slow motion made with lowing the FPS
 
 ## Combos
   
