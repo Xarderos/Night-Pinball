@@ -326,6 +326,26 @@ update_status ModulePlayer::Update()
 			estrellablanca = true;
 		}
 	}
+	if (bossvida <= 2)
+	{
+		RodonaGroga = { 58,889,10,11 };
+		App->renderer->Blit(Bola, 20 * SCREEN_SIZE, 304 * SCREEN_SIZE, &RodonaGroga);
+	}
+	if (bossvida <= 1)
+	{
+		RodonaGroga = { 58,889,10,11 };
+		App->renderer->Blit(Bola, 44 * SCREEN_SIZE, 307 * SCREEN_SIZE, &RodonaGroga);
+	}
+	if (bossvida <= 0)
+	{
+		RodonaGroga = { 58,889,10,11 };
+		App->renderer->Blit(Bola, 188 * SCREEN_SIZE, 307 * SCREEN_SIZE, &RodonaGroga);
+	}
+	if (bossvida <= -1)
+	{
+		RodonaGroga = { 58,889,10,11 };
+		App->renderer->Blit(Bola, 212 * SCREEN_SIZE, 304 * SCREEN_SIZE, &RodonaGroga);
+	}
 	if (llumverda > 0)
 	{
 		PedraSen_ = { 82,844,16,15 };

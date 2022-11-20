@@ -76,6 +76,7 @@ public:
 	SDL_Rect RightFlipperRect;
 	SDL_Rect LeftFlipperRect;
 	SDL_Rect BossPart;
+	SDL_Rect RodonaGroga;
 	//PhysBodies
 	PhysBody* Ball;
 	PhysBody* Rectangle;
