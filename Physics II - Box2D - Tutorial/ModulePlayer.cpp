@@ -26,7 +26,6 @@ ModulePlayer::~ModulePlayer()
 // Load assets
 bool ModulePlayer::Start()
 {
-	App->physics->Score = 10000;
 	lifes = 5;
 	//Textures
 
@@ -36,6 +35,7 @@ bool ModulePlayer::Start()
 
 	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
 	App->physics->scoreFont = App->font->Load("pinball/rtype_font3.png", lookupTable, 2);
+	
 	
 	//Sorolls
 
@@ -221,6 +221,7 @@ update_status ModulePlayer::Update()
 	b2Vec2 position;
 	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) {
 		App->scene_intro->floornum = 1;
+		canjump = true;
 		App->scene_intro->mapselector = true;
 		App->scene_intro->map();
 		Ball->body->SetTransform({ PIXEL_TO_METERS(250), PIXEL_TO_METERS(400) }, 0);
@@ -516,15 +517,6 @@ update_status ModulePlayer::Update()
 	}
 
 
-	//temporal
-	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
-	{
-		b2Vec2 vel = b2Vec2(0, 1.7 * gravity);
-		Ball->body->SetLinearVelocity(vel);
-	}
-	//temporal
-
-
 	//TEXTURAS CAÑÓN
 	SuportCanoPin = { 494, 1009, 24, 192 };
 	App->renderer->Blit(Bola, 233 * SCREEN_SIZE, 233 * SCREEN_SIZE, &SuportCanoPin);
@@ -668,7 +660,6 @@ update_status ModulePlayer::Update()
 	App->font->BlitText(620, 700, App->physics->scoreFont, "c  o  m  b  o");
 	//App->font->BlitText(620,15, scoreFont, scorechar);
 	App->font->BlitText(620, 900, App->physics->scoreFont, "h i g  h  s  c  o  r  e");
-	App->font->BlitText(690, 230, App->physics->scoreFont, scorechar);
 	//App->font->BlitText(620,15, scoreFont, scorechar);
 
 	App->renderer->Blit(Bola, 127 * SCREEN_SIZE, 380 * SCREEN_SIZE, &RightFlipperRect, 0, App->scene_intro->rightflipper->GetRotation());

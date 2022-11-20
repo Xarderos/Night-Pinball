@@ -41,9 +41,9 @@ update_status ModuleGameOver::Update()
 	App->font->BlitText(58, 248, TitleFont, TitleText);
 	if (App->physics->Gameover==true) {
 		App->font->BlitText(300, 430, TitleFont, "g  a  m  e    o  v  e  r");
-		App->font->BlitText(300, 460, TitleFont, "p  r  e  s  s     r");
-		App->font->BlitText(300, 490, TitleFont, "t  o    p  l  a  y");
-		App->font->BlitText(300, 520, TitleFont, "a  g  a i n");
+		App->font->BlitText(300, 470, TitleFont, "   p  r  e  s  s     r");
+		App->font->BlitText(300, 500, TitleFont, "   t  o    p  l  a  y");
+		App->font->BlitText(300, 530, TitleFont, "     a  g  a i n");
 
 		if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
 		{
@@ -55,14 +55,14 @@ update_status ModuleGameOver::Update()
 	const char* Scorechar = puntuacion.c_str();
 
 	if (App->physics->Win == true) {
-		App->font->BlitText(300, 430, TitleFont, "l  l  e  n  g  u  a  t    l  l  e  n  g  u  a  t");
-		App->font->BlitText(300, 460, TitleFont, "a    a  q  u  e  s  t    p i n  b  a  l  l");
-		App->font->BlitText(300, 490, TitleFont, "h  a  s    g  u  a  n  y  a  t  A  A  A  A");
+		App->font->BlitText(300, 430, TitleFont, "c  o  n  g  r  a  t  u  l  a  t i o  n  s  A  A  A");
+		App->font->BlitText(300, 460, TitleFont, "y  o  u   w  o  n  A");
 		App->font->BlitText(300, 600, TitleFont, "s  c  o  r  e");
-		App->font->BlitText(300, 630, TitleFont, Scorechar);
+		App->font->BlitText(300, 660, TitleFont, Scorechar);
+		App->font->BlitText(300, 630, TitleFont, "3  0  0  0 ");
 		App->font->BlitText(300, 750, TitleFont, "p  r  e  s  s     r");
-		App->font->BlitText(300, 780, TitleFont, "t  o    p  l  a  y");
-		App->font->BlitText(300, 810, TitleFont, "a  g  a i n");
+		App->font->BlitText(300, 780, TitleFont, "  t  o    p  l  a  y");
+		App->font->BlitText(300, 810, TitleFont, "    a  g  a i n");
 
 		if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
 		{
