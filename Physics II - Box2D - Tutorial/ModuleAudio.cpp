@@ -103,6 +103,8 @@ bool ModuleAudio::PlayMusic(const char* path, float fade_time)
 	}
 	else
 	{
+		Mix_VolumeMusic(10);
+
 		if(fade_time > 0.0f)
 		{
 			if(Mix_FadeInMusic(music, -1, (int) (fade_time * 1000.0f)) < 0)
@@ -157,9 +159,11 @@ bool ModuleAudio::PlayFx(unsigned int id, int repeat)
 	bool ret = false;
 
 	Mix_Chunk* chunk = NULL;
-	
+
 	if(fx.at(id-1, chunk) == true)
 	{
+		Mix_VolumeChunk(chunk, 10);
+
 		Mix_PlayChannel(-1, chunk, repeat);
 		ret = true;
 	}

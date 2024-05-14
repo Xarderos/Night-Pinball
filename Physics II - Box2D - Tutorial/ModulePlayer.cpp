@@ -170,6 +170,13 @@ bool ModulePlayer::Start()
 	gravity = -18.0;
 	changegrav = true;
 	oai = false;
+	canjump = true;
+	DrawBola = true;
+	SaltCano = false;
+	dinsCano = false;
+	canoframe3 = 0;
+
+
 	LOG("Loading player");
 	return true;
 }

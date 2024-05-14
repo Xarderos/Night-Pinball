@@ -5,7 +5,11 @@
 #include "SDL/include/SDL.h"
 #pragma comment( lib, "SDL/libx86/SDL2.lib" )
 #pragma comment( lib, "SDL/libx86/SDL2main.lib" )
+#include <chrono>
 
+const float targetFPS = 60.0f;
+const float fixedDeltaTime = 1.0f / targetFPS;
+auto lastUpdateTime = std::chrono::high_resolution_clock::now();
 enum main_states
 {
 	MAIN_CREATION,
@@ -53,16 +57,24 @@ int main(int argc, char ** argv)
 
 		case MAIN_UPDATE:
 		{
-			int update_return = App->Update();
+			auto currentTime = std::chrono::high_resolution_clock::now();
 
-			if (update_return == UPDATE_ERROR)
+			// Calcular el tiempo transcurrido desde la última actualización
+			auto deltaTime = std::chrono::duration<float>(currentTime - lastUpdateTime).count();
+			if (deltaTime >= fixedDeltaTime)
 			{
-				LOG("Application Update exits with ERROR");
-				state = MAIN_EXIT;
-			}
+				int update_return = App->Update();
 
-			if (update_return == UPDATE_STOP)
-				state = MAIN_FINISH;
+				if (update_return == UPDATE_ERROR)
+				{
+					LOG("Application Update exits with ERROR");
+					state = MAIN_EXIT;
+				}
+
+				if (update_return == UPDATE_STOP)
+					state = MAIN_FINISH;
+				lastUpdateTime = currentTime;
+			}
 		}
 			break;
 
